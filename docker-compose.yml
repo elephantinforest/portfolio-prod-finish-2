@@ -1,0 +1,62 @@
+version: "3"
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: docker/app/Dockerfile
+    ports:
+      - "8080:80"
+    volumes:
+      - ./src:/var/www/html
+    depends_on:
+      - db
+      - test_db
+
+  db:
+    build:
+      context: .
+      dockerfile: docker/db/Dockerfile
+    ports:
+      - "13307:3306"
+    volumes:
+      - ./docker/db/my.cnf:/etc/mysql/my.cnf
+      - ./docker/db/mysql_data:/var/lib/mysql
+    env_file:
+      - ./docker/db/db-variables.env
+
+  test_db:
+    build:
+      context: .
+      dockerfile: docker/db/Dockerfile
+    ports:
+      - "13308:3306"
+    volumes:
+      - ./docker/db/my.cnf:/etc/mysql/my.cnf
+      # - ./docker/db/test_mysql_data:/var/lib/mysql
+    env_file:
+      - ./docker/db/test_db-variables.env
+
+  minio:
+    image: quay.io/minio/minio:latest
+    container_name: s3-minio
+    environment:
+      MINIO_ROOT_USER: admin123
+      MINIO_ROOT_PASSWORD: admin123
+    command: server --console-address ":9090" /data
+    volumes:
+      - ./minio/data:/data
+    ports:
+      - 9000:9000
+      - 9090:9090
+  # mc:
+  #   image: minio/mc
+  #   depends_on:
+  #     - minio
+  #   entrypoint: >
+  #     /bin/sh -c "
+  #     /usr/bin/mc alias set s3-minio http://minio:9000 admin123 admin123;
+  #     /usr/bin/mc mb s3-minio/sample --region=ap-northeast-1;
+  #     /usr/bin/mc policy set public s3-minio/sample;
+  #     exit 0;
+  #     "
