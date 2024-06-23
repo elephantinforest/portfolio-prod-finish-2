@@ -10,19 +10,17 @@ class S3
     private $s3;
     private $bucket;
 
-    public function __construct($bucket, $endpoint, $key, $secret, $region = 'us-west-2')
+    public function __construct()
     {
-        $this->bucket = $bucket;
+        $this->bucket = 'portfolio-mononoke-imgs';
         $credentials = [
-            'key'    => $key,
-            'secret' => $secret,
+            'key'    => getenv('S3_ACCESS_KEY'),
+            'secret' => getenv('S3_SECRET_KEY'),
         ];
 
         $this->s3 = new S3Client([
             'version'     => 'latest',
-            'region'      => $region,
-            'endpoint'    => $endpoint,
-            'use_path_style_endpoint' => true,
+            'region'      => 'ap-northeast-1',
             'credentials' => $credentials,
         ]);
     }

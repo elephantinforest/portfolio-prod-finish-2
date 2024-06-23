@@ -25,8 +25,7 @@ class LoginController extends Controller
             try {
                 //ユーザーの保持しているロケーションを取得
                 $location = $locationModel->fetchLocation($userId);
-                $s3 = $this->s3;
-                $location['file_path'] = $s3->downloadFile($location['file_path']);
+
                 if (empty($location)) {
                     $location = [
                         'location' =>  "ロケーションは登録されていません。",
@@ -45,6 +44,8 @@ class LoginController extends Controller
                         'user'
                     );
                 }
+                 $s3 = $this->s3;
+                $location['file_path'] = $s3->downloadFile($location['file_path']);
                 //ユーザーの保持しているレジスターを取得
                 $registers = $registerModel->fetchLocationRegister($userId, $location['location_id']);
                 foreach ($registers as $key => $value) {
