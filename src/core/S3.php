@@ -1,6 +1,7 @@
 <?php
 
-require '../vendor/autoload.php';
+require __DIR__ . '/../vendor/autoload.php';
+
 
 use Aws\S3\S3Client;
 use Aws\S3\Exception\S3Exception;
@@ -13,7 +14,12 @@ class S3
     public function __construct()
     {
         $this->bucket = 'portfolio-mononoke-imgs';
-        $credentials = [
+
+        //  $environment = getenv('ENVIRONMENT');
+         $environment = 'devement';
+
+        if ($environment === 'development') {
+            $credentials = [
             'key'    => getenv('S3_ACCESS_KEY'),
             'secret' => getenv('S3_SECRET_KEY'),
         ];
@@ -23,12 +29,29 @@ class S3
             'region'      => 'ap-northeast-1',
             'credentials' => $credentials,
         ]);
+        } else {
+            $credentials = [
+            'key'    => 'raziorazio',
+            'secret' => 'raziorazio',
+            // 'key'    => getenv('S3_ACCESS_KEY'),
+            // 'secret' => getenv('S3_SECRET_KEY'),
+        ];
+
+        $this->s3 = new S3Client([
+            'version'     => 'latest',
+            'region'      => 'ap-northeast-1',
+             'use_path_style_endpoint' => true,
+             'endpoint'    => 'http://minio:9000',
+            'credentials' => $credentials,
+        ]);
+      }
     }
 
     public function uploadFile($filePath, $key, $acl = 'public-read')
     {
         try {
             $fileContent = file_get_contents($filePath);
+            
 
             $result = $this->s3->putObject([
                 'Bucket' => $this->bucket,

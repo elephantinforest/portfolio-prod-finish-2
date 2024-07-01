@@ -2,7 +2,7 @@
 // テーブルを作成する関数の定義
 function createTable($mysqli, $tableName, $createQuery)
 {
-  $mysqli->query("DROP TABLE IF EXISTS $tableName");
+  // $mysqli->query("DROP TABLE IF EXISTS $tableName");
 
   if ($mysqli->query($createQuery) === true) {
     echo "テーブル $tableName が正常に作成されました\n";
