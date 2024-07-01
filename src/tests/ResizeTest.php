@@ -77,7 +77,7 @@ class ResizeTest extends TestCase
   public function testExistId()
   {
     $result = $this->resize->existId(2);
-    $result2 = $this->resize->existId(4);
+    $result2 = $this->resize->existId(10000);
     $this->assertTrue($result);
     $this->assertEmpty($result2);
   }

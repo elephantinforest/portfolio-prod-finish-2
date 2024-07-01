@@ -43,7 +43,7 @@ class ResizeControllerTest extends TestCase
                 'height' => 400,
                 'window_width' => 200,
                 'window_height' => 900,
-            ]
+            ],
         ];
         $this->resize->insert($resizes[0]);
         $this->resize->insert($resizes[1]);

@@ -92,7 +92,7 @@ class LoginControllerTest extends TestCase
             'user_id' => $this->userId,
             'location' => 'サンプル部屋',
             'file_name' => 'tmp.jpg',
-            'save_path' => '/var/www/html/src/imgs/_70f80b3a-ebba-4301-b282-d658e291eaf2.jpg',
+            'save_path' => '/tests/test2.jpg',
         ];
         $this->location->insert($locations);
         $locationId = $this->location->getInsertId();
@@ -106,7 +106,7 @@ class LoginControllerTest extends TestCase
                 'other' => '味だけはいい',
                 'price' => 200,
                 'file_name' => 'sample.jpg',
-                'file_path' => '/var/www/html/src/imgs/_d1e286cd-fbbe-45a6-8823-730f39979c08.jpg',
+                'file_path' => '/tests/test2.jpg',
             ],
             [
                 'user_id' => $this->userId,
@@ -116,7 +116,7 @@ class LoginControllerTest extends TestCase
                 'price' => 30000,
                 'other' => '高校生の時に購入',
                 'file_name' => 'sample2.jpg',
-                'file_path' => '/var/www/html/src/imgs/_d1e286cd-fbbe-45a6-8823-730f39979c08.jpg',
+                'file_path' => '/tests/test2.jpg',
             ]
         ];
         foreach ($registers as $Key => $value) {
@@ -199,7 +199,7 @@ class LoginControllerTest extends TestCase
             'user_id' => $this->userId,
             'location' => 'サンプル部屋',
             'file_name' => 'tmp.jpg',
-            'save_path' => '/var/www/html/src/imgs/_70f80b3a-ebba-4301-b282-d658e291eaf2.jpg',
+            'save_path' => '/tests/_70f80b3a-ebba-4301-b282-d658e291eaf2.jpg',
         ];
         $this->location->insert($locations);
         $locationId = $this->location->getInsertId();
@@ -213,7 +213,7 @@ class LoginControllerTest extends TestCase
                 'other' => '味だけはいい',
                 'price' => 200,
                 'file_name' => 'sample.jpg',
-                'file_path' => '/var/www/html/src/imgs/_d1e286cd-fbbe-45a6-8823-730f39979c08.jpg',
+                'file_path' => 'tests/_d1e286cd-fbbe-45a6-8823-730f39979c08.jpg',
             ],
             [
                 'user_id' => $this->userId,
@@ -223,7 +223,7 @@ class LoginControllerTest extends TestCase
                 'price' => 30000,
                 'other' => '高校生の時に購入',
                 'file_name' => 'sample2.jpg',
-                'file_path' => '/var/www/html/src/imgs/_d1e286cd-fbbe-45a6-8823-730f39979c08.jpg',
+                'file_path' => 'tests/_d1e286cd-fbbe-45a6-8823-730f39979c08.jpg',
             ]
         ];
         foreach ($registers as $Key => $value) {

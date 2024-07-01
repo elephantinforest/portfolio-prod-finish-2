@@ -41,7 +41,7 @@ class RegisterControllerTest extends TestCase
                 'other' => '味だけはいい',
                 'price' => 200,
                 'file_name' => 'sample.jpg',
-                'file_path' => '/var/www/html/src/imgs/_d1e286cd-fbbe-45a6-8823-730f39979c08.jpg',
+                'file_path' => '/test2.jpg',
             ],
             [
                 'user_id' => 1,
@@ -51,7 +51,7 @@ class RegisterControllerTest extends TestCase
                 'price' => 30000,
                 'other' => '高校生の時に購入',
                 'file_name' => 'sample2.jpg',
-                'file_path' => '/var/www/html/src/imgs/_d1e286cd-fbbe-45a6-8823-730f39979c08.jpg',
+                'file_path' => '/test2.jp',
             ]
         ];
         foreach ($registers as $Key => $value) {

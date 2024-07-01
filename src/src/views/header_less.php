@@ -7,7 +7,7 @@
                  </a>
 
              </div>
-           
+
              <div class="relative z-10 flex items-center lg:hidden">
                  <!-- Mobile menu button -->
                  <button type="button" class="relative inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-gray-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white" aria-controls="mobile-menu" aria-expanded="false">
@@ -36,7 +36,7 @@
                      <button type="button" class="relative flex-shrink-0 rounded-full bg-gray-800 p-1 text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
                          <span class="absolute -inset-1.5"></span>
                          <span class="sr-only">View notifications</span>
-                         <img class="h-8 w-auto" src="<?php echo $this->createPath('//var/www/html/src/imgs/_d1e286cd-fbbe-45a6-8823-730f39979c08.jpg') ?>" alt="Your Company">
+                         <img class="h-8 w-auto" src="<?php echo $this->createPath('/var/www/html/src/imgs/_d1e286cd-fbbe-45a6-8823-730f39979c08.jpg') ?>" alt="Your Company">
                      </button>
                  </a>
                  <?php if (isset($locations)) : ?>

@@ -29,7 +29,7 @@ class LoginController extends Controller
                 if (empty($location)) {
                     $location = [
                         'location' =>  "ロケーションは登録されていません。",
-                        'file_path' => '/var/www/html/src/imgs/_a7bd503d-3993-46c1-a0a4-30657c277ff1.jpg',
+                        'file_path' =>$this->heleper->createPath('/var/www/html/src/imgs/_a7bd503d-3993-46c1-a0a4-30657c277ff1.jpg'),
                         'location_id' =>  false,
                     ];
                     $registers = [];
@@ -46,6 +46,7 @@ class LoginController extends Controller
                 }
                  $s3 = $this->s3;
                 $location['file_path'] = $s3->downloadFile($location['file_path']);
+
                 //ユーザーの保持しているレジスターを取得
                 $registers = $registerModel->fetchLocationRegister($userId, $location['location_id']);
                 foreach ($registers as $key => $value) {
@@ -57,7 +58,7 @@ class LoginController extends Controller
                 if (empty($location) && empty($registers)) {
                     $location = [
                         'location' =>  "ロケーションは登録されていません。",
-                        'file_path' => '/var/www/html/src/imgs/_a7bd503d-3993-46c1-a0a4-30657c277ff1.jpg',
+                        'file_path' =>$this->heleper->createPath('/var/www/html/src/imgs/_a7bd503d-3993-46c1-a0a4-30657c277ff1.jpg'),
                         'location_id' =>  false,
                     ];
                     $registers = [];
@@ -138,10 +139,11 @@ class LoginController extends Controller
                     $location = $locationModel->fetchLocation($userId);
                     // 配列が空ならerror回避のため初期化
                     if (empty($location)) {
+                        $initialPath= $this->heleper->createPath('/var/www/html/src/imgs/_a7bd503d-3993-46c1-a0a4-30657c277ff1.jpg');
                         $location = [];
                         $location = [
                             'location' =>  "ロケーションは登録されていません。",
-                            'file_path' => '/var/www/html/src/imgs/_a7bd503d-3993-46c1-a0a4-30657c277ff1.jpg',
+                            'file_path' => $initialPath,
                             'location_id' => false,
                         ];
                         // セッション変数に状態を入力

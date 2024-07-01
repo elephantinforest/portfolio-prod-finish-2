@@ -24,28 +24,20 @@ class  heleper
     }
   }
 
-  public function createPath(string $path, S3 $s3): string
+  public function createPath(string $path): string
   {
-    // S3からファイルをダウンロード
-    $result = $s3->downloadFile($path);
+    $imagePath = $path;
+    $binaryData = file_get_contents($imagePath);
+    $base64Data = base64_encode($binaryData);
 
-    // エラーが発生した場合
-    if ($result === null) {
-      return 'Error: Unable to download file';
-    }
-
-    // バイナリデータをBase64エンコード
-    $base64Data = base64_encode($result['Body']);
-
-    // MIMEタイプを取得
-    $mimeType = $result['ContentType'];
+    // MIMEタイプの取得
+    $mimeType = mime_content_type($imagePath);
 
     // Base64エンコードされたデータを含むデータURIを生成
     $dataUri = 'data:' . $mimeType . ';base64,' . $base64Data;
 
     return $dataUri;
   }
-
   public function  crateRegisterSaveFile(string $file)
   {
     $upload_dir = 'register/';

@@ -51,7 +51,7 @@ class S3
     {
         try {
             $fileContent = file_get_contents($filePath);
-            
+
 
             $result = $this->s3->putObject([
                 'Bucket' => $this->bucket,

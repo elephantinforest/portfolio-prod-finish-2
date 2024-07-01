@@ -32,7 +32,7 @@
                     <div class="animate-spin h-10 w-10 border-4 border-blue-500 rounded-full border-t-transparent"></div>
                 </div>
                 <div class="" id="imageContainer"></div>
-                <img id="slideImage" src="<?php echo $this->createPath($locations['file_path']); ?>" alt="背景画像" class=" slideImage bg-no-repeat bg-contain bg-center w-full ">
+                <img id="slideImage" src="<?php echo $locations['file_path']; ?>" alt="背景画像" class=" slideImage bg-no-repeat bg-contain bg-center w-full ">
 
             </div>
             <!-- `<li class="delete text-white bg-yellow-400 via-yellow-500 to-yellow-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-yellow-300 dark:focus:ring-yellow-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2 cursor-pointer">
@@ -53,7 +53,7 @@
 
                         <a class="parent" href="/update?id=<?= htmlspecialchars($register['register_id'], ENT_QUOTES, 'UTF-8') ?>" style="width: <?= intval($register['width']) ?>px; height: <?= intval($register['height']) ?>px;">
 
-                            <img id="registerContainer" class="img opacity-85 rounded-lg grayscale hover:contrast-200 hover:grayscale-0  " alt="画像の説明" src="<?= $this->createPath($register['file_path']) ?>" style="width: <?= $register['width'] ?>px; height: <?= $register['height'] ?>px ;">
+                            <img id="registerContainer" class="img opacity-85 rounded-lg grayscale hover:contrast-200 hover:grayscale-0  " alt="画像の説明" src="<?= $register['file_path'] ?>" style="width: <?= $register['width'] ?>px; height: <?= $register['height'] ?>px ;">
                             <input type="hidden" name="register_id" value="<?= $register['register_id'] ?>">
                         </a>
                         <input type="hidden" class="window_width" name="window_width" value="<?= $register['window_width'] ?>">
