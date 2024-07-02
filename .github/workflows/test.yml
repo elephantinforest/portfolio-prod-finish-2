@@ -51,7 +51,7 @@ jobs:
       - name: Run Unit Test
         run: |
           cd /home/runner/work/portfolio-prod-finish-2/portfolio-prod-finish-2
-          composer run-script phpunit
+          composer  phpunit
 
 
 

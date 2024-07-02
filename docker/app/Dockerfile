@@ -69,6 +69,6 @@ RUN composer install
 # RUN chown -R www-data:www-data /var/www/html/src/imgs/location/
 CMD php /var/www/html/src/migration/initialize_all_table.php && \
     php /var/www/html/src/migration/tests/initialize_all_table.php
-RUN composer phpunit
+# RUN composer phpunit
 
 RUN chown -R www-data:www-data /var/www/html
