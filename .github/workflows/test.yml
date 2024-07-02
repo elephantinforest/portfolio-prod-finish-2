@@ -54,6 +54,11 @@ jobs:
              docker ps
              docker images
              docker exec -i app-container bash
+             chmod +x /var/www/html/src/migration/initialize_all_table.php
+             chmod +x /var/www/html/src/migration/tests/initialize_all_table.php
+             php /var/www/html/src/migration/initialize_all_table.php
+             php /var/www/html/src/migration/tests/initialize_all_table.php
+             composer phpunit
 
       # 以下に追加のステップを記述しても良い（例：テスト実行など）
       - name: Run Tests in Docker Container
