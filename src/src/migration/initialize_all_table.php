@@ -8,7 +8,7 @@ $db = [
     'database' => getenv('MYSQL_DATABASE'),
 ];
 // データベースへの接続
-$mysqli = new mysqli($db['hostname'], $db['username'], $db['password'], $db['database']);
+$mysqli = new mysqli('db', 'test_user', 'pass', 'test_database');
 if ($mysqli->connect_error) {
   throw new RuntimeException('mysqli接続エラー: ' . $mysqli->connect_error);
 }
