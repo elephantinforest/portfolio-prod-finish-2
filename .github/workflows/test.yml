@@ -47,27 +47,38 @@ jobs:
 
       - name: Set up Docker
         run: docker-compose up -d
-
- # Docker コンテナに入るためのスクリプトを追加
-      - name: Enter Docker Container
-        run: |
-             docker ps
-             docker images
-             docker exec -i app-container bash
-             chmod +x /var/www/html/src/migration/initialize_all_table.php
-             chmod +x /var/www/html/src/migration/tests/initialize_all_table.php
+#
+      - name: Run Tests in Docker Container
+        uses: addnab/docker-run-action@v3
+        with:
+          image: portfolio-prod-finish-2_app
+          options: -v ${{ github.workspace }}:/src
+          run:
              php /var/www/html/src/migration/initialize_all_table.php
              php /var/www/html/src/migration/tests/initialize_all_table.php
              composer phpunit
 
-      # 以下に追加のステップを記述しても良い（例：テスト実行など）
-      - name: Run Tests in Docker Container
-        run: |
-           chmod +x /var/www/html/src/migration/initialize_all_table.php
-           chmod +x /var/www/html/src/migration/tests/initialize_all_table.php
-           php /var/www/html/src/migration/initialize_all_table.php
-           php /var/www/html/src/migration/tests/initialize_all_table.php
-           composer phpunit
+
+#  # Docker コンテナに入るためのスクリプトを追加
+#       - name: Enter Docker Container
+#         run: |
+#              docker ps
+#              docker images
+#              docker exec -i app-container bash
+#              chmod +x /var/www/html/src/migration/initialize_all_table.php
+#              chmod +x /var/www/html/src/migration/tests/initialize_all_table.php
+#              php /var/www/html/src/migration/initialize_all_table.php
+#              php /var/www/html/src/migration/tests/initialize_all_table.php
+#              composer phpunit
+
+#       # 以下に追加のステップを記述しても良い（例：テスト実行など）
+#       - name: Run Tests in Docker Container
+#         run: |
+#            chmod +x /var/www/html/src/migration/initialize_all_table.php
+#            chmod +x /var/www/html/src/migration/tests/initialize_all_table.php
+#            php /var/www/html/src/migration/initialize_all_table.php
+#            php /var/www/html/src/migration/tests/initialize_all_table.php
+#            composer phpunit
 
     #   # Docker コンテナを停止する場合（オプション）
     #   - name: Stop Docker Containers

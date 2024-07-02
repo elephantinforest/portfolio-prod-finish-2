@@ -72,3 +72,4 @@ RUN composer install
 # RUN composer phpunit
 
 RUN chown -R www-data:www-data /var/www/html
+ENTRYPOINT ["/bin/bash", "-c"]
