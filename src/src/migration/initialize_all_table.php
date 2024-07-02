@@ -10,6 +10,7 @@ $db = [
 // データベースへの接続
 $mysqli = new mysqli('db', 'test_user', 'pass', 'test_database');
 if ($mysqli->connect_error) {
+   die('Connect Error (' . $mysqli->connect_errno . ') ' . $mysqli->connect_error);
   throw new RuntimeException('mysqli接続エラー: ' . $mysqli->connect_error);
 }
 // テーブルを作成する関数の呼び出し
