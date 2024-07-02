@@ -48,12 +48,15 @@ jobs:
       - name: Set up Docker
         run: docker-compose up -d
 
-      - name: Run Unit Test
-        run: |
-          cd /home/runner/work/portfolio-prod-finish-2/portfolio-prod-finish-2
-          composer  phpunit
-
-
+      - name: test and build
+        uses: addnab/docker-run-action@v3
+        with:
+          image: portfolio-aws-finish_app
+          options: -v ${{ github.workspace }}:/src
+          run: |
+           php /var/www/html/src/migration/initialize_all_table.php
+           php /var/www/html/src/migration/tests/initialize_all_table.php
+           composer phpunit
 
     # Test/build
 #   test-and-build:
