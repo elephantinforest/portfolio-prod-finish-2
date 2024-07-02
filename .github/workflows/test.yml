@@ -35,16 +35,24 @@ jobs:
           php composer-setup.php --install-dir=/usr/local/bin --filename=composer
           php -r "unlink('composer-setup.php');"
 
+      - name: List directory contents
+        run: |
+          ls -la /home/runner/work/portfolio-prod-finish-2
+          ls -la /home/runner/work/portfolio-prod-finish-2/src
+
       - name: Install Composer dependencies
         run: |
-          cd /home/runner/work/portfolio-prod-finish-2/src
+          cd /home/runner/work/portfolio-prod-finish-2/portfolio-prod-finish-2
           composer install
 
       - name: Set up Docker
         run: docker-compose up -d
 
       - name: Run Unit Test
-        run: composer  phpunit
+        run: |
+          cd /home/runner/work/portfolio-prod-finish-2/portfolio-prod-finish-2
+          composer run-script phpunit
+
 
 
     # Test/build
