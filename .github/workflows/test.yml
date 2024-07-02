@@ -41,7 +41,7 @@ jobs:
 
       - name: Install Composer dependencies
         run: |
-          cd /home/runner/work/portfolio-prod-finish-2/portfolio-prod-finish-2
+          cd /home/runner/work/portfolio-prod-finish-2/portfolio-prod-finish-2/src
           composer install
 
       - name: Set up Docker
