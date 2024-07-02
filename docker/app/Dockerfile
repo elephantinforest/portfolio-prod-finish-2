@@ -42,7 +42,6 @@ ENV API_KEY=AIzaSyAgsMAuZkOuu9mMwANgdPHijQa2Bbm-zZg
 # ENV MYSQL_HOST=portfolio-container-rds-2.cvcgea2q4h5o.ap-northeast-1.rds.amazonaws.com
 # ENV MYSQL_DATABASE==portfolio_prod
 # ENV MYSQL_PASSWORD==portfolio
-ENV MYSQL_ROOT_PASSWORD=pass
 # ENV MYSQL_USER=portfolioUser
 
 ENV MYSQL_DATABASE=test_database
