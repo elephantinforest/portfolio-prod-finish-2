@@ -39,11 +39,11 @@ jobs:
         run: |
           ls -la /home/runner/work/portfolio-prod-finish-2/portfolio-prod-finish-2
 
-      - name: Install Composer dependencies
-        run: |
-          cd /home/runner/work/portfolio-prod-finish-2/portfolio-prod-finish-2/src
-          composer update
-          composer install
+    #   - name: Install Composer dependencies
+    #     run: |
+    #       cd /home/runner/work/portfolio-prod-finish-2/portfolio-prod-finish-2/src
+    #       composer update
+    #       composer install
 
       - name: Set up Docker
         run: docker-compose up -d
