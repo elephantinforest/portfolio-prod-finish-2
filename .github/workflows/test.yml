@@ -54,8 +54,7 @@ jobs:
              docker-compose exec -T app composer phpunit
 
    # Docker コンテナを停止する場合（オプション）
-      - name: Stop Docker Containers
-        run: docker-compose down
+
 
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v4
@@ -80,3 +79,6 @@ jobs:
         with:
           name: api-image-uri
           path: src/api-image-uri.txt
+
+      - name: Stop Docker Containers
+        run: docker-compose down
