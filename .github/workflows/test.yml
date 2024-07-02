@@ -70,7 +70,8 @@ jobs:
         env:
           ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
         run: |
-          docker image tag portfolio-aws-finish_app:latest $ECR_REGISTRY/$ECR_REPOSITORY:${{ github.sha }}
+          docker images
+          docker image tag portfolio-aws-finish_app $ECR_REGISTRY/$ECR_REPOSITORY:${{ github.sha }}
           docker image push $ECR_REGISTRY/$ECR_REPOSITORY:${{ github.sha }}
           echo $ECR_REGISTRY/$ECR_REPOSITORY:${{ github.sha }} > api-image-uri.txt
 
