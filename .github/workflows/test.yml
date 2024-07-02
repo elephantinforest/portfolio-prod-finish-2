@@ -62,9 +62,9 @@ jobs:
            php /var/www/html/src/migration/tests/initialize_all_table.php
            composer phpunit
 
-      # Docker コンテナを停止する場合（オプション）
-      - name: Stop Docker Containers
-        run: docker-compose down
+    #   # Docker コンテナを停止する場合（オプション）
+    #   - name: Stop Docker Containers
+    #     run: docker-compose down
 
 
 
