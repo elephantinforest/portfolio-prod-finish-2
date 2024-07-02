@@ -50,7 +50,10 @@ jobs:
 
  # Docker コンテナに入るためのスクリプトを追加
       - name: Enter Docker Container
-        run: docker exec -i app-container bash  # コンテナ名または ID を指定し、対話的な bash シェルを開始
+        run: |
+             docker ps
+             docker logs app-container
+             docker exec -i app-container bash  # コンテナ名または ID を指定し、対話的な bash シェルを開始
 
       # 以下に追加のステップを記述しても良い（例：テスト実行など）
       - name: Run Tests in Docker Container
