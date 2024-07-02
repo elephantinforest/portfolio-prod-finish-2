@@ -63,12 +63,12 @@ jobs:
         run: |
              docker ps
              docker images
-             docker-compose exec -T  app /bin/bash
+             docker-compose exec -T app php /var/www/html/src/migration/initialize_all_table.php
              ls
              pwd
-             php /var/www/html/src/migration/initialize_all_table.php
-             php /var/www/html/src/migration/tests/initialize_all_table.php
-             composer phpunit
+            #  php /var/www/html/src/migration/initialize_all_table.php
+            #  php /var/www/html/src/migration/tests/initialize_all_table.php
+            #  composer phpunit
 
       # 以下に追加のステップを記述しても良い（例：テスト実行など）
       - name: Run Tests in Docker Container
