@@ -65,6 +65,7 @@ jobs:
         run: |
              docker-compose exec -T app php /var/www/html/src/migration/initialize_all_table.php
              docker-compose exec -T app php /var/www/html/src/migration/tests/initialize_all_table.php
+             docker-compose exec -T app composer install
              docker-compose exec -T app composer phpunit
             #  php /var/www/html/src/migration/initialize_all_table.php
             #  php /var/www/html/src/migration/tests/initialize_all_table.php
