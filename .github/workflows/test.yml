@@ -57,9 +57,6 @@ jobs:
       - name: Stop Docker Containers
         run: docker-compose down
 
-      - name: Run Tests and Build an Image
-        run: docker image build -t temp_api_image:latest .
-
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v4
         with:
