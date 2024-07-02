@@ -23,13 +23,28 @@ jobs:
     steps:
       - name: Check out repository code
         uses: actions/checkout@v3
-      - name: Setup
+
+      - name: Set up PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '7.4' # 使用するPHPのバージョンを指定
+
+      - name: Install Composer
         run: |
-          composer install
-          docker-compose up -d
+          php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
+          php composer-setup.php --install-dir=/usr/local/bin --filename=composer
+          php -r "unlink('composer-setup.php');"
+
+      - name: Install Composer dependencies
+        run: composer install
+
+      - name: Set up Docker
+        run: docker-compose up -d
+
       - name: Run Unit Test
-        run: composer phpunit
-     
+        run: composer  phpunit
+
+
     # Test/build
 #   test-and-build:
 #     runs-on: ubuntu-latest
