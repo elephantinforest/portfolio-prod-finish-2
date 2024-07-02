@@ -64,8 +64,8 @@ jobs:
              docker ps
              docker images
              docker-compose exec -T  app /bin/bash
-             chmod +x /var/www/html/src/migration/initialize_all_table.php
-             chmod +x /var/www/html/src/migration/tests/initialize_all_table.php
+             ls
+             pwd
              php /var/www/html/src/migration/initialize_all_table.php
              php /var/www/html/src/migration/tests/initialize_all_table.php
              composer phpunit
