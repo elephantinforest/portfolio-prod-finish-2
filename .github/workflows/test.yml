@@ -48,12 +48,29 @@ jobs:
       - name: Set up Docker
         run: docker-compose up -d
 
-      - name: test and build
-        run:
-           chmod +x /var/www/html/src/migration/initialize_all_table.php
+ # Docker コンテナに入るためのスクリプトを追加
+      - name: Enter Docker Container
+        run: docker exec -it app-container bash  # コンテナ名または ID を指定し、対話的な bash シェルを開始
+
+      # 以下に追加のステップを記述しても良い（例：テスト実行など）
+      - name: Run Tests in Docker Container
+        run: |
            php /var/www/html/src/migration/initialize_all_table.php
            php /var/www/html/src/migration/tests/initialize_all_table.php
            composer phpunit
+
+      # Docker コンテナを停止する場合（オプション）
+      - name: Stop Docker Containers
+        run: docker-compose down
+
+
+
+        # - name: test and build
+        # run:
+        #    chmod +x /var/www/html/src/migration/initialize_all_table.php
+        #    php /var/www/html/src/migration/initialize_all_table.php
+        #    php /var/www/html/src/migration/tests/initialize_all_table.php
+        #    composer phpunit
 
     # Test/build
 #   test-and-build:

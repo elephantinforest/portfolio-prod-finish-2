@@ -2,6 +2,7 @@ version: "3.3"
 
 services:
   app:
+    container_name: app-container
     build:
       context: .
       dockerfile: docker/app/Dockerfile
@@ -12,7 +13,7 @@ services:
     depends_on:
       - db
       - test_db
-  
+
   db:
     build:
       context: .
