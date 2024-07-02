@@ -36,7 +36,9 @@ jobs:
           php -r "unlink('composer-setup.php');"
 
       - name: Install Composer dependencies
-        run: composer install
+        run: |
+          cd /home/runner/work/portfolio-prod-finish-2/src/
+          composer install
 
       - name: Set up Docker
         run: docker-compose up -d
