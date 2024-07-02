@@ -31,7 +31,6 @@ jobs:
 
       - name: Install Composer
         run: |
-          chmod +x /var/www/html/src/migration/initialize_all_table.php
           php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
           php composer-setup.php --install-dir=/usr/local/bin --filename=composer
           php -r "unlink('composer-setup.php');"
@@ -51,6 +50,7 @@ jobs:
 
       - name: test and build
         run:
+           chmod +x /var/www/html/src/migration/initialize_all_table.php
            php /var/www/html/src/migration/initialize_all_table.php
            php /var/www/html/src/migration/tests/initialize_all_table.php
            composer phpunit
