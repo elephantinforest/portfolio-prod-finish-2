@@ -37,8 +37,7 @@ jobs:
 
       - name: List directory contents
         run: |
-          ls -la /home/runner/work/portfolio-prod-finish-2
-          ls -la /home/runner/work/portfolio-prod-finish-2/src
+          ls -la /home/runner/work/portfolio-prod-finish-2/portfolio-prod-finish-2
 
       - name: Install Composer dependencies
         run: |
