@@ -52,7 +52,7 @@ jobs:
       - name: Enter Docker Container
         run: |
              docker ps
-             docker logs app-container
+             docker images
              docker exec -i app-container bash
 
       # 以下に追加のステップを記述しても良い（例：テスト実行など）
