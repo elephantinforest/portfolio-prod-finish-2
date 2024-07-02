@@ -7,10 +7,10 @@ on:
       - "src/**"
 
 env:
-  AWS_REGION: us-west-2
+  AWS_REGION: ap-northeast-1
   ECS_CLUSTER: my-app-cluster
   ECS_SERVICE: my-app-api-service
-  ECR_REPOSITORY: my-app-api
+  ECR_REPOSITORY: portfolio-prod-finish-2
   ECS_TASK_DEFINITION_API: cicd-section/.aws/task-def-api.json
 
 permissions:
@@ -18,11 +18,14 @@ permissions:
   contents: read
 
 jobs:
-  Integration:
+  test-and-build:
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: src
     steps:
       - name: Check out repository code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Set up PHP
         uses: shivammathur/setup-php@v2
@@ -35,30 +38,11 @@ jobs:
           php composer-setup.php --install-dir=/usr/local/bin --filename=composer
           php -r "unlink('composer-setup.php');"
 
-      - name: List directory contents
-        run: |
-          ls -la /home/runner/work/portfolio-prod-finish-2/portfolio-prod-finish-2
-
-    #   - name: Install Composer dependencies
-    #     run: |
-    #       cd /home/runner/work/portfolio-prod-finish-2/portfolio-prod-finish-2/src
-    #       composer update
-    #       composer install
-
       - name: Set up Docker
         run: |
              docker-compose up -d
              docker-compose exec -T db mysqladmin --silent --wait=30 -uroot -ppassword ping || exit 1
              docker-compose exec -T test_db mysqladmin --silent --wait=30 -uroot -ppassword ping || exit 1
-      # - name: Run Tests in Docker Container
-      #   uses: addnab/docker-run-action@v3
-      #   with:
-      #     image: portfolio-prod-finish-2_app
-      #     options: -v ${{ github.workspace }}:/src
-      #     run:
-      #        php /var/www/html/src/migration/tests/initialize_all_table.php
-      #        composer phpunit
-
 
  # Docker コンテナに入るためのスクリプトを追加
       - name: Enter Docker Container
@@ -68,106 +52,34 @@ jobs:
              docker-compose exec -T app composer install
              docker-compose exec -T app npm install
              docker-compose exec -T app composer phpunit
-            #  php /var/www/html/src/migration/initialize_all_table.php
-            #  php /var/www/html/src/migration/tests/initialize_all_table.php
-            #  composer phpunit
 
-      # 以下に追加のステップを記述しても良い（例：テスト実行など）
-      # - name: Run Tests in Docker Container
-      #   run: |
-      #      chmod +x /var/www/html/src/migration/initialize_all_table.php
-      #      chmod +x /var/www/html/src/migration/tests/initialize_all_table.php
-      #      php /var/www/html/src/migration/initialize_all_table.php
-      #      php /var/www/html/src/migration/tests/initialize_all_table.php
-      #      composer phpunit
-
-      # Docker コンテナを停止する場合（オプション）
+   # Docker コンテナを停止する場合（オプション）
       - name: Stop Docker Containers
         run: docker-compose down
 
+      - name: Run Tests and Build an Image
+        run: docker image build -t temp_api_image:latest .
 
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          aws-region: ${{ env.AWS_REGION }}
+          role-to-assume: ${{ secrets.AWS_ROLE_TO_ASSUME }}
 
-        # - name: test and build
-        # run:
-        #    chmod +x /var/www/html/src/migration/initialize_all_table.php
-        #    php /var/www/html/src/migration/initialize_all_table.php
-        #    php /var/www/html/src/migration/tests/initialize_all_table.php
-        #    composer phpunit
+      - name: Login to Amazon ECR
+        id: login-ecr
+        uses: aws-actions/amazon-ecr-login@v2
 
-    # Test/build
-#   test-and-build:
-#     runs-on: ubuntu-latest
-#     defaults:
-#       run:
-#         working-directory: cicd-section/api
-#     steps:
-#       # Checkout code
-#       - uses: actions/checkout@v4
+      - name: Push the image to Amazon ECR
+        env:
+          ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
+        run: |
+          docker image tag portfolio-aws-finish_app:latest $ECR_REGISTRY/$ECR_REPOSITORY:${{ github.sha }}
+          docker image push $ECR_REGISTRY/$ECR_REPOSITORY:${{ github.sha }}
+          echo $ECR_REGISTRY/$ECR_REPOSITORY:${{ github.sha }} > api-image-uri.txt
 
-#       - name: Run Tests and Build an Image
-#         run: docker image build -t temp_api_image:latest .
-
-#       - name: Configure AWS credentials
-#         uses: aws-actions/configure-aws-credentials@v4
-#         with:
-#           aws-region: ${{ env.AWS_REGION }}
-#           role-to-assume: ${{ secrets.AWS_ROLE_TO_ASSUME }}
-
-#       - name: Login to Amazon ECR
-#         id: login-ecr
-#         uses: aws-actions/amazon-ecr-login@v2
-
-#       - name: Push the image to Amazon ECR
-#         env:
-#           ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
-#         run: |
-#           docker image tag temp_api_image:latest $ECR_REGISTRY/$ECR_REPOSITORY:${{ github.sha }}
-#           docker image push $ECR_REGISTRY/$ECR_REPOSITORY:${{ github.sha }}
-#           echo $ECR_REGISTRY/$ECR_REPOSITORY:${{ github.sha }} > api-image-uri.txt
-
-#       - name: Upload the image URI file as an artifact
-#         uses: actions/upload-artifact@v2
-#         with:
-#           name: api-image-uri
-#           path: cicd-section/api/api-image-uri.txt
-
-#   # Deploy
-#   deploy:
-#     runs-on: ubuntu-latest
-#     needs: [test-and-build]
-
-#     steps:
-#       - name: Checkout
-#         uses: actions/checkout@v4
-
-#       - name: Configure AWS credentials
-#         uses: aws-actions/configure-aws-credentials@v4
-#         with:
-#           aws-region: ${{ env.AWS_REGION }}
-#           role-to-assume: ${{ secrets.AWS_ROLE_TO_ASSUME }}
-
-#       - name: Download the artifact
-#         uses: actions/download-artifact@v2
-#         with:
-#           name: api-image-uri
-#           path: artifacts
-
-#       - name: Define the image URI
-#         run: |
-#           echo "API_IMAGE_URI=$(cat artifacts/api-image-uri.txt)" >> $GITHUB_ENV
-
-#       - name: Fill in the new image URI in the Amazon ECS task definition
-#         id: render-task-def
-#         uses: aws-actions/amazon-ecs-render-task-definition@v1
-#         with:
-#           task-definition: ${{ env.ECS_TASK_DEFINITION_API }}
-#           container-name: api
-#           image: ${{ env.API_IMAGE_URI }}
-
-#       - name: Deploy ECS task
-#         uses: aws-actions/amazon-ecs-deploy-task-definition@v1
-#         with:
-#           task-definition: ${{ steps.render-task-def.outputs.task-definition }}
-#           service: ${{ env.ECS_SERVICE }}
-#           cluster: ${{ env.ECS_CLUSTER }}
-#           wait-for-service-stability: true
+      - name: Upload the image URI file as an artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: api-image-uri
+          path: src/api-image-uri.txt
