@@ -49,6 +49,7 @@ jobs:
         run: |
              docker-compose up -d
              docker-compose exec -T db mysqladmin --silent --wait=30 -uroot -ppassword ping || exit 1
+             docker-compose exec -T test_db mysqladmin --silent --wait=30 -uroot -ppassword ping || exit 1
       # - name: Run Tests in Docker Container
       #   uses: addnab/docker-run-action@v3
       #   with:
@@ -62,27 +63,25 @@ jobs:
  # Docker コンテナに入るためのスクリプトを追加
       - name: Enter Docker Container
         run: |
-             docker ps
-             docker images
              docker-compose exec -T app php /var/www/html/src/migration/initialize_all_table.php
-             ls
-             pwd
+             docker-compose exec -T app php /var/www/html/src/migration/tests/initialize_all_table.php
+             docker-compose exec -T app composer phpunit
             #  php /var/www/html/src/migration/initialize_all_table.php
             #  php /var/www/html/src/migration/tests/initialize_all_table.php
             #  composer phpunit
 
       # 以下に追加のステップを記述しても良い（例：テスト実行など）
-      - name: Run Tests in Docker Container
-        run: |
-           chmod +x /var/www/html/src/migration/initialize_all_table.php
-           chmod +x /var/www/html/src/migration/tests/initialize_all_table.php
-           php /var/www/html/src/migration/initialize_all_table.php
-           php /var/www/html/src/migration/tests/initialize_all_table.php
-           composer phpunit
+      # - name: Run Tests in Docker Container
+      #   run: |
+      #      chmod +x /var/www/html/src/migration/initialize_all_table.php
+      #      chmod +x /var/www/html/src/migration/tests/initialize_all_table.php
+      #      php /var/www/html/src/migration/initialize_all_table.php
+      #      php /var/www/html/src/migration/tests/initialize_all_table.php
+      #      composer phpunit
 
-    #   # Docker コンテナを停止する場合（オプション）
-    #   - name: Stop Docker Containers
-    #     run: docker-compose down
+      # Docker コンテナを停止する場合（オプション）
+      - name: Stop Docker Containers
+        run: docker-compose down
 
 
 
