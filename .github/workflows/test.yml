@@ -8,10 +8,10 @@ on:
 
 env:
   AWS_REGION: ap-northeast-1
-  ECS_CLUSTER: my-app-cluster
-  ECS_SERVICE: my-app-api-service
+  ECS_CLUSTER: portfolio-container-cluster
+  ECS_SERVICE: portfoli-container-service
   ECR_REPOSITORY: portfolio-prod-finish-2
-  ECS_TASK_DEFINITION_API: cicd-section/.aws/task-def-api.json
+  ECS_TASK_DEFINITION_API: cicd_section/.aws/task-def-api.json
 
 permissions:
   id-token: write
@@ -73,13 +73,54 @@ jobs:
           docker images
           docker image tag portfolio-prod-finish-2_app $ECR_REGISTRY/$ECR_REPOSITORY:${{ github.sha }}
           docker image push $ECR_REGISTRY/$ECR_REPOSITORY:${{ github.sha }}
-          echo $ECR_REGISTRY/$ECR_REPOSITORY:${{ github.sha }} > api-image-uri.txt
+          echo $ECR_REGISTRY/$ECR_REPOSITORY:${{ github.sha }} > portfolio-image-uri.txt
 
       - name: Upload the image URI file as an artifact
         uses: actions/upload-artifact@v2
         with:
-          name: api-image-uri
-          path: src/api-image-uri.txt
+          name: portfolio-image-uri
+          path: src/portfolio-image-uri.txt
 
       - name: Stop Docker Containers
         run: docker-compose down
+
+#Deploy
+  deploy:
+    runs-on: ubuntu-latest
+    needs: [test-and-build]
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          aws-region: ${{ env.AWS_REGION }}
+          role-to-assume: ${{ secrets.AWS_ROLE_TO_ASSUME }}
+
+      - name: Download the artifact
+        uses: actions/download-artifact@v2
+        with:
+          name: portfolio-image-uri
+          path: artifacts
+
+      - name: Define the image URI
+        run: |
+          echo "PORTFOLIO_IMAGE_URI=$(cat artifacts/portfolio-image-uri.txt)" >> $GITHUB_ENV
+
+      - name: Fill in the new image URI in the Amazon ECS task definition
+        id: render-task-def
+        uses: aws-actions/amazon-ecs-render-task-definition@v1
+        with:
+          task-definition: ${{ env.ECS_TASK_DEFINITION_API }}
+          container-name: portfolio
+          image: ${{ env.API_IMAGE_URI }}
+
+      - name: Deploy ECS task
+        uses: aws-actions/amazon-ecs-deploy-task-definition@v1
+        with:
+          task-definition: ${{ steps.render-task-def.outputs.task-definition }}
+          service: ${{ env.ECS_SERVICE }}
+          cluster: ${{ env.ECS_CLUSTER }}
+          wait-for-service-stability: true
