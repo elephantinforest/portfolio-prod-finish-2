@@ -49,6 +49,7 @@ ENV MYSQL_HOST=db
 ENV MYSQL_PASSWORD=pass
 ENV MYSQL_ROOT_PASSWORD=pass
 ENV MYSQL_USER=test_user
+ENV MYSQL=test_user
 # apacheのuidとgidをdocker user uid/gidに変更。
 RUN usermod -u 1000 www-data && groupmod -g 1000 www-data
 
