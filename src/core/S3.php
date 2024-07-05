@@ -16,7 +16,7 @@ class S3
         $this->bucket = 'portfolio-mononoke-imgs';
 
         //  $environment = getenv('ENVIRONMENT');
-         $environment = 'development';
+         $environment = 'develop';
 
         if ($environment === 'development') {
             $credentials = [
