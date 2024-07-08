@@ -26,7 +26,7 @@ $(document).ready(function () {
     animateListItemOnClick()
 
     $('#buttn').on('DOMNodeInserted', 'li', function () {
-        console.log('ファイナルフラッシュ')
+        console.log('ファイフラッシュ')
         animateListItemOnClick()
     })
 })

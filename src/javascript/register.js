@@ -336,37 +336,29 @@ $(document).ready(function () {
                                     'Complete: Ajax request completed (after success or error).',
                                 )
 
-                                if (!(parentWidth < 1020)) {
+                                // 共通の操作
+                                function commonOperations() {
                                     $('.content').hide()
                                     $('header').show()
-                                    // $('#buttn').empty()
-                                    $('.pageButtn').show()
-
-                                    // $('#buttn').show()
                                     fetchRegistersName()
                                     responsiveDesign()
+                                    $('#accordion').fadeIn(1000)
+                                    $('#userLocation').fadeIn(10)
+                                    $('#accordionSmall').fadeIn(1000)
+                                    $('#accordionSmall').accordion({
+                                        active: false, // 最初はアコーディオンを閉じた状態にする
+                                        collapsible: true,
+                                    })
+                                    $('.smallLocationButtn').css('display', '')
+                                    $('.locationButtn').css('display', '')
+                                    $('.locationHide').removeAttr('style')
+                                }
+
+                                if (!(parentWidth < 1020)) {
+                                    commonOperations()
                                     $('.registerHide').css('width', '100%')
                                 } else {
-                                    // $('.smallRegisterButtn').hide()
-                                    // console.log('京都大作戦')
-                                    // $('.content').hide()
-                                    // $('.wideLocationButtn').show()
-                                    // $('.omae').show()
-                                    // $('.moveLocation').show()
-                                    // $('header').show()
-                                    // // $('.header').show()
-                                    // $('.registerHide').css('width', '100%')
-                                    $('.content').hide()
-                                    $('header').show()
-                                    // $('#buttn').empty()
-                                    // $('.pageButtn').show()
-
-                                    // $('#buttn').show()
-                                    fetchRegistersName()
-                                    responsiveDesign()
-                                    $('.registerHide').css('width', '100%')
-                                    // $('#buttn').show()
-
+                                    commonOperations()
                                 }
                             },
                         })

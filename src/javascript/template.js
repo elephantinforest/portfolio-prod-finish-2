@@ -141,8 +141,8 @@ export function responsiveDesign() {
             console.log(currentLi)
             var initialWindowWidth = $(window).width()
             var initialWindowHeight = $('body').height()
-            var initialWidth = currentLi.width()
-            var initialHeight = currentLi.height()
+            var initialWidth =  $(currentLi).find('img').width();
+            var initialHeight = (currentLi).find('img').height()
             console.log('Initial Window Height:', initialWindowHeight)
 
             var $element = $(
@@ -511,6 +511,7 @@ $(document).ready(function () {
     // クラス名を引数として関数を呼び出す
     handleWidthChange('registerHide')
     handleWidthChange('locationHide')
+
     function observeWidthChanges(targetSelector) {
         // 監視する要素を取得
         var targetElement = $(targetSelector)[0]
@@ -564,13 +565,20 @@ $(document).ready(function () {
     // observeWidthChanges('.registerHide')
     $(window).on('resize', function () {
         if ($(window).width() >= 1020) {
+            $('.pageButtn').show()
             fetchRegistersName()
             // responsiveDesign()
               if ($('.pageButtn').is(':hidden')) {
                   // 要素を表示
-                  $('.pageButtn').show()
+                   console.log('変更')
+             $('.locationButtn').show()
+             $('.smallRegisterButtn').show()
+             $('.smallLocationButtn').show()
               }
+        }else {
+
         }
+
     })
 
 })
