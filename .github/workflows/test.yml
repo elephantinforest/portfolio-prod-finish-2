@@ -10,7 +10,7 @@ on:
 env:
   AWS_REGION: ap-northeast-1
   ECS_CLUSTER: portfolio-container-cluster
-  ECS_SERVICE: portfoli-container-service
+  ECS_SERVICE: portfoli-container-service-night-1173
   ECR_REPOSITORY: portfolio-prod-finish-2
   ECS_TASK_DEFINITION_API: cicd_section/.aws/task-def-api.json
 
