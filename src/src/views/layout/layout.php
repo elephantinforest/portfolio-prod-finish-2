@@ -13,12 +13,12 @@
     echo '<style>' . file_get_contents('/var/www/html/css/output.css') . '</style>';
     echo '<style>' . file_get_contents('/var/www/html/node_modules/paginationjs/dist/pagination.css') . '</style>';
     echo '<style>' . file_get_contents('/var/www/html/node_modules/paginationjs/dist/pagination.css') . '</style>';
-  
+
     echo '<link rel="stylesheet" href = ' . file_get_contents('/var/www/html/css/style.css') . '>';
     // echo '<link rel="stylesheet" href = ' . file_get_contents('/var/www/html/node_modules/paginationjs/dist/pagination.css') . '>';
     //
     ?>
-    <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.0/themes/base/jquery-ui.css" />
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.10.0/themes/base/jquery-ui.css" />
 </head>
 
 
