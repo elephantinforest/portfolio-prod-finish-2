@@ -352,6 +352,8 @@ $(document).ready(function () {
                                     $('.smallLocationButtn').css('display', '')
                                     $('.locationButtn').css('display', '')
                                     $('.locationHide').removeAttr('style')
+                                    $('.pageButtn').show()
+                                    fetchRegistersName()
                                 }
 
                                 if (!(parentWidth < 1020)) {

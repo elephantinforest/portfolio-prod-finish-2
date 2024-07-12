@@ -1,4 +1,4 @@
-         <header class=" fixed top-0 left-0 w-full h-20 z-30  ">
+         <header class=" fixed top-0 left-3 w-full h-20 z-30  ">
              <div id="container" class="mx-auto max-w-7xl px-2 sm:px-4 lg:divide-y lg:divide-teal-700 lg:px-8">
                  <div class="relative flex h-16 justify-between">
                      <div class="relative z-10 flex px-2 lg:px-0">
@@ -181,15 +181,15 @@
 
                  </nav>
              </div>
-             <div id="userLocation" class="moveLocation lg:hidden z-30 text-center fixed top-16 left-0 sm:left-36 whitespace-nowrap">
+             <div id="userLocation" class="moveLocation lg:hidden z-30 text-center fixed top-16 left-10 sm:left-36 whitespace-nowrap">
                  <p class="z-30 prevBtn text-black bg-yellow-400 hover:bg-cyan-500 hover:text-yellow-400 inline-flex items-center rounded-md py-1 px-2 text-xs font-medium opacity-75 cursor-pointer">
-                     前ロケーション
+                     ⇦
                  </p>
                  <a href="#" class="bg-teal-500 text-black inline-flex items-center rounded-md py-1 px-2 text-xs font-medium" aria-current="page">
                      <?php echo $user['name']; ?>の<span class="header_locationname"><?php echo $locations['location']; ?></span>
                  </a>
                  <p class="nextBtn text-black bg-yellow-400 hover:bg-cyan-500 hover:text-yellow-400 inline-flex items-center rounded-md py-1 px-2 text-xs font-medium opacity-75 cursor-pointer">
-                     次ロケーション
+                    ⇨
                  </p>
                  <p class="text-black bg-yellow-400  hover:bg-red-600 hover:text-sky-500 inline-flex items-center rounded-md py-1 px-2 text-xs font-medium opacity-75 cursor-pointer">
                      <a href="/logout"> ログアウト </a>

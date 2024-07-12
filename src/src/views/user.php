@@ -32,7 +32,7 @@
                     <div class="animate-spin h-10 w-10 border-4 border-blue-500 rounded-full border-t-transparent"></div>
                 </div>
                 <div class="" id="imageContainer"></div>
-                <img id="slideImage" src="<?php echo $locations['file_path']; ?>" alt="背景画像" class=" slideImage bg-no-repeat bg-contain bg-center w-full ">
+                <img id="slideImage" src="<?php echo $locations['file_path']; ?>" alt="背景画像" class=" slideImage bg-no-repeat bg-contain bg-center w-full h-screen ">
 
             </div>
             <!-- `<li class="delete text-white bg-yellow-400 via-yellow-500 to-yellow-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-yellow-300 dark:focus:ring-yellow-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2 cursor-pointer">
