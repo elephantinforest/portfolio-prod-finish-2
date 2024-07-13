@@ -573,6 +573,10 @@ $(document).ready(function () {
         if ($(window).width() >= 1020) {
             $('.pageButtn').show()
             fetchRegistersName()
+             $('.drop').css({
+                 width: 150 + 'px',
+                 height: 150 + 'px',
+             })
             // responsiveDesign()
             if ($('.pageButtn').is(':hidden')) {
                 // 要素を表示
