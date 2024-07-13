@@ -13,6 +13,7 @@
     },
     "dependencies": {
         "jquery-ui-dist": "^1.13.2",
+        "jquery-ui-touch-punch": "^0.2.3",
         "paginationjs": "^2.6.0",
         "slick-carousel": "^1.8.1"
     }
