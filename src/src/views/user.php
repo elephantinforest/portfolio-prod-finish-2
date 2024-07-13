@@ -18,11 +18,10 @@
             </div><!-- コンテンツの埋め込み先をid指定 -->
         </ul>
         <div class="pager bg-white w-40" id="registers-all-pager"></div>
-        <div class="drop ui-widget-content fixed bottom-0 left-2 z-50" style="width: 150px; height: 150px;">
-            <img id="drop" class="rounded-lg opacity-80" src="<?php echo $this->createPath('/var/www/html/src/imgs/_ec50cd88-36eb-4064-8dda-9fb167401692.jpg') ?>" alt="Your Company">
-        </div>
     </div>
-
+     <div class="drop ui-widget-content fixed bottom-0 left-2 z-50" style="width: 150px; height: 150px;">
+            <img id="drop" class="rounded-lg " src="<?php echo $this->createPath('/var/www/html/src/imgs/_ec50cd88-36eb-4064-8dda-9fb167401692.jpg') ?>" alt="Your Company">
+     </div>
     <div id="parlent" class="w-auto h-auto ">
         <!-- <div class="relative"> -->
         <?php if ($locations) : ?>
