@@ -173,7 +173,7 @@ export function responsiveDesign() {
                     console.log('くらった2')
                 } else {
                     newTop = initialTopPercentage - 33
-                    currentLi.css('top',  newTop + 'px') // topの値を変更
+                    currentLi.css('top', newTop + 'px') // topの値を変更
                 }
                 console.log('width::' + currentLi.width())
                 console.log('height::' + currentLi.height())
@@ -576,12 +576,17 @@ $(document).ready(function () {
             // responsiveDesign()
             if ($('.pageButtn').is(':hidden')) {
                 // 要素を表示
-                console.log('変更')
+                console.log('変更11111')
                 $('.locationButtn').show()
                 $('.smallRegisterButtn').show()
                 $('.smallLocationButtn').show()
+
             }
         } else {
+               $('.drop').css({
+                   width: 100 + 'px',
+                   height: 100 + 'px',
+               })
         }
     })
 })
