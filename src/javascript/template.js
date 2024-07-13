@@ -141,8 +141,8 @@ export function responsiveDesign() {
             console.log(currentLi)
             var initialWindowWidth = $(window).width()
             var initialWindowHeight = $('body').height()
-            var initialWidth =  $(currentLi).find('img').width();
-            var initialHeight = (currentLi).find('img').height()
+            var initialWidth = $(currentLi).find('img').width()
+            var initialHeight = currentLi.find('img').height()
             console.log('Initial Window Height:', initialWindowHeight)
 
             var $element = $(
@@ -155,8 +155,6 @@ export function responsiveDesign() {
             var initialTopPercentage = parseInt(currentLi.css('top'), 10)
             console.log('Initial Left Percentage:', leftValue)
             console.log('Initial Top Percentage:', initialTopPercentage)
-            console.log('くらった')
-
             $(window).on('resize', function () {
                 var currentWindowWidth = $(window).width()
                 var currentWindowHeight = $('body').height()
@@ -167,8 +165,16 @@ export function responsiveDesign() {
                 var scaleY = currentWindowHeight / initialWindowHeight
                 var newLeft = leftValue * scaleX + '%'
                 var newTop = initialTopPercentage * topScaleY + 'px'
+                console.log('くらった1')
+                console.log(currentWindowWidth)
 
-                currentLi.css('top', newTop) // topの値を変更
+                if (currentWindowWidth > 390) {
+                    currentLi.css('top', newTop) // topの値を変更
+                    console.log('くらった2')
+                } else {
+                    newTop = initialTopPercentage - 33
+                    currentLi.css('top',  newTop + 'px') // topの値を変更
+                }
                 console.log('width::' + currentLi.width())
                 console.log('height::' + currentLi.height())
 
@@ -568,17 +574,14 @@ $(document).ready(function () {
             $('.pageButtn').show()
             fetchRegistersName()
             // responsiveDesign()
-              if ($('.pageButtn').is(':hidden')) {
-                  // 要素を表示
-                   console.log('変更')
-             $('.locationButtn').show()
-             $('.smallRegisterButtn').show()
-             $('.smallLocationButtn').show()
-              }
-        }else {
-
+            if ($('.pageButtn').is(':hidden')) {
+                // 要素を表示
+                console.log('変更')
+                $('.locationButtn').show()
+                $('.smallRegisterButtn').show()
+                $('.smallLocationButtn').show()
+            }
+        } else {
         }
-
     })
-
 })

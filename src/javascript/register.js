@@ -352,15 +352,20 @@ $(document).ready(function () {
                                     $('.smallLocationButtn').css('display', '')
                                     $('.locationButtn').css('display', '')
                                     $('.locationHide').removeAttr('style')
-                                    $('.pageButtn').show()
                                     fetchRegistersName()
                                 }
 
                                 if (!(parentWidth < 1020)) {
                                     commonOperations()
+                                    $('.pageButtn').show()
                                     $('.registerHide').css('width', '100%')
                                 } else {
                                     commonOperations()
+                                    $('#closeButtn').show()
+                                    $('.moveLocation').removeAttr('style')
+                                    $('.registerHide').css({
+                                        'margin-right': '20px',
+                                    })
                                 }
                             },
                         })
