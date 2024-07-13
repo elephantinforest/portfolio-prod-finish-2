@@ -13,6 +13,7 @@ $export = file_get_contents('/var/www/html/javascript/template.js');
 $location = file_get_contents('/var/www/html/javascript/location.js');
 $resize = file_get_contents('/var/www/html/javascript/resize.js');
 $responce = file_get_contents('/var/www/html/javascript/responce.js');
+
 ?>
 
 <script id=" script" type="module">
@@ -31,3 +32,4 @@ $responce = file_get_contents('/var/www/html/javascript/responce.js');
   <?= $resize ?>
   <?= $responce ?>
 </script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui-touch-punch/0.2.3/jquery.ui.touch-punch.min.js"></script>
