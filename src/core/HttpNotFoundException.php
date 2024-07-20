@@ -1,6 +1,5 @@
 <?php
 
-
 class HttpNotFoundException extends Exception
 {
     public function render404Page(Response $response): Response
@@ -27,5 +26,4 @@ EOF
         );
         return $response;
     }
-
 }

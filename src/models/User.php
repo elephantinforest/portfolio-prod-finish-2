@@ -5,8 +5,8 @@ class User extends DatabaseModel
     /** @phpstan-ignore-next-line */
     public function fetchUser(string $email)
     {
-        $user = $this->fetch("SELECT * FROM users WHERE email =?",['s',$email]);
-        if(empty($user)) {
+        $user = $this->fetch("SELECT * FROM users WHERE email =?", ['s',$email]);
+        if (empty($user)) {
             return null;
         }
         return $user[0];
@@ -21,5 +21,4 @@ class User extends DatabaseModel
     {
         $this->execute('DELETE  FROM users  WHERE email = ?', ['s', $email]);
     }
-
 }

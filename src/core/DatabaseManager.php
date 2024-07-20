@@ -10,8 +10,8 @@ class DatabaseManager
     {
         $mysqli = new mysqli($params['hostname'], $params['username'], $params['password'], $params['database']);
 
-        if($mysqli->connect_error) {
-            throw new RuntimeException('mysqli接続エラー: '. $mysqli->connect_error);
+        if ($mysqli->connect_error) {
+            throw new RuntimeException('mysqli接続エラー: ' . $mysqli->connect_error);
         }
         $this->mysqli = $mysqli;
     }
@@ -29,7 +29,7 @@ class DatabaseManager
 
     public function getMysqli()
     {
-      return $this->mysqli;
+        return $this->mysqli;
     }
 
     // public function __destruct()

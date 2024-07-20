@@ -1,4 +1,5 @@
 <?php
+
 class RegisterController extends Controller
 {
     public function index()
@@ -57,7 +58,7 @@ class RegisterController extends Controller
                 ];
                 $resizeModel->insert($data);
                 //画像ファイルをエンコーディング
-                $this->s3->uploadFile($uploadeFile,$savePath);
+                $this->s3->uploadFile($uploadeFile, $savePath);
                 $createPath = $this->s3->downloadFile($savePath);
                 //ブラウザに返すJSON
                 $data = ['success' => true, 'imageUrl' => $createPath, 'registerId' => $registerId];

@@ -144,7 +144,8 @@ $(document).ready(function () {
     // })
 
     //ドラッグした時の処理
-    function makeDraggable(element) {
+    function makeDraggable(element)
+    {
         element.draggable({
             stop: function (event, ui) {
                 // ドラッグ停止時の座標を取得
@@ -215,7 +216,8 @@ $(document).ready(function () {
         handleFormSubmission(formType)
     })
 
-    function handleFormSubmission(formSelector) {
+    function handleFormSubmission(formSelector)
+    {
         var formData = new FormData($(formSelector)[0])
         var locationValue = $('#locationSpot').val()
         var windowWidth = $(window).width()
@@ -337,7 +339,8 @@ $(document).ready(function () {
                                 )
 
                                 // 共通の操作
-                                function commonOperations() {
+                                function commonOperations()
+                                {
                                     $('.content').hide()
                                     $('header').show()
                                     fetchRegistersName()
@@ -391,12 +394,14 @@ $(document).ready(function () {
         })
     })
 
-    function showLoadingAnimation() {
+    function showLoadingAnimation()
+    {
         $('#loading').removeClass('hidden')
     }
 
     // ロード中のアニメーションを非表示にする関数
-    function hideLoadingAnimation() {
+    function hideLoadingAnimation()
+    {
         $('#loading').addClass('hidden')
     }
 })

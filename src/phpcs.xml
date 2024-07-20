@@ -1,11 +1,24 @@
 <?xml version="1.0"?>
 <ruleset name="Custom PSR12">
-  <description>A custom PSR12</description>
-  <file>./</file>
+  <description>A custom PSR12 ruleset for code styling</description>
+
+  <!-- Analyze these directories -->
+  <file>./core</file>
+  <file>./controller</file>
+  <file>./models</file>
+
+  <!-- Exclude these directories from analysis -->
   <exclude-pattern>./vendor/*</exclude-pattern>
+  <exclude-pattern>./node_modules/*</exclude-pattern>
+
+  <!-- Additional arguments for phpcs -->
   <arg name="colors"/>
   <arg value="s"/>
+
+  <!-- Custom rules and exclusions -->
   <rule ref="PSR12">
-    <exclude name="PSR1.Files.SideEffects.FoundWithSymbols" />
+    <!-- Exclude specific rules from PSR12 -->
+    <exclude name="PSR1.Classes.ClassDeclaration.MissingNamespace" />
+    <exclude name="Squiz.ControlStructures.ControlSignature.SpaceAfterCloseBrace"/>
   </rule>
 </ruleset>

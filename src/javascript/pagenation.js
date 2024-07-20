@@ -1,4 +1,5 @@
-export function fetchRegistersName() {
+export function fetchRegistersName()
+{
     var locatioId = $('#locationSpot').val()
     $.ajax({
         url: '/pagenation',
@@ -29,7 +30,8 @@ export function fetchRegistersName() {
             )
         },
     })
-    function pagenation(registersName) {
+    function pagenation(registersName)
+    {
         var registerName = registersName
         $('#registers-all-pager').pagination({
             dataSource: registerName,

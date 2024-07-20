@@ -107,7 +107,7 @@ class Validation
         return $errors;
     }
 
-    function validateRegister(array $register): array
+    public function validateRegister(array $register): array
     {
         $errors = [];
 

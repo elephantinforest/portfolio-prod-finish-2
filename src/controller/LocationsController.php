@@ -1,4 +1,5 @@
 <?php
+
 class LocationsController extends Controller
 {
     public function index(): void

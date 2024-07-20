@@ -3,11 +3,12 @@
 // import { makeButtnList } from "export.js"
 
 $(document).ready(function () {
-    function getLocationData(data) {
+    function getLocationData(data)
+    {
         return new Promise(function (resolve, reject) {
             const locationId = $('#locationSpot').val()
             $.ajax({
-                url: `/${data}`,
+                url: ` / ${data}`,
                 type: 'GET',
                 data: { locationId: locationId },
                 dataType: 'json',
@@ -135,21 +136,20 @@ $(document).ready(function () {
             contentType: false,
             processData: false,
             success: function (data) {
-             if (data.success) {
-    const inputValue = $('.header_locationname').text();
-    const isLocationNotRegistered = inputValue.includes('ロケーションは登録されていません。');
+                if (data.success) {
+                    const inputValue = $('.header_locationname').text();
+                    const isLocationNotRegistered = inputValue.includes('ロケーションは登録されていません。');
 
-    if (isLocationNotRegistered) {
-        // 条件が真の場合の処理
-        $('.header_locationname').text(data.locationValue);
-        $('.slideImage').attr('src', data.imageUrl);
-        $('#locationSpot').val(data.locationId);
-        // $('.register').show();
-    }
+                    if (isLocationNotRegistered) {
+                                  // 条件が真の場合の処理
+                                  $('.header_locationname').text(data.locationValue);
+                                  $('.slideImage').attr('src', data.imageUrl);
+                                  $('#locationSpot').val(data.locationId);
+                                  // $('.register').show();
+                    }
 
-    alert('ロケーションの追加が出来ました。');
-}
-else {
+                    alert('ロケーションの追加が出来ました。');
+                } else {
                     // $('.register').show()
                     sendAlert(data.errors)
                 }
@@ -165,7 +165,6 @@ else {
                     console.log('反応したぜ')
                     // $('.register').show()
                     // $('.formLocation').hide()
-
                 }
             },
             error: function (jqXHR, textStatus, errorThrown) {

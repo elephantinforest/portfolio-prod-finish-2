@@ -20,7 +20,7 @@ class Position extends DatabaseModel
         // foreach ($existPosition as $position) {
         //     $bool = in_array(0, $position);
         // }
-        $count =$existPosition[0]['COUNT(register_id)'];
+        $count = $existPosition[0]['COUNT(register_id)'];
         $result = 0 < $count;
         return $result;
     }

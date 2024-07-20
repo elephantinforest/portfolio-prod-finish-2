@@ -16,35 +16,35 @@ class S3
         $this->bucket = 'portfolio-mononoke-imgs';
 
         //  $environment = getenv('ENVIRONMENT');
-         $environment = 'development';
+         $environment = 'develpment';
 
         if ($environment === 'development') {
             $credentials = [
             'key'    => getenv('S3_ACCESS_KEY'),
             'secret' => getenv('S3_SECRET_KEY'),
-        ];
+            ];
 
-        $this->s3 = new S3Client([
+            $this->s3 = new S3Client([
             'version'     => 'latest',
             'region'      => 'ap-northeast-1',
             'credentials' => $credentials,
-        ]);
+            ]);
         } else {
             $credentials = [
             'key'    => 'raziorazio',
             'secret' => 'raziorazio',
             // 'key'    => getenv('S3_ACCESS_KEY'),
             // 'secret' => getenv('S3_SECRET_KEY'),
-        ];
+            ];
 
-        $this->s3 = new S3Client([
+            $this->s3 = new S3Client([
             'version'     => 'latest',
             'region'      => 'ap-northeast-1',
              'use_path_style_endpoint' => true,
              'endpoint'    => 'http://minio:9000',
             'credentials' => $credentials,
-        ]);
-      }
+            ]);
+        }
     }
 
     public function uploadFile($filePath, $key, $acl = 'public-read')

@@ -12,25 +12,28 @@
 //                     </li>`
 // }
 
-export function makeRegisterList(register) {
-    return `<li id="registerde" class="registerde  z-30 ui-sortable-handle" style="position: absolute; left: ${register['left_position']}%; top: ${register['top_position']}px;  width: ${register['width']}px; height:  ${register['height']}px ;">
-                        <a class="parent" href="/update?id=${register['register_id']}" style="width: ${register['width']}px; height:${register['height']}px;">
-                            <img id="registerContainer" class="img opacity-85 rounded-lg grayscale hover:contrast-200 hover:grayscale-0  " alt="画像の説明" src="${register['file_path']}" style="width: ${register['width']}px ; height: ${register['height']}px;">
-                            <input type="hidden" name="register_id" value="${register['register_id']}">
-                        </a>
-                        <input type="hidden" name="window_width" value="${register['window_width']}">
-                        <input type="hidden" name="window_height" value="${register['window_height']}">
-                    </li>`
+export function makeRegisterList(register)
+{
+    return ` < li id = "registerde" class = "registerde  z-30 ui-sortable-handle" style = "position: absolute; left: ${register['left_position']}%; top: ${register['top_position']}px;  width: ${register['width']}px; height:  ${register['height']}px ;" >
+                        < a class = "parent" href = "/update?id=${register['register_id']}" style = "width: ${register['width']}px; height:${register['height']}px;" >
+                            < img id = "registerContainer" class = "img opacity-85 rounded-lg grayscale hover:contrast-200 hover:grayscale-0  " alt = "画像の説明" src = "${register['file_path']}" style = "width: ${register['width']}px ; height: ${register['height']}px;" >
+                            < input type = "hidden" name = "register_id" value = "${register['register_id']}" >
+                        <  / a >
+                        < input type = "hidden" name = "window_width" value = "${register['window_width']}" >
+                        < input type = "hidden" name = "window_height" value = "${register['window_height']}" >
+                    <  / li > `
 }
 
-export function makeButtnList(register) {
-    return `<li class="delete text-white bg-gradient-to-r from-green-400 via-green-500 to-green-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-green-300 dark:focus:ring-green-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2 cursor-pointer">
-                            <input type="hidden" name="label_register" value="${register['register_id']}">
+export function makeButtnList(register)
+{
+    return ` < li class = "delete text-white bg-gradient-to-r from-green-400 via-green-500 to-green-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-green-300 dark:focus:ring-green-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2 cursor-pointer" >
+                            < input type = "hidden" name = "label_register" value = "${register['register_id']}" >
                             ${register['name']}
-                        </li>`
+                        <  / li > `
 }
 
-export function sendAlert(errors) {
+export function sendAlert(errors)
+{
     if (typeof errors === 'string') {
         alert(errors)
     } else {
@@ -95,7 +98,8 @@ export function sendAlert(errors) {
 //     })
 // })
 
-function applyResizable(element) {
+function applyResizable(element)
+{
     console.log('合')
     var currentWindowWidth = $(window).width()
     var currentWindowHeight = $('body').height()
@@ -133,7 +137,8 @@ function applyResizable(element) {
     })
 }
 
-export function responsiveDesign() {
+export function responsiveDesign()
+{
     $('ul')
         .find('li')
         .each(function () {
@@ -226,7 +231,8 @@ export function responsiveDesign() {
             })
         })
 }
-export function searchNumber(positions) {
+export function searchNumber(positions)
+{
     var parentLi = $(
         'input[name="register_id"][value="' + positions.registerId + '"]',
     ).closest('li')
@@ -241,7 +247,8 @@ export function searchNumber(positions) {
     }
 }
 
-export function resizableWindow() {
+export function resizableWindow()
+{
     // 対象の要素（registerdeクラスを持つ要素）に対して操作を行う
     $('.registerde').each(function () {
         var currentLi = $(this)
@@ -469,7 +476,8 @@ $(document).ready(function () {
     resizableWindow()
     responsiveDesign()
 
-    function buttnController(buttn) {
+    function buttnController(buttn)
+    {
         const isHidden = $(buttn).css('display') === 'none'
         const windowWidth = $(window).width()
         let elementsToToggle
@@ -489,18 +497,21 @@ $(document).ready(function () {
         }
     }
 
-    function addSize() {
+    function addSize()
+    {
         var currentWindowWidth = $(window).width()
         var currentWindowHeight = $('body').height()
         $('.windowWidthInput').val(currentWindowWidth)
         $('.windowHeightInput').val(currentWindowHeight)
     }
-    function handleWidthChange(className) {
+    function handleWidthChange(className)
+    {
         // 監視する要素の初期の幅を取得
         var initialWidth = $('.' + className).width()
 
         // 要素の幅が変更されたときに実行される関数
-        function checkWidth() {
+        function checkWidth()
+        {
             // 現在の幅を取得
             var currentWidth = $('.' + className).width()
 
@@ -518,7 +529,8 @@ $(document).ready(function () {
     handleWidthChange('registerHide')
     handleWidthChange('locationHide')
 
-    function observeWidthChanges(targetSelector) {
+    function observeWidthChanges(targetSelector)
+    {
         // 監視する要素を取得
         var targetElement = $(targetSelector)[0]
 
@@ -526,7 +538,8 @@ $(document).ready(function () {
         var initialWidth = $(targetElement).width()
 
         // CSSの変更を監視する関数
-        function observeCssChanges() {
+        function observeCssChanges()
+        {
             // 現在の幅を取得
             var currentWidth = $(targetElement).width()
 
@@ -574,9 +587,9 @@ $(document).ready(function () {
             $('.pageButtn').show()
             fetchRegistersName()
              $('.drop').css({
-                 width: 150 + 'px',
-                 height: 150 + 'px',
-             })
+                    width: 150 + 'px',
+                    height: 150 + 'px',
+                })
             // responsiveDesign()
             if ($('.pageButtn').is(':hidden')) {
                 // 要素を表示
@@ -584,13 +597,12 @@ $(document).ready(function () {
                 $('.locationButtn').show()
                 $('.smallRegisterButtn').show()
                 $('.smallLocationButtn').show()
-
             }
         } else {
                $('.drop').css({
-                   width: 100 + 'px',
-                   height: 100 + 'px',
-               })
+                    width: 100 + 'px',
+                    height: 100 + 'px',
+                })
         }
     })
 })

@@ -13,9 +13,9 @@ $(function () {
       $('#userLocation').fadeIn(10)
 
       $('#accordionSmall').accordion({
-          active: false, // 最初はアコーディオンを閉じた状態にする
-          collapsible: true,
-      })
+            active: false, // 最初はアコーディオンを閉じた状態にする
+            collapsible: true,
+        })
     $('.ui-accordion-header')
         .css('background', 'none')
         .css('background-color', 'rgba(250 ,204, 21, 0.8)')

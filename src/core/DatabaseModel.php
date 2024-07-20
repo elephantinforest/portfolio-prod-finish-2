@@ -1,6 +1,5 @@
 <?php
 
-
 class DatabaseModel
 {
     protected Mysqli $mysqli;
@@ -45,7 +44,8 @@ class DatabaseModel
             }
         }
     }
-    public function getInsertId() {
+    public function getInsertId()
+    {
         try {
             $result = $this->mysqli->query(' SELECT LAST_INSERT_ID()');
 

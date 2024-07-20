@@ -1,12 +1,13 @@
 $(document).ready(function () {
     // ドラッグ可能な機能を適用する関数
-    function applyResizable(element) {
+    function applyResizable(element)
+    {
         console.log('合')
          var currentWindowWidth = $(window).width()
          var currentWindowHeight = $('body').height()
          console.log(currentWindowHeight)
          console.log(currentWindowWidth)
-       $( ".img" ).resizable({
+        $(".img").resizable({
             stop: function (event, ui) {
                 // リサイズ終了時の処理
                 var width = $(this).width()

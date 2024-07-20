@@ -64,7 +64,8 @@ class Router
         ];
     }
 
-    public function getRoutes() {
+    public function getRoutes()
+    {
         return $this->routes;
     }
 }

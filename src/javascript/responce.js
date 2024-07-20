@@ -30,7 +30,8 @@ $(document).ready(function () {
 })
 
 // width関数
-function width() {
+function width()
+{
     // var widthValue = $(window).width() // ウィンドウの幅を取得
     // var currentWindowHeight = $('body').height()
     // console.log(widthValue)

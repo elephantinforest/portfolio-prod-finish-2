@@ -1,6 +1,7 @@
 $(document).ready(function () {
     // リスト項目がクリックされたときの処理を定義
-    function animateListItemOnClick() {
+    function animateListItemOnClick()
+    {
         $('#buttn').on('click', 'li', function () {
             var hiddenValue = $(this).find("input[type='hidden']").val()
             // クリックされたリスト項目の親要素にクラスを追加

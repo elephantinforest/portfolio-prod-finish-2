@@ -37,7 +37,8 @@ class View
         return $layout;
     }
 
-    public function getBasedir() {
+    public function getBasedir()
+    {
         return $this->baseDir;
     }
 }
