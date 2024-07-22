@@ -8,7 +8,7 @@ class Application
     protected Response $response;
     protected DatabaseManager $databaseManager;
     protected HttpNotFoundException $httpNotFoundException;
-    protected heleper $heleper;
+    protected Heleper $Heleper;
     protected Validation $validation;
     protected S3 $s3;
 
@@ -18,12 +18,13 @@ class Application
         $this->router = new Router();
         $this->response = new Response();
         $this->request = new Request();
-        $this->heleper = new heleper();
+        $this->Heleper = new Heleper();
         $this->s3 = new S3(
-                    'portfolio',
-                    'http://minio:9000',
-                    'portfolio',
-                    'portfolio');
+            'portfolio',
+            'http://minio:9000',
+            'portfolio',
+            'portfolio'
+        );
         $this->validation = new Validation();
         $this->databaseManager = new DatabaseManager();
         $this->databaseManager->connect(
@@ -63,9 +64,9 @@ class Application
     {
         return $this->request;
     }
-    public function getheleper(): heleper
+    public function getHeleper(): Heleper
     {
-        return $this->heleper;
+        return $this->Heleper;
     }
     public function getvalidation(): validation
     {

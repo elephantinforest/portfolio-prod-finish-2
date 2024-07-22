@@ -2,7 +2,7 @@
 
 class UpdateController extends Controller
 {
-  //アップデート画面を表示する処理
+    //アップデート画面を表示する処理
     public function index()
     {
         if (session_status() == PHP_SESSION_NONE) {
@@ -10,10 +10,10 @@ class UpdateController extends Controller
         }
         if (!$_SESSION['loggedin']) {
             return $this->render([
-            'title' => '所持品の登録',
-            'errors' => [
-            "ログインしないとはいれないで！しょうもないことすな"
-            ],
+                'title' => '所持品の登録',
+                'errors' => [
+                    "ログインしないとはいれないで！しょうもないことすな"
+                ],
             ], 'login');
         }
         $registerId = $_GET['id'];
@@ -21,18 +21,18 @@ class UpdateController extends Controller
             $registerModel = $this->databaseManager->get('Register');
             $register = $registerModel->fetchUpdateRegister($registerId);
         } catch (Exception $e) {
-            $this->heleper->handleError($e->getMessage());
+            $this->Heleper->handleError($e->getMessage());
         }
         return $this->render(
             [
-            'title' => 'ユーザーのログイン',
-            'register' => $register,
+                'title' => 'ユーザーのログイン',
+                'register' => $register,
             ],
             'index',
             'layout_less'
         );
     }
-  //レジスターアイテムのアップデート処理
+    //レジスターアイテムのアップデート処理
     public function update()
     {
         if (session_status() == PHP_SESSION_NONE) {
@@ -40,10 +40,10 @@ class UpdateController extends Controller
         }
         if (!$_SESSION['loggedin']) {
             return $this->render([
-            'title' => '所持品の登録',
-            'errors' => [
-            "ログインしないとはいれないで！しょうもないことすな"
-            ],
+                'title' => '所持品の登録',
+                'errors' => [
+                    "ログインしないとはいれないで！しょうもないことすな"
+                ],
             ], 'login');
         } elseif (!$this->request->isPost()) {
             $response = new Response();
@@ -55,17 +55,17 @@ class UpdateController extends Controller
         $register = $_POST;
         $files = $_FILES['image_file'];
         $fileName = basename($_FILES['image_file']['name']);
-        $savePath = $this->heleper->crateRegisterSaveFile($fileName);
+        $savePath = $this->Heleper->crateRegisterSaveFile($fileName);
         $files['savePath'] = $savePath;
-      //POSTされた値のバリデーション
+        //POSTされた値のバリデーション
         $registerErrors = $this->validation->validateRegister($register);
         $fileErrors = $this->validation->filevalidation($files);
-      //アップデート終了後のリダイレクト先のパス
+        //アップデート終了後のリダイレクト先のパス
         $path = "Location: /update?location_id={$register['location_id']}";
         if (empty($fileErrors)) {
-          //ファイルバリデーション通過した処理
+            //ファイルバリデーション通過した処理
             if (empty($registerErrors)) {
-              //レジスターバリデーション通過した処理
+                //レジスターバリデーション通過した処理
                 try {
                     $register['file_path'] = $savePath;
                     $register['file_name'] = $fileName;
@@ -74,15 +74,15 @@ class UpdateController extends Controller
                     header($path);
                     exit;
                 } catch (Exception $e) {
-                    $this->heleper->handleError($e->getMessage());
+                    $this->Heleper->handleError($e->getMessage());
                 }
             } else {
                 $errors = array_merge($registerErrors, $fileErrors);
                 return $this->render(
                     [
-                    'errors' => $errors,
-                    'register' => $register,
-                    'files' => $files
+                        'errors' => $errors,
+                        'register' => $register,
+                        'files' => $files
                     ],
                     'index',
                     'layout_less'
@@ -91,7 +91,7 @@ class UpdateController extends Controller
         } //ファイルバリデーション通過しなかった処理
         else {
             if (empty($registerErrors)) {
-              //レジスターバリデーション通過した処理
+                //レジスターバリデーション通過した処理
                 try {
                     $register['file_path'] = null;
                     $register['file_name'] = null;
@@ -101,16 +101,16 @@ class UpdateController extends Controller
                     header($path);
                     exit;
                 } catch (Exception $e) {
-                    $this->heleper->handleError($e->getMessage());
+                    $this->Heleper->handleError($e->getMessage());
                 }
             } //レジスターバリデーションが通過できなかった処理　アップデート画面に返す
             else {
                 $errors = array_merge($registerErrors, $fileErrors);
                 return $this->render(
                     [
-                    'errors' => $errors,
-                    'register' => $register,
-                    'files' => $files
+                        'errors' => $errors,
+                        'register' => $register,
+                        'files' => $files
                     ],
                     'index',
                     'layout_less'
@@ -118,7 +118,7 @@ class UpdateController extends Controller
             }
         }
     }
-  //アップデート画面から戻るボタンを押したときにメインページに戻る処理
+    //アップデート画面から戻るボタンを押したときにメインページに戻る処理
     public function return()
     {
         if (session_status() == PHP_SESSION_NONE) {
@@ -126,10 +126,10 @@ class UpdateController extends Controller
         }
         if (!$_SESSION['loggedin']) {
             return $this->render([
-            'title' => '所持品の登録',
-            'errors' => [
-            "ログインしないとはいれないで！しょうもないことすな"
-            ],
+                'title' => '所持品の登録',
+                'errors' => [
+                    "ログインしないとはいれないで！しょうもないことすな"
+                ],
             ], 'login');
         }
         $locationId = (int)$_GET['location_id'];
@@ -147,14 +147,14 @@ class UpdateController extends Controller
             $location = $locationModel->fetchUpdateLocation($locationId);
             $location['file_path'] = $this->s3->downloadFile($location['file_path']);
         } catch (Exception $e) {
-            $this->heleper->handleError($e->getMessage());
+            $this->Heleper->handleError($e->getMessage());
         }
         return $this->render(
             [
-            'title' => 'ユーザーのログイン',
-            'registers' => $registers,
-            'locations' => $location,
-            'user' => $user,
+                'title' => 'ユーザーのログイン',
+                'registers' => $registers,
+                'locations' => $location,
+                'user' => $user,
             ],
             'user'
         );

@@ -5,7 +5,7 @@ class Controller
     protected string $actionName;
     protected Request $request;
     protected DatabaseManager $databaseManager;
-    protected heleper $heleper;
+    protected Heleper $Heleper;
     protected Validation $validation;
     protected S3 $s3;
 
@@ -13,7 +13,7 @@ class Controller
     {
         $this->request = $application->getrequest();
         $this->databaseManager = $application->getDatabaseManager();
-        $this->heleper = $application->getheleper();
+        $this->Heleper = $application->getHeleper();
         $this->validation = $application->getvalidation();
         $this->s3 = $application->getS3();
     }

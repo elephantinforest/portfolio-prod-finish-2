@@ -31,6 +31,8 @@
         <?php echo $content; ?>
     </div>
     <?php include_once('/var/www/html/src/views/javascript.php'); ?>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui-touch-punch/0.2.3/jquery.ui.touch-punch.min.js"></script>
 </body>
 
 </html>

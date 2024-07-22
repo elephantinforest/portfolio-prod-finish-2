@@ -14,7 +14,7 @@ class RegisterController extends Controller
         $files = $_FILES['image'];
         $uploadeFile = $files['tmp_name'];
         $fileName = basename($files['name']);
-        $savePath = $this->heleper->crateRegisterSaveFile($fileName);
+        $savePath = $this->Heleper->crateRegisterSaveFile($fileName);
         $files['savePath'] = $savePath;
         //APIに接続。名前などを取得
         try {
@@ -24,7 +24,7 @@ class RegisterController extends Controller
             $genre = $res['genre'];
             $price = intval($res['price']);
         } catch (Exception $e) {
-            $this->heleper->handleError($e->getMessage());
+            $this->Heleper->handleError($e->getMessage());
         }
         $registers = [
             'user_id' => $user_id,
@@ -62,10 +62,10 @@ class RegisterController extends Controller
                 $createPath = $this->s3->downloadFile($savePath);
                 //ブラウザに返すJSON
                 $data = ['success' => true, 'imageUrl' => $createPath, 'registerId' => $registerId];
-                $this->heleper->sendResponse($data);
+                $this->Heleper->sendResponse($data);
                 exit();
             } catch (Exception $e) {
-                $this->heleper->handleError($e->getMessage());
+                $this->Heleper->handleError($e->getMessage());
             }
         }
     }
@@ -101,9 +101,9 @@ class RegisterController extends Controller
             $savePath = $this->s3->downloadFile($savePath);
             $data = ['success' => true, 'imageUrl' => $savePath, 'registerName' => $registerName, 'registerId' => $registerId, 'x' => $xPosition, 'y' => $yPosition];
             if (isset($_POST['test'])) {
-                $this->heleper->isTestTrue();
+                $this->Heleper->isTestTrue();
             }
-            $this->heleper->sendResponse($data);
+            $this->Heleper->sendResponse($data);
         }
     }
 
@@ -129,7 +129,7 @@ class RegisterController extends Controller
             }
         }
         $data = ['success' => true, 'registers' => $userRegisters];
-        $this->heleper->sendResponse($data);
+        $this->Heleper->sendResponse($data);
     }
 
     public function position()
@@ -167,7 +167,7 @@ class RegisterController extends Controller
                 exit();
             }
         } catch (Exception $e) {
-            $this->heleper->handleError($e->getMessage());
+            $this->Heleper->handleError($e->getMessage());
         }
     }
 }

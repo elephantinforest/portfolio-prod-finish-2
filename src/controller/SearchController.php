@@ -9,10 +9,10 @@ class SearchController extends Controller
         }
         if (!$_SESSION['loggedin']) {
             return $this->render([
-            'title' => '所持品の登録',
-            'errors' => [
-            "ログインしないとはいれないで！しょうもないことすな"
-            ],
+                'title' => '所持品の登録',
+                'errors' => [
+                    "ログインしないとはいれないで！しょうもないことすな"
+                ],
             ], 'login');
         }
         try {
@@ -25,17 +25,17 @@ class SearchController extends Controller
             $count = count($registers);
             return $this->render(
                 [
-                'title' => 'ユーザーのログイン',
-                'registers' => $registers,
-                'user' => $user,
-                'word' => $searchWord,
-                'count' => $count,
+                    'title' => 'ユーザーのログイン',
+                    'registers' => $registers,
+                    'user' => $user,
+                    'word' => $searchWord,
+                    'count' => $count,
                 ],
                 'index',
                 'layout_less'
             );
         } catch (Exception $e) {
-            $this->heleper->handleError($e->getMessage());
+            $this->Heleper->handleError($e->getMessage());
         }
     }
 }

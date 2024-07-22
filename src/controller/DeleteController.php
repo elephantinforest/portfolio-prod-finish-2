@@ -2,11 +2,11 @@
 
 class DeleteController extends Controller
 {
-  /**
-   * registerアイテムの削除
-   *
-   * @return type null;
-   */
+    /**
+     * registerアイテムの削除
+     *
+     * @return type null;
+     */
     public function delete()
     {
         if (session_status() == PHP_SESSION_NONE) {
@@ -25,11 +25,11 @@ class DeleteController extends Controller
             $resizeModel->delete($registerId);
             $data = ['success' => true, 'registerId' => $registerId];
             if (isset($_POST['test'])) {
-                $this->heleper->isTestTrue();
+                $this->Heleper->isTestTrue();
             }
-            $this->heleper->sendResponse($data);
+            $this->Heleper->sendResponse($data);
         } catch (Exception $e) {
-            $this->heleper->handleError($e->getMessage());
+            $this->Heleper->handleError($e->getMessage());
         }
     }
 }

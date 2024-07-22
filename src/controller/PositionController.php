@@ -44,7 +44,7 @@ class PositionController extends Controller
                 exit();
             }
         } catch (Exception $e) {
-            $this->heleper->handleError($e->getMessage());
+            $this->Heleper->handleError($e->getMessage());
         }
     }
 }
