@@ -167,4 +167,3 @@ class LoginController extends Controller
         $_SESSION['loggedin'] = true;
     }
 }
-
