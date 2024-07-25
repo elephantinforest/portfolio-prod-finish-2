@@ -14,7 +14,7 @@ $location = file_get_contents('/var/www/html/javascript/location.js');
 $resize = file_get_contents('/var/www/html/javascript/resize.js');
 $responce = file_get_contents('/var/www/html/javascript/responce.js');
 $touche = file_get_contents('/var/www/html/node_modules/jquery-ui-touch-punch/jquery.ui.touch-punch.min.js');
-
+$jqueryUi = file_get_contents('/var/www/html/node_modules/jquery-ui/dist/jquery-ui.min.js');
 
 ?>
 
@@ -34,4 +34,5 @@ $touche = file_get_contents('/var/www/html/node_modules/jquery-ui-touch-punch/jq
   <?= $resize ?>
   <?= $responce ?>
   <?= $touche ?>
+  <?= $jqueryUi ?>
 </script>

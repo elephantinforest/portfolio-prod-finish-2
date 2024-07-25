@@ -7,8 +7,9 @@ $(document).ready(function () {
     {
         return new Promise(function (resolve, reject) {
             const locationId = $('#locationSpot').val()
+            console.log(11)
             $.ajax({
-                url: ` / ${data}`,
+                url: `/${data}`,
                 type: 'GET',
                 data: { locationId: locationId },
                 dataType: 'json',

@@ -2,12 +2,23 @@
 
 class View
 {
+    /**
+     * @var string
+     */
     protected string $baseDir;
 
+    /**
+     * @param string $baseDir
+     */
     public function __construct(string $baseDir)
     {
         $this->baseDir = $baseDir;
     }
+
+    /**
+     * @param string $path
+     * @return string
+     */
     public function createPath(string $path): string
     {
         $imagePath = $path;
@@ -22,6 +33,13 @@ class View
 
         return $dataUri;
     }
+
+    /**
+     * @param string $path
+     * @param mixed $variables
+     * @param mixed $layout
+     * @return string
+     */
     public function render(string $path, mixed $variables, mixed $layout = false): string
     {
         extract($variables);
@@ -37,7 +55,10 @@ class View
         return $layout;
     }
 
-    public function getBasedir()
+    /**
+     * @return string
+     */
+    public function getBasedir(): string
     {
         return $this->baseDir;
     }

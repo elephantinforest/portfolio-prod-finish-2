@@ -77,7 +77,7 @@ class LocationsController extends Controller
         session_start();
         $status = $_SERVER['REDIRECT_URL'];
         $user_id = $_SESSION['login_user']['id'];
-        $locationId = $_GET['locationId'];
+        $locationId = (int) $_GET['locationId'];
         $locationModel = $this->databaseManager->get('Location');
         $registerModel = $this->databaseManager->get('Register');
         if ($status === '/prev') {
@@ -86,7 +86,6 @@ class LocationsController extends Controller
                 if (empty($location)) {
                     $this->Heleper->handleError('それ以上クリックはできません。');
                 }
-                $location = $location[0];
                 $locationId = $location['location_id'];
                 $registers = $registerModel->fetchLocationRegister($user_id, $locationId);
                 if (!empty($registers)) {
@@ -110,7 +109,6 @@ class LocationsController extends Controller
                 if (empty($location)) {
                     $this->Heleper->handleError('それ以上クリックはできません。');
                 }
-                $location = $location[0];
                 $locationId = $location['location_id'];
                 $registers = $registerModel->fetchLocationRegister($user_id, $locationId);
                 if (!empty($registers)) {

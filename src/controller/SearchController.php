@@ -1,13 +1,17 @@
 <?php
 
+
 class SearchController extends Controller
 {
     public function index()
     {
-        if (session_status() == PHP_SESSION_NONE) {
+        // セッションを開始する
+        if (session_status() === PHP_SESSION_NONE) {
             session_start();
         }
-        if (!$_SESSION['loggedin']) {
+
+        // ログインしていない場合はログインページにリダイレクト
+        if (!isset($_SESSION['loggedin']) || !$_SESSION['loggedin']) {
             return $this->render([
                 'title' => '所持品の登録',
                 'errors' => [
@@ -15,13 +19,28 @@ class SearchController extends Controller
                 ],
             ], 'login');
         }
+
         try {
+            // ユーザーIDを取得
             $userId = $_SESSION['login_user']['id'];
-            $string = "%{$_GET['search']}%";
-            $searchModel = $this->databaseManager->get('Search');
-            $registers = $searchModel->searchRegisters($userId, $string);
+            $searchWord = $_GET['search'] ?? '';
+            $searchString = '%' . $searchWord . '%';
+
+            // 検索モデルを取得
+            $searchModel = $this->databaseManager->get("Search");
+            // 検索を実行
+            $registers = $searchModel->searchRegisters($userId, $searchString);
+
+            // 画像ファイルをS3からダウンロード
+            foreach ($registers as $key => $value) {
+                $imagePath = $value['file_path'];
+                $s3 = new S3();
+                $imagePath = $s3->downloadFile($imagePath);
+                $registers[$key]['file_path'] = $imagePath;
+            }
+
+            // ユーザー情報と検索結果をビューに渡す
             $user = $_SESSION['login_user'];
-            $searchWord = $_GET['search'];
             $count = count($registers);
             return $this->render(
                 [
@@ -35,6 +54,7 @@ class SearchController extends Controller
                 'layout_less'
             );
         } catch (Exception $e) {
+            // エラー処理
             $this->Heleper->handleError($e->getMessage());
         }
     }

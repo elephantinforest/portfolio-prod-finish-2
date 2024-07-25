@@ -12,6 +12,7 @@
         "pre": "npx prettier --write src/views/*.php"
     },
     "dependencies": {
+        "jquery-ui": "^1.13.3",
         "jquery-ui-dist": "^1.13.2",
         "jquery-ui-touch-punch": "^0.2.3",
         "paginationjs": "^2.6.0",

@@ -1,5 +1,5 @@
 $(document).ready(function () {
-    //ポストした時の処理
+    // ポストした時の処理
     // $('.uploadRegister').on('click', function () {
     //     var windowSizeValue = $('input[name="windowSize"]').val()
     //     console.log('windowSize:', windowSizeValue)
@@ -144,8 +144,7 @@ $(document).ready(function () {
     // })
 
     //ドラッグした時の処理
-    function makeDraggable(element)
-    {
+    function makeDraggable(element) {
         element.draggable({
             stop: function (event, ui) {
                 // ドラッグ停止時の座標を取得
@@ -216,8 +215,7 @@ $(document).ready(function () {
         handleFormSubmission(formType)
     })
 
-    function handleFormSubmission(formSelector)
-    {
+    function handleFormSubmission(formSelector) {
         var formData = new FormData($(formSelector)[0])
         var locationValue = $('#locationSpot').val()
         var windowWidth = $(window).width()
@@ -339,8 +337,7 @@ $(document).ready(function () {
                                 )
 
                                 // 共通の操作
-                                function commonOperations()
-                                {
+                                function commonOperations() {
                                     $('.content').hide()
                                     $('header').show()
                                     fetchRegistersName()
@@ -381,27 +378,32 @@ $(document).ready(function () {
         })
     }
 
-    $(function () {
-        // 初期の要素に対してドラッグ可能な状態にする
-        makeDraggable($('.registerde'))
+    makeDraggable($('.registerde'))
 
-        // ページ内の要素が動的に追加された場合に対応するため、新しい要素にもドラッグ可能な状態にする
-        $(document).on('DOMNodeInserted', function (e) {
-            var element = $(e.target)
-            if (element.hasClass('registerde')) {
-                makeDraggable(element)
+    // MutationObserver を使用して新しい要素の挿入を監視
+    const observer = new MutationObserver((mutations) => {
+        mutations.forEach((mutation) => {
+            if (mutation.type === 'childList') {
+                // 新しい要素が .registerde クラスを持つ場合、ドラッグ可能な状態にする
+                mutation.addedNodes.forEach((node) => {
+                    if ($(node).hasClass('registerde')) {
+                        makeDraggable($(node))
+                    }
+                })
             }
         })
     })
 
-    function showLoadingAnimation()
-    {
+    observer.observe(document.body, {
+        childList: true,
+        subtree: true,
+    })
+    function showLoadingAnimation() {
         $('#loading').removeClass('hidden')
     }
 
     // ロード中のアニメーションを非表示にする関数
-    function hideLoadingAnimation()
-    {
+    function hideLoadingAnimation() {
         $('#loading').addClass('hidden')
     }
 })

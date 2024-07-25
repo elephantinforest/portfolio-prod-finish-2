@@ -2,12 +2,13 @@
     "name": "root/html",
     "require-dev": {
         "phpmd/phpmd": "@stable",
-        "phpstan/phpstan": "^0.12.78",
+        "phpstan/phpstan": "^1.10",
         "phpunit/phpunit": "^9.5",
         "google-gemini-php/client": "^1.0",
         "friendsofphp/php-cs-fixer": "^3.0",
         "pdepend/pdepend": "^2.12",
-        "symfony/config": "^4.0"
+        "symfony/config": "^4.0",
+        "rector/rector": "^1.2"
     },
     "scripts": {
         "phpcs": "./vendor/bin/phpcs --standard=phpcs.xml",

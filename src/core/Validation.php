@@ -1,7 +1,12 @@
 <?php
 
+
 class Validation
 {
+    /**
+     * @param array<string, mixed> $user
+     * @return array<string, string>
+     */
     public function userValidation(array $user): array
     {
         $errors = [];
@@ -32,36 +37,37 @@ class Validation
 
         if (empty($user['passwordConfirm'])) {
             $errors['passwordConfirm'] = '確認用パスワードを入力してください';
-        } elseif (strlen($user['password']) > 100) {
+        } elseif (strlen($user['passwordConfirm']) > 100) {
             $errors['passwordConfirm'] = 'パスワードを間違えています';
         }
         if ($user['passwordConfirm'] !== $user['password']) {
             $errors['password'] = '確認用パスワードの値が違う値です。';
         }
 
-
         return $errors;
     }
 
-
+    /**
+     * @param array<string, mixed> $files
+     * @return array<string, string>
+     */
     public function fileValidation(array $files): array
     {
         $errors = [];
 
         if ($files['size'] > 16485760 || $files['error'] === 2) {
-            $errors['size'] = "ファイルサイズは15MB以内でよろしくお願いします。";
+            $errors['size'] = 'ファイルサイズは15MB以内でよろしくお願いします。';
         }
 
-        //拡張子は画像形式か？
+        // 拡張子は画像形式か？
+        $allowExt = ['jpg', 'jpeg', 'png'];
+        $fileExt = pathinfo($files['name'], PATHINFO_EXTENSION);
 
-        $allow_ext = ['jpg', 'jpeg', 'png'];
-        $file_ext = pathinfo($files['name'], PATHINFO_EXTENSION);
-
-        if (!in_array(strtolower($file_ext), $allow_ext)) {
-            $errors['fileName'] = "画像ファイルを添付してください";
+        if (!in_array(strtolower($fileExt), $allowExt)) {
+            $errors['fileName'] = '画像ファイルを添付してください';
         }
 
-        // //ファイルはあるかどうか？
+        // // ファイルはあるかどうか？
         // if (!is_uploaded_file($files['tmp_name'])) {
         //     $errors["tmpfile"] = "ファイルが選択されていません。";
         // }
@@ -72,6 +78,10 @@ class Validation
         return $errors;
     }
 
+    /**
+     * @param array<string, mixed> $user
+     * @return array<string, string>
+     */
     public function loginValidation(array $user): array
     {
         $errors = [];
@@ -93,7 +103,13 @@ class Validation
         return $errors;
     }
 
-    public function locationValidation(string $location, string $userId, Location $locationModel): array
+    /**
+     * @param string $location
+     * @param int $userId
+     * @param Location $locationModel
+     * @return array<string, string>
+     */
+    public function locationValidation(string $location, int $userId,  $locationModel): array
     {
         $errors = [];
 
@@ -107,32 +123,36 @@ class Validation
         return $errors;
     }
 
+    /**
+     * @param array<string, mixed> $register
+     * @return array<string>
+     */
     public function validateRegister(array $register): array
     {
         $errors = [];
 
         // 名前のバリデーション
         if (!isset($register['name']) || empty($register['name'])) {
-            $errors[] = "名前を入力してください。";
+            $errors[] = '名前を入力してください。';
         } elseif (strlen($register['name']) > 255) {
-            $errors[] = "名前は255文字以内で入力してください。";
+            $errors[] = '名前は255文字以内で入力してください。';
         }
 
         // ジャンルのバリデーション
         if (!isset($register['genre']) || empty($register['genre'])) {
-            $errors[] = "ジャンルを入力してください。";
+            $errors[] = 'ジャンルを入力してください。';
         } elseif (strlen($register['genre']) > 255) {
-            $errors[] = "ジャンルは255文字以内で入力してください。";
+            $errors[] = 'ジャンルは255文字以内で入力してください。';
         }
 
         // 価格のバリデーション
         if (!isset($register['price']) || !is_numeric($register['price']) || $register['price'] < 0) {
-            $errors[] = "価格は正の数値で入力してください。";
+            $errors[] = '価格は正の数値で入力してください。';
         }
 
         // メモのバリデーション
         if (isset($register['other']) && strlen($register['other']) > 255) {
-            $errors[] = "メモは255文字以内で入力してください。";
+            $errors[] = 'メモは255文字以内で入力してください。';
         }
 
         return $errors;
