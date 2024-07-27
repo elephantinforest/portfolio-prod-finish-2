@@ -1,16 +1,35 @@
 <?php
 
+/**
+ * データベース操作をするクラス
+ */
 class DatabaseModel
 {
+    /**
+     * データベースに接続したオブジェクト
+     *
+     * @var Mysqli $mysqli
+     */
     protected Mysqli $mysqli;
 
+    /**
+     * mysqlオブジェクトを引数でもらいクラスの初期化
+     *
+     * @param Mysqli $mysqli
+     */
     public function __construct(Mysqli $mysqli)
     {
         $this->mysqli = $mysqli;
     }
 
 
-    /** @phpstan-ignore-next-line */
+    /**
+     * クエリをもらいデータベースに挿入する関数
+     *
+     * @param string $sql 直接書かれたクエリストリング
+     * @param array  <int|string|mixed>$params バインドする際に挿入する値
+     * @return void
+     */
     public function execute(string $sql, array $params = []): void
     {
         try {
@@ -26,8 +45,16 @@ class DatabaseModel
             throw new PDOException($e->getMessage());
         }
     }
-    /** @phpstan-ignore-next-line */
-    public function fetch(string $sql, array $params = [])
+
+    /**
+     * クエリをもらいデータベースから値を取得する関数
+     *
+     * @param string $sql
+     * @param array  <int|string|mixed>$params バインドする際に挿入する値
+     * @return array <int|string|mixed> クエリの結果
+     * @throws PDOException SQL エラー発生時にスローされる
+     */
+    public function fetch(string $sql, array $params = []): array
     {
         if ($params) {
             try {
@@ -42,9 +69,17 @@ class DatabaseModel
             } catch (mysqli_sql_exception $e) {
                 throw new PDOException($e->getMessage());
             }
+        } else {
+            throw new PDOException('値が渡されていません。');
         }
     }
-    public function getInsertId()
+
+    /**
+     * 最後に挿入されたレコードの取得
+     *
+     * @return string 最後に挿入しIDの取得
+     */
+    public function getInsertId(): string
     {
         try {
             $result = $this->mysqli->query(' SELECT LAST_INSERT_ID()');
@@ -53,8 +88,8 @@ class DatabaseModel
                 throw new mysqli_sql_exception($this->mysqli->error);
             }
             $insertId =  $result->fetch_all(MYSQLI_ASSOC);
-            return $insertId[0]['LAST_INSERT_ID()'];
             $result->free_result();
+            return $insertId[0]['LAST_INSERT_ID()'];
         } catch (mysqli_sql_exception $e) {
             throw new PDOException($e->getMessage());
         }

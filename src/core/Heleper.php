@@ -2,19 +2,36 @@
 
 class Heleper
 {
+    /**
+     * テストで動作しているチェックするための変数
+     *
+     * @var boolean
+     */
     private $isTest = false;
 
-    public function handleError($errors)
+    /**
+     * クライアントサイドにerrorレスポンスの送信
+     *
+     * @param  string $error エラー内容
+     * @return void
+     */
+    public function handleError(string $error): void
     {
-        $response = ['success' => false, 'errors' => $errors];
+        $response = ['success' => false, 'errors' => $error];
         header('Content-Type: application/json');
         echo json_encode($response);
         if (!$this->isTest) {
             exit();
         }
     }
-
-    public function sendResponse($data)
+    /**
+     * クライアントサイドにJSONデータの送信
+     *
+     *
+     * @param array<string, mixed> $data  連想配列の配列
+     * @return void
+     */
+    public function sendResponse(array $data): void
     {
         header('Content-Type: application/json');
         echo json_encode($data);
@@ -22,7 +39,12 @@ class Heleper
             exit();
         }
     }
-
+    /**
+     * 画像パスからエンコードした画像を生成
+     *
+     * @param string $path S3などに置いてある画像パス
+     * @return string エンコードされた画像ファイル
+     */
     public function createPath(string $path): string
     {
         $imagePath = $path;
@@ -37,50 +59,74 @@ class Heleper
 
         return $dataUri;
     }
-    public function crateRegisterSaveFile(string $file)
+
+    /**
+     * S3に保存するファイルのパスを自動生成(レジスターディレクトリ)
+     *
+     * @param string $file ファイルパス
+     * @return string registerディレクトリと日時が追加されてユニークな値になったファイルパスの作成
+     */
+    public function crateRegisterSaveFile(string $file): string
     {
         $upload_dir = 'register/';
         $saveFileName = date('YmdHis') . $file;
         $savePath = $upload_dir . $saveFileName;
         return $savePath;
     }
-    public function crateLocationSaveFile(string $file)
+
+    /**
+     * S3に保存するファイルのパスを自動生成(ロケーションディレクトリ)
+     *
+     * @param string $file ファイルパス
+     * @return string locationディレクトリと日時が追加されてユニークな値になったファイルパスの作成
+     */
+    public function crateLocationSaveFile(string $file): string
     {
         $upload_dir = 'location/';
         $saveFileName = date('YmdHis') . $file;
         $savePath = $upload_dir . $saveFileName;
         return $savePath;
     }
-
-    public function isTestTrue()
+    /**
+     * 変数isTestをテスト環境で動かす為にtrueに変更
+     *
+     * @return void
+     */
+    public function isTestTrue(): void
     {
         $this->isTest = true;
     }
-
-    public function changeSize(array $registers, array $size)
-    {
-        $currentWidth = $size['windowWidth'];
-        $currentHeight = $size['windowHeight'];
-        foreach ($registers as $num => $value) {
-            $data = [
-                'width' => $value['width'],
-                'height' => $value['height'],
-                'top_position' => $value['top_position'],
-            ];
-            $registerWidth = $value['window_width'];
-            $registerHeight = $value['window_height'];
-            $scaleX = $currentWidth / $registerWidth;
-            $scaleY = $currentHeight / $registerHeight;
-            foreach ($data as $key => $value) {
-                if ($key === 'width') {
-                    $registers[$num][$key] = $value * $scaleX;
-                } elseif ($key === 'height') {
-                    $registers[$num][$key] = $value * $scaleY;
-                } elseif ($key === 'top_position') {
-                    $registers[$num][$key] = $value * $scaleY;
-                }
-            }
-        }
-        return $registers;
-    }
+    /**
+     * ウィンドウサイズが変更した時に合わせて画像サイズの変更
+     *
+     * @param array $registers{}
+     * @param array $size{}
+     * @return void
+     */
+    // public function changeSize(array $registers, array $size)
+    // {
+    //     $currentWidth = $size['windowWidth'];
+    //     $currentHeight = $size['windowHeight'];
+    //     foreach ($registers as $num => $value) {
+    //         $data = [
+    //             'width' => $value['width'],
+    //             'height' => $value['height'],
+    //             'top_position' => $value['top_position'],
+    //         ];
+    //         $registerWidth = $value['window_width'];
+    //         $registerHeight = $value['window_height'];
+    //         $scaleX = $currentWidth / $registerWidth;
+    //         $scaleY = $currentHeight / $registerHeight;
+    //         foreach ($data as $key => $value) {
+    //             if ($key === 'width') {
+    //                 $registers[$num][$key] = $value * $scaleX;
+    //             } elseif ($key === 'height') {
+    //                 $registers[$num][$key] = $value * $scaleY;
+    //             } elseif ($key === 'top_position') {
+    //                 $registers[$num][$key] = $value * $scaleY;
+    //             }
+    //         }
+    //     }
+    //     return $registers;
+    // }
 }

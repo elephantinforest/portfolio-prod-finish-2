@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * @property-read array $routes
+ */
 class Router
 {
     /** @phpstan-ignore-next-line */
@@ -11,6 +14,10 @@ class Router
         $this->routes = $this->registerRoutes();
     }
 
+    /**
+     * @param string $pathInfo
+     * @return array{controller: string, action: string}|false
+     */
     public function resolve(string $pathInfo): mixed
     {
         $path = urldecode($pathInfo); // URLデコード
@@ -64,6 +71,9 @@ class Router
         ];
     }
 
+    /**
+     * @return array{controller: string, action: string}
+     */
     public function getRoutes()
     {
         return $this->routes;
