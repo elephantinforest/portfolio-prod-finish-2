@@ -1,7 +1,15 @@
 <?php
 
+/**
+ * ログアウト処理
+ */
 class LogoutController extends Controller
 {
+    /**
+     * ログアウト処理
+     *
+     * @return string
+     */
     public function index(): string
     {
         $errors = [];

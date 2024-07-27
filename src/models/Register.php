@@ -27,7 +27,7 @@ class Register extends DatabaseModel
      *
      * @param string $registerId レジスターID
      *
-     * @return array{register_id: int, user_id: int, location_id: int, name: string, genre: string, price: string, other: string, file_path: string}|null レジスターアイテムの配列、またはアイテムが見つからない場合はnull
+     * @return array<array{register_id: int, user_id: int, location_id: int, name: string, genre: string, price: string, other: string, file_path: string}>|null レジスターアイテムの配列、またはアイテムが見つからない場合はnull
      */
     public function fetchRegister(string $registerId): ?array
     {

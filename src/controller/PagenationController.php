@@ -2,7 +2,12 @@
 
 class PagenationController extends Controller
 {
-    public function index()
+    /**
+     * ページネーション処理で使用するレジスターネームの取得処理
+     *
+     * @return mixed
+     */
+    public function index(): mixed
     {
 
         session_start();

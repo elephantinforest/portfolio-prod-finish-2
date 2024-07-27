@@ -5,9 +5,9 @@ class DeleteController extends Controller
     /**
      * registerアイテムの削除
      *
-     * @return type null;
+     * @return void;
      */
-    public function delete()
+    public function delete(): void
     {
         if (session_status() == PHP_SESSION_NONE) {
             session_start();

@@ -6,7 +6,7 @@ class Location extends DatabaseModel
    * ユーザーIDと作成日時が最も古いロケーションを取得します。
    *
    * @param int $id ユーザーID
-   * @return array{location_id: int, file_path: string, location: string}|null 取得したロケーションの情報、存在しない場合はnull
+   * @return array<array{location_id: int, file_path: string, location: string}>|null 取得したロケーションの情報,存在しない場合はnull
    */
   public function fetchLocation(int $id): ?array
   {

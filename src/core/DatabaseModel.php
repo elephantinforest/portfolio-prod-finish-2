@@ -51,7 +51,7 @@ class DatabaseModel
      *
      * @param string $sql
      * @param array  <int|string|mixed>$params バインドする際に挿入する値
-     * @return array <int|string|mixed> クエリの結果
+     * @return array <mixed> $results クエリの結果
      * @throws PDOException SQL エラー発生時にスローされる
      */
     public function fetch(string $sql, array $params = []): array

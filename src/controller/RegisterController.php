@@ -2,7 +2,12 @@
 
 class RegisterController extends Controller
 {
-    public function index()
+    /**
+     * アイテムの登録処理
+     *
+     * @return void
+     */
+    public function index(): void
     {
         session_start();
         //POSTされた値などを取得
@@ -23,25 +28,20 @@ class RegisterController extends Controller
             $name = $res['name'];
             $genre = $res['genre'];
             $price = intval($res['price']);
-        } catch (Exception $e) {
-            $this->Heleper->handleError($e->getMessage());
-        }
-        $registers = [
-            'user_id' => $user_id,
-            'name' =>  $name,
-            'genre' => $genre,
-            'price' => $price,
-            'file_name' => $fileName,
-            'file_path' => $savePath,
-            'other' => $other,
-            'location_id' => $locationId,
-        ];
-        //バリデーション処理
-        $fileErrors = $this->validation->fileValidation($files);
-        $registerErrors = $this->validation->validateRegister($registers);
-        //バリデーションerrorなかったらテーブルにレコードを登録
-        if (empty($fileErrors) && empty($registerErrors)) {
-            try {
+            $registers = [
+                'user_id' => $user_id,
+                'name' =>  $name,
+                'genre' => $genre,
+                'price' => $price,
+                'file_name' => $fileName,
+                'file_path' => $savePath,
+                'other' => $other,
+                'location_id' => $locationId,
+            ];
+            //バリデーション処理
+            $fileErrors = $this->validation->fileValidation($files);
+            $registerErrors = $this->validation->validateRegister($registers);
+            if (empty($fileErrors) && empty($registerErrors)) {
                 $registerModel = $this->databaseManager->get('Register');
                 $resizeModel = $this->databaseManager->get('Resize');
                 //テーブルにレコードを登録
@@ -64,12 +64,18 @@ class RegisterController extends Controller
                 $data = ['success' => true, 'imageUrl' => $createPath, 'registerId' => $registerId];
                 $this->Heleper->sendResponse($data);
                 exit();
-            } catch (Exception $e) {
-                $this->Heleper->handleError($e->getMessage());
             }
+        } catch (Exception $e) {
+            $this->Heleper->handleError($e->getMessage());
         }
     }
-    public function update()
+
+    /**
+     * レジスターアイテム座標更新処理
+     *
+     * @return mixed
+     */
+    public function update(): mixed
     {
         if (!$this->request->isPost()) {
             return $this->render([
@@ -85,29 +91,33 @@ class RegisterController extends Controller
         $yPosition = $_POST['y'];
 
 
-        if (empty($errors)) {
-            $registerModel = $this->databaseManager->get('Register');
-            $positionModel = $this->databaseManager->get('Position');
-            $register = $registerModel->fetchRegister($registerId);
-            $registerName = $register['name'];
-            $savePath = $register['file_path'];
-            $registerModel->update($locationID, $registerId);
-            $registers = [
-                'registerId' => $registerId,
-                'x' => $xPosition,
-                'y' => $yPosition,
-            ];
-            $positionModel->insertPosition($registers);
-            $savePath = $this->s3->downloadFile($savePath);
-            $data = ['success' => true, 'imageUrl' => $savePath, 'registerName' => $registerName, 'registerId' => $registerId, 'x' => $xPosition, 'y' => $yPosition];
-            if (isset($_POST['test'])) {
-                $this->Heleper->isTestTrue();
-            }
-            $this->Heleper->sendResponse($data);
+        $registerModel = $this->databaseManager->get('Register');
+        $positionModel = $this->databaseManager->get('Position');
+        $register = $registerModel->fetchRegister($registerId);
+        $registerName = $register['name'];
+        $savePath = $register['file_path'];
+        $registerModel->update($locationID, $registerId);
+        $registers = [
+            'registerId' => $registerId,
+            'x' => $xPosition,
+            'y' => $yPosition,
+        ];
+        $positionModel->insertPosition($registers);
+        $savePath = $this->s3->downloadFile($savePath);
+        $data = ['success' => true, 'imageUrl' => $savePath, 'registerName' => $registerName, 'registerId' => $registerId, 'x' => $xPosition, 'y' => $yPosition];
+        if (isset($_POST['test'])) {
+            $this->Heleper->isTestTrue();
         }
+        $this->Heleper->sendResponse($data);
+        return '';
     }
 
-    public function name()
+    /**
+     * ロケーションidを受け取りそれに紐づくユーザーのregisterアイテムをDBから取得
+     *
+     * @return mixed
+     */
+    public function name(): mixed
     {
         if (!$this->request->isPost()) {
             return $this->render([
@@ -130,9 +140,15 @@ class RegisterController extends Controller
         }
         $data = ['success' => true, 'registers' => $userRegisters];
         $this->Heleper->sendResponse($data);
+        return '';
     }
 
-    public function position()
+    /**
+     *レジスターアイテムの座標更新処理
+     *
+     * @return void
+     */
+    public function position(): void
     {
         // if ($this->request->isPost()) {
         //     return $this->render([

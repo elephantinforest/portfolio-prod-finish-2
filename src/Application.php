@@ -12,19 +12,19 @@ class Application
     protected Validation $validation;
     protected S3 $s3;
 
-    public function __construct(array $db)
+    /**
+     *
+     *
+     * @param array{hostname: string|false, username: string|false, password: string|false, database: string|false} $db
+     */
+    public function __construct($db)
     {
         $this->httpNotFoundException = new HttpNotFoundException();
         $this->router = new Router();
         $this->response = new Response();
         $this->request = new Request();
         $this->Heleper = new Heleper();
-        $this->s3 = new S3(
-            'portfolio',
-            'http://minio:9000',
-            'portfolio',
-            'portfolio'
-        );
+        $this->s3 = new S3();
         $this->validation = new Validation();
         $this->databaseManager = new DatabaseManager();
         $this->databaseManager->connect(
@@ -38,7 +38,11 @@ class Application
     }
 
 
-
+    /**
+     * アプリケーションの起動
+     *
+     * @return void
+     */
     public function run(): void
     {
 
@@ -68,7 +72,7 @@ class Application
     {
         return $this->Heleper;
     }
-    public function getvalidation(): validation
+    public function getvalidation(): Validation
     {
         return $this->validation;
     }
@@ -76,7 +80,13 @@ class Application
     {
         return $this->s3;
     }
-
+    /**
+     *コントローラーが作成したファイル(HTML)のセット
+     *
+     * @param string $controllerName コントローラー名
+     * @param string $action メソッド名
+     * @return void
+     */
     private function runAction(string $controllerName, string $action): void
     {
         $controllerClass = ucfirst($controllerName) . 'Controller';

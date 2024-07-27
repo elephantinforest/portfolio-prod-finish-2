@@ -5,9 +5,9 @@ class AcountController extends Controller
     /**
      * アカウントを登録する
      *
-     * @return type json
+     * @return mixed
      */
-    public function index(): string
+    public function index(): mixed
     {
         //ゲットリクエストだとページを戻す
         if (!$this->request->isPost()) {
@@ -63,6 +63,7 @@ class AcountController extends Controller
                 );
             } catch (Exception $e) {
                 $this->Heleper->handleError($e->getMessage());
+                return '';
             }
         }
         //バリデーションエラーあればアカウント作成画面に戻る

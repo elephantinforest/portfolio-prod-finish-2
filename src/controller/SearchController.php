@@ -3,7 +3,13 @@
 
 class SearchController extends Controller
 {
-    public function index()
+
+    /**
+     * 検索ワードしたワードをインデックスにして表示
+     *
+     * @return mixed
+     */
+    public function index(): mixed
     {
         // セッションを開始する
         if (session_status() === PHP_SESSION_NONE) {
@@ -56,6 +62,7 @@ class SearchController extends Controller
         } catch (Exception $e) {
             // エラー処理
             $this->Heleper->handleError($e->getMessage());
+            return '';
         }
     }
 }

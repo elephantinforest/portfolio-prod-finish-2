@@ -2,6 +2,11 @@
 
 class PositionController extends Controller
 {
+    /**
+     * ドラッグした画像の座標をDBに登録する処理
+     *
+     * @return void
+     */
     public function index()
     {
         // if ($this->request->isPost()) {

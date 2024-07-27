@@ -16,3 +16,6 @@ return RectorConfig::configure()
     // uncomment to reach your current PHP version
     // ->withPhpSets()
     ->withTypeCoverageLevel(0);
+return function (RectorConfig $rectorConfig) {
+    $rectorConfig->rule(RectorRures\UnderscoreToCamelCaseVariableNameRector::class);
+};

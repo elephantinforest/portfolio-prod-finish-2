@@ -2,7 +2,12 @@
 
 class ResizeController extends Controller
 {
-    public function index()
+    /**
+     * DBに変更した画像サイズを登録
+     *
+     * @return mixed
+     */
+    public function index(): mixed
     {
         if (session_status() == PHP_SESSION_NONE) {
             session_start();
@@ -29,8 +34,10 @@ class ResizeController extends Controller
                     'succes' => true
                 ];
                 $this->Heleper->sendResponse($data);
+                return '';
             } catch (Exception $e) {
                 $this->Heleper->handleError($e->getMessage());
+                return '';
             }
         } else {
             try {
@@ -39,8 +46,10 @@ class ResizeController extends Controller
                     'succes' => true
                 ];
                 $this->Heleper->sendResponse($data);
+                return '';
             } catch (Exception $e) {
                 $this->Heleper->handleError($e->getMessage());
+                return '';
             }
         }
     }

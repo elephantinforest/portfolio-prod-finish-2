@@ -57,11 +57,17 @@ class LocationsController extends Controller
                 $this->Heleper->handleError($e->getMessage());
             }
         } else {
-            $errors = array_merge($locationErrors, $fileErrors);
-            $this->Heleper->handleError($errors);
+            // $errors = array_merge($locationErrors, $fileErrors);
+            $this->Heleper->handleError('バリデーションerror発生');
         }
     }
-    public function return()
+
+    /**
+     * 次ボタン、前ボタンを押した時の処理
+     *
+     * @return mixed
+     */
+    public function return(): mixed
     {
         /**
          * ユーザーIDに紐づくロケーションを取得する
@@ -85,6 +91,7 @@ class LocationsController extends Controller
                 $location = $locationModel->prevReturn($locationId, $user_id);
                 if (empty($location)) {
                     $this->Heleper->handleError('それ以上クリックはできません。');
+                    return '';
                 }
                 $locationId = $location['location_id'];
                 $registers = $registerModel->fetchLocationRegister($user_id, $locationId);
@@ -100,14 +107,17 @@ class LocationsController extends Controller
                 $location['file_path'] = $this->s3->downloadFile($location['file_path']);
                 $data = ['success' => true, 'locations' => $location, 'registers' => $registers];
                 $this->Heleper->sendResponse($data);
+                return '';
             } catch (Exception $e) {
                 $this->Heleper->handleError($e->getMessage());
+                return '';
             }
         } else {
             try {
                 $location = $locationModel->nextReturn($locationId, $user_id);
                 if (empty($location)) {
                     $this->Heleper->handleError('それ以上クリックはできません。');
+                    return '';
                 }
                 $locationId = $location['location_id'];
                 $registers = $registerModel->fetchLocationRegister($user_id, $locationId);
@@ -123,8 +133,10 @@ class LocationsController extends Controller
                 $location['file_path'] = $this->s3->downloadFile($location['file_path']);
                 $data = ['success' => true, 'locations' => $location, 'registers' => $registers];
                 $this->Heleper->sendResponse($data);
+                return '';
             } catch (Exception $e) {
                 $this->Heleper->handleError($e->getMessage());
+                return '';
             }
         }
     }

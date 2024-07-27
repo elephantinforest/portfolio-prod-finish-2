@@ -1,5 +1,7 @@
 <?php
-
+/**
+ * ポジションの処理
+ */
 class Position extends DatabaseModel
 {
     /**

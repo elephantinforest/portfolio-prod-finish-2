@@ -2,8 +2,12 @@
 
 class UpdateController extends Controller
 {
-    //アップデート画面を表示する処理
-    public function index()
+    /**
+     *アップデート画面を表示する処理
+     *
+     * @return mixed HTMLファイル
+     */
+    public function index(): mixed
     {
         if (session_status() == PHP_SESSION_NONE) {
             session_start();
@@ -20,20 +24,26 @@ class UpdateController extends Controller
         try {
             $registerModel = $this->databaseManager->get('Register');
             $register = $registerModel->fetchUpdateRegister($registerId);
+            return $this->render(
+                [
+                    'title' => 'ユーザーのログイン',
+                    'register' => $register,
+                ],
+                'index',
+                'layout_less'
+            );
         } catch (Exception $e) {
             $this->Heleper->handleError($e->getMessage());
+            return '';
         }
-        return $this->render(
-            [
-                'title' => 'ユーザーのログイン',
-                'register' => $register,
-            ],
-            'index',
-            'layout_less'
-        );
     }
-    //レジスターアイテムのアップデート処理
-    public function update()
+
+    /**
+     * レジスターアイテムのアップデート処理
+     *
+     * @return mixed
+     */
+    public function update(): mixed
     {
         if (session_status() == PHP_SESSION_NONE) {
             session_start();
@@ -72,9 +82,10 @@ class UpdateController extends Controller
                     $registerModel = $this->databaseManager->get('Register');
                     $registerModel->updateRegister($register);
                     header($path);
-                    exit;
+                    exit();
                 } catch (Exception $e) {
                     $this->Heleper->handleError($e->getMessage());
+                    return '';
                 }
             } else {
                 $errors = array_merge($registerErrors, $fileErrors);
@@ -102,6 +113,7 @@ class UpdateController extends Controller
                     exit;
                 } catch (Exception $e) {
                     $this->Heleper->handleError($e->getMessage());
+                    return '';
                 }
             } //レジスターバリデーションが通過できなかった処理　アップデート画面に返す
             else {
@@ -118,8 +130,13 @@ class UpdateController extends Controller
             }
         }
     }
-    //アップデート画面から戻るボタンを押したときにメインページに戻る処理
-    public function return()
+
+    /**
+     *アップデート画面から戻るボタンを押したときにメインページに戻る処理
+     *
+     * @return mixed
+     */
+    public function return(): mixed
     {
         if (session_status() == PHP_SESSION_NONE) {
             session_start();
@@ -146,17 +163,18 @@ class UpdateController extends Controller
             }
             $location = $locationModel->fetchUpdateLocation($locationId);
             $location['file_path'] = $this->s3->downloadFile($location['file_path']);
+            return $this->render(
+                [
+                    'title' => 'ユーザーのログイン',
+                    'registers' => $registers,
+                    'locations' => $location,
+                    'user' => $user,
+                ],
+                'user'
+            );
         } catch (Exception $e) {
             $this->Heleper->handleError($e->getMessage());
+            return '';
         }
-        return $this->render(
-            [
-                'title' => 'ユーザーのログイン',
-                'registers' => $registers,
-                'locations' => $location,
-                'user' => $user,
-            ],
-            'user'
-        );
     }
 }
