@@ -1,13 +1,16 @@
 <?php
 
 declare(strict_types=1);
-
 namespace RectorRules;
+
+
+require_once '/var/www/html/vendor/autoload.php';
+
 
 use PhpParser\Node;
 use PhpParser\Node\Expr\Variable;
-use Rector\Core\Php\ReservedKeywordAnalyzer;
-use Rector\Core\Rector\AbstractRector;
+use Rector\Php\ReservedKeywordAnalyzer;
+use Rector\Rector\AbstractRector;
 use Symplify\RuleDocGenerator\ValueObject\CodeSample\CodeSample;
 use Symplify\RuleDocGenerator\ValueObject\RuleDefinition;
 
@@ -64,7 +67,7 @@ CODE_SAMPLE
       return null;
     }
 
-    if ($this->reservedKeywordAnalyzer->isReserved($nodeName)) {
+    if ($this->reservedKeywordAnalyzer->isNativeVariable($nodeName)) {
       return null;
     }
 
