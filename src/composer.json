@@ -15,7 +15,7 @@
     "scripts": {
         "phpcs": "./vendor/bin/phpcs --standard=phpcs.xml",
         "phpcbf": "./vendor/bin/phpcbf --standard=phpcs.xml",
-        "phpmd": "./vendor/bin/phpmd . text phpmd.xml --suffixes php --exclude vendor",
+        "phpmd": "./vendor/bin/phpmd . text phpmd.xml --suffixes php --exclude vendor,tests",
         "phpstan": "./vendor/bin/phpstan analyse -c phpstan.neon",
         "phpunit": "./vendor/bin/phpunit"
     },

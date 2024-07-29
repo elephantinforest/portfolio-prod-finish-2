@@ -68,9 +68,9 @@ class Heleper
      */
     public function crateRegisterSaveFile(string $file): string
     {
-        $upload_dir = 'register/';
+        $uploadDir = 'register/';
         $saveFileName = date('YmdHis') . $file;
-        $savePath = $upload_dir . $saveFileName;
+        $savePath = $uploadDir . $saveFileName;
         return $savePath;
     }
 
@@ -82,9 +82,9 @@ class Heleper
      */
     public function crateLocationSaveFile(string $file): string
     {
-        $upload_dir = 'location/';
+        $uploadDir = 'location/';
         $saveFileName = date('YmdHis') . $file;
-        $savePath = $upload_dir . $saveFileName;
+        $savePath = $uploadDir . $saveFileName;
         return $savePath;
     }
     /**

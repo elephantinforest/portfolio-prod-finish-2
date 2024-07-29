@@ -13,7 +13,7 @@ class LocationsController extends Controller
             session_start();
         }
         //ポストされたファイルの取得
-        $user_id = $_SESSION['login_user']['id'];
+        $userId = $_SESSION['login_user']['id'];
         $location = $_POST['location'];
         $files = $_FILES['image'];
         $fileName = basename($files['name']);
@@ -22,14 +22,14 @@ class LocationsController extends Controller
         $files['savePath'] = $savePath;
         //バリデーション処理
         $locationModel = $this->databaseManager->get('Location');
-        $locationErrors = $this->validation->locationValidation($location, $user_id, $locationModel);
+        $locationErrors = $this->validation->locationValidation($location, $userId, $locationModel);
         $fileErrors = $this->validation->fileValidation($files);
         //エラー無かったらDBに登録してブラウザにJSONを返す
         if (empty($locationErrors) && empty($fileErrors)) {
             try {
                 //配列にまとめる
                 $locations = [
-                    'user_id' => $user_id,
+                    'user_id' => $userId,
                     'location' => $location,
                     'file_name' => $fileName,
                     'save_path' => $savePath,
@@ -82,19 +82,19 @@ class LocationsController extends Controller
         }
         session_start();
         $status = $_SERVER['REDIRECT_URL'];
-        $user_id = $_SESSION['login_user']['id'];
+        $userId = $_SESSION['login_user']['id'];
         $locationId = (int) $_GET['locationId'];
         $locationModel = $this->databaseManager->get('Location');
         $registerModel = $this->databaseManager->get('Register');
         if ($status === '/prev') {
             try {
-                $location = $locationModel->prevReturn($locationId, $user_id);
+                $location = $locationModel->prevReturn($locationId, $userId);
                 if (empty($location)) {
                     $this->Heleper->handleError('それ以上クリックはできません。');
                     return '';
                 }
                 $locationId = $location['location_id'];
-                $registers = $registerModel->fetchLocationRegister($user_id, $locationId);
+                $registers = $registerModel->fetchLocationRegister($userId, $locationId);
                 if (!empty($registers)) {
                     foreach ($registers as $num => $register) {
                         foreach ($register as $key => $value) {
@@ -114,13 +114,13 @@ class LocationsController extends Controller
             }
         } else {
             try {
-                $location = $locationModel->nextReturn($locationId, $user_id);
+                $location = $locationModel->nextReturn($locationId, $userId);
                 if (empty($location)) {
                     $this->Heleper->handleError('それ以上クリックはできません。');
                     return '';
                 }
                 $locationId = $location['location_id'];
-                $registers = $registerModel->fetchLocationRegister($user_id, $locationId);
+                $registers = $registerModel->fetchLocationRegister($userId, $locationId);
                 if (!empty($registers)) {
                     foreach ($registers as $num => $register) {
                         foreach ($register as $key => $value) {

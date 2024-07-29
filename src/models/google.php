@@ -16,7 +16,11 @@ class Google
     {
         try {
             $yourApiKey = getenv('API_KEY');
-            $client = Gemini::client($yourApiKey);
+            // Gemini クラスのインスタンスを作成
+            $gemini = new Gemini($yourApiKey);
+
+            // インスタンスから client メソッドを呼び出す
+            $client = $gemini->client($yourApiKey);
 
             $result = $client
                 ->geminiProVision()

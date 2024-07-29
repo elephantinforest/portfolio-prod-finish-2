@@ -15,16 +15,16 @@ class PositionController extends Controller
         //         'errors' => [],
         //     ]);
         // }
-        $x_Position = number_format($_POST['x'], 6, '.', '');
-        $y_Position = number_format($_POST['y'], 6, '.', '');
+        $xPosition = number_format($_POST['x'], 6, '.', '');
+        $yPosition = number_format($_POST['y'], 6, '.', '');
         $registerId = $_POST['register_id'];
         $windowWidth = $_POST['windowWidth'];
         $windowHeight = $_POST['windowHeight'];
         error_reporting(0);
 
         $registers = [
-            'x' => $x_Position,
-            'y' => $y_Position,
+            'x' => $xPosition,
+            'y' => $yPosition,
             'registerId' => $registerId,
         ];
         $windowSize = [

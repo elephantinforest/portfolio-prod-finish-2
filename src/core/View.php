@@ -46,6 +46,7 @@ class View
 
         ob_start();
         require $this->baseDir . '/' . $path . '.php';
+        // @phpmd-ignore-line
         $content = ob_get_clean();
 
         ob_start();

@@ -11,7 +11,7 @@ class RegisterController extends Controller
     {
         session_start();
         //POSTされた値などを取得
-        $user_id = intval($_SESSION['login_user']['id']);
+        $userId = intval($_SESSION['login_user']['id']);
         $locationId = $_POST['location_id'];
         $windowWidth = $_POST['window_width'];
         $windowHeight = $_POST['window_height'];
@@ -29,7 +29,7 @@ class RegisterController extends Controller
             $genre = $res['genre'];
             $price = intval($res['price']);
             $registers = [
-                'user_id' => $user_id,
+                'user_id' => $userId,
                 'name' =>  $name,
                 'genre' => $genre,
                 'price' => $price,
@@ -126,10 +126,10 @@ class RegisterController extends Controller
             ]);
         }
         session_start();
-        $user_id = $_SESSION['login_user']['id'];
+        $userId = $_SESSION['login_user']['id'];
         $locationId = $_POST['locationId'];
         $registerModel = $this->databaseManager->get('Register');
-        $userRegisters = $registerModel->fetchLocationRegister($user_id, $locationId);
+        $userRegisters = $registerModel->fetchLocationRegister($userId, $locationId);
         foreach ($userRegisters as $num => $register) {
             foreach ($register as $key => $value) {
                 if ($key === 'file_path') {
@@ -156,13 +156,13 @@ class RegisterController extends Controller
         //         'errors' => [],
         //     ]);
         // }
-        $x_Position = $_POST['x'];
-        $y_Position = $_POST['y'];
+        $xPosition = $_POST['x'];
+        $yPosition = $_POST['y'];
         $registerId = $_POST['register_id'];
 
         $registers = [
-            'x' => $x_Position,
-            'y' => $y_Position,
+            'x' => $xPosition,
+            'y' => $yPosition,
             'registerId' => $registerId,
         ];
 
