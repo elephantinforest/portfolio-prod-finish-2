@@ -99,9 +99,9 @@ class RegisterControllerTest extends TestCase
         $this->registerController->run($action);
         $actual = $this->position->fetchPosition($this->registerId[0]);
         $actual = [
-            'registerId' => $actual['register_id'],
-            'x' => $actual['left_position'],
-            'y' => $actual['top_position'],
+            'registerId' => $actual['registerId'],
+            'x' => $actual['x'],
+            'y' => $actual['y'],
         ];
         $expected =
         [
@@ -127,9 +127,9 @@ class RegisterControllerTest extends TestCase
         $this->registerController->run($action);
         $actual = $this->position->fetchPosition($this->registerId[1]);
         $actual = [
-            'registerId' => $actual['register_id'],
-            'x' => $actual['left_position'],
-            'y' => $actual['top_position'],
+            'registerId' => $actual['registerId'],
+            'x' => $actual['x'],
+            'y' => $actual['y'],
         ];
         $expected =
             [

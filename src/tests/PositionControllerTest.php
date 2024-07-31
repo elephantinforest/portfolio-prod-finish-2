@@ -69,8 +69,8 @@ class PositionControllerTest extends TestCase
         $this->positionController->run($action);
         $actual = $this->position->fetchPosition(1);
         $actual = [
-            'x' => $actual['left_position'],
-            'y' => $actual['top_position'],
+            'x' => $actual['x'],
+            'y' => $actual['y'],
         ];
         $expected =  [
             'x' => 666.0,
@@ -95,8 +95,8 @@ class PositionControllerTest extends TestCase
         $this->positionController->run($action);
         $actual = $this->position->fetchPosition(2);
         $actual = [
-            'x' => $actual['left_position'],
-            'y' => $actual['top_position'],
+            'x' => $actual['x'],
+            'y' => $actual['y'],
         ];
         $expected =  [
             'x' => 555.0,

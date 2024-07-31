@@ -41,19 +41,19 @@ class SearchControllerTest extends TestCase
                 'user_id' => 300,
                 'location' => 'サンプル部屋',
                 'file_name' => 'tmp.jpg',
-                'save_path' => '/var/www/html/src/imgs/_70f80b3a-ebba-4301-b282-d658e291eaf2.jpg',
+                'save_path' => 'tests/_70f80b3a-ebba-4301-b282-d658e291eaf2.jpg',
             ],
             [
                 'user_id' => 300,
                 'location' => 'サンプルじゃない部屋',
                 'file_name' => 'tmptmp.jpg',
-                'save_path' => '/var/www/html/src/imgs/_70f80b3a-ebba-4301-b282-d658e291eaf2.jpg',
+                'save_path' => 'tests/_70f80b3a-ebba-4301-b282-d658e291eaf2.jpg',
             ],
             [
                 'user_id' => 300,
                 'location' => 'サンプルじゃない方の部屋',
                 'file_name' => 'ore.jpg',
-                'save_path' => '/var/www/html/src/imgs/_70f80b3a-ebba-4301-b282-d658e291eaf2.jpg',
+                'save_path' => 'tests/_70f80b3a-ebba-4301-b282-d658e291eaf2.jpg',
             ]
         ];
         foreach ($locations as $Key => $value) {
@@ -72,7 +72,7 @@ class SearchControllerTest extends TestCase
                 'other' => '味だけはいい',
                 'price' => 200,
                 'file_name' => 'sample.jpg',
-                'file_path' => '/var/www/html/src/imgs/_70f80b3a-ebba-4301-b282-d658e291eaf2.jpg',
+                'file_path' => 'tests/_70f80b3a-ebba-4301-b282-d658e291eaf2.jpg',
             ],
             [
                 'user_id' => 300,
@@ -82,7 +82,7 @@ class SearchControllerTest extends TestCase
                 'price' => 30000,
                 'other' => '高校生の時に購入',
                 'file_name' => 'sample2.jpg',
-                'file_path' => '/var/www/html/src/imgs/_70f80b3a-ebba-4301-b282-d658e291eaf2.jpg',
+                'file_path' => 'tests/_70f80b3a-ebba-4301-b282-d658e291eaf2.jpg',
             ],
             [
                 'user_id' => 300,
@@ -92,7 +92,7 @@ class SearchControllerTest extends TestCase
                 'price' => 3000000,
                 'other' => '高校生の時に購入 バイト代で購入',
                 'file_name' => 'sample3.jpg',
-                'file_path' => '/var/www/html/src/imgs/_70f80b3a-ebba-4301-b282-d658e291eaf2.jpg',
+                'file_path' => 'tests/_70f80b3a-ebba-4301-b282-d658e291eaf2.jpg',
             ]
         ];
         foreach ($registers as $Key => $value) {

@@ -53,11 +53,12 @@ class Location extends DatabaseModel
    *
    * @param int $userId ユーザーID
    * @param string $location ロケーション名
-   * @return array<array{location: string}>|null 重複するロケーション情報、存在しない場合はnull
+   * @return bool
    */
-  public function existLocation(int $userId, string $location): ?array
+  public function existLocation(int $userId, string $location): bool
   {
-    return $this->fetch('SELECT location FROM locations WHERE user_id =? AND location = ? ', ['is', $userId, $location]);
+    $existLocation = $this->fetch('SELECT location FROM locations WHERE user_id =? AND location = ? ', ['is', $userId, $location]);
+    return empty($existLocation);
   }
 
   /**

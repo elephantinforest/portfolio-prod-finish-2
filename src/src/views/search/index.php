@@ -5,26 +5,27 @@
             <h2 class="text-3xl font-bold"><?php echo $word ?>は<?php echo $count ?>件です。</h2>
           </div>
           <div class="flex  justify-evenly flex-wrap">
-            <?php foreach ($registers as $register) : ?>
-              <div class="border border-cyan-500  max-w-xs p-6 rounded-md shadow-md dark:bg-gray-50 dark:text-gray-900 ">
+            <?php if ($registers) : ?>
+              <?php foreach ($registers as $register) : ?>
+                <div class="border border-cyan-500  max-w-xs p-6 rounded-md shadow-md dark:bg-gray-50 dark:text-gray-900 ">
+                  <img src="<?php echo $register['file_path'] ?>" alt="" class="object-cover object-center w-full rounded-md h-72 dark:bg-gray-500">
+                  <div class="mt-6 mb-2">
+                    <span class="block  font-mono  text-xs font-medium tracking-widestdark:text-violet-600 mb-2">ロケーション</span>
+                    <h2 class="text-xl font-semibold tracking-wide"><?php echo $register['location'] ?></h2>
+                    <span class="block  font-mono  text-xs font-medium tracking-widestdark:text-violet-600 mb-2">名前</span>
 
-                <img src="<?php echo $this->createPath($register['file_path']) ?>" alt="" class="object-cover object-center w-full rounded-md h-72 dark:bg-gray-500">
-                <div class="mt-6 mb-2">
-                  <span class="block  font-mono  text-xs font-medium tracking-widestdark:text-violet-600 mb-2">ロケーション</span>
-                  <h2 class="text-xl font-semibold tracking-wide"><?php echo $register['location'] ?></h2>
-                  <span class="block  font-mono  text-xs font-medium tracking-widestdark:text-violet-600 mb-2">名前</span>
-
-                  <h2 class="text-xl font-semibold tracking-wide"><?php echo $register['name'] ?></h2>
-                  <?php if ($register['other']) : ?>
-                    <span class="block  font-mono  text-xs font-medium tracking-widestdark:text-violet-600 mb-2">memo</span>
-                    <p class="dark:text-gray-800"><?php echo $register['other'] ?></p>
-                  <?php endif; ?>
+                    <h2 class="text-xl font-semibold tracking-wide"><?php echo $register['name'] ?></h2>
+                    <?php if ($register['other']) : ?>
+                      <span class="block  font-mono  text-xs font-medium tracking-widestdark:text-violet-600 mb-2">memo</span>
+                      <p class="dark:text-gray-800"><?php echo $register['other'] ?></p>
+                    <?php endif; ?>
+                  </div>
+                  <a href="/update?id=<?= $register['register_id'] ?>" class="text-cyan-500 bg-black hover:bg-cyan-500 hover:text-yellow-400 inline-flex items-center rounded-md mt-3 py-2 px-3 text-sm font-medium cursor-pointer">
+                    詳細
+                  </a>
                 </div>
-                <a href="/update?id=<?= $register['register_id'] ?>" class="text-cyan-500 bg-black hover:bg-cyan-500 hover:text-yellow-400 inline-flex items-center rounded-md mt-3 py-2 px-3 text-sm font-medium cursor-pointer">
-                  詳細
-                </a>
-              </div>
-            <?php endforeach; ?>
+              <?php endforeach; ?>
+            <?php endif; ?>
           </div>
         </div>
         <a href="/update?location_id=<?php echo $register['location_id'] ?>">

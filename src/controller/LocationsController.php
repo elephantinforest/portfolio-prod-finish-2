@@ -18,7 +18,7 @@ class LocationsController extends Controller
         $files = $_FILES['image'];
         $fileName = basename($files['name']);
         //日付などをつけてユニークはパス名を作る
-        $savePath = $this->Heleper->crateLocationSaveFile($fileName);
+        $savePath = $this->helper->crateLocationSaveFile($fileName);
         $files['savePath'] = $savePath;
         //バリデーション処理
         $locationModel = $this->databaseManager->get('Location');
@@ -52,13 +52,13 @@ class LocationsController extends Controller
                 $locationId = $locationModel->getInsertId();
                 //ブラウザに返すJSON
                 $data = ['success' => true, 'imageUrl' => $savePath, 'locationValue' => $location, 'locationId' => $locationId];
-                $this->Heleper->sendResponse($data);
+                $this->helper->sendResponse($data);
             } catch (Exception $e) {
-                $this->Heleper->handleError($e->getMessage());
+                $this->helper->handleError($e->getMessage());
             }
         } else {
             // $errors = array_merge($locationErrors, $fileErrors);
-            $this->Heleper->handleError('バリデーションerror発生');
+            $this->helper->handleError('バリデーションerror発生');
         }
     }
 
@@ -90,7 +90,7 @@ class LocationsController extends Controller
             try {
                 $location = $locationModel->prevReturn($locationId, $userId);
                 if (empty($location)) {
-                    $this->Heleper->handleError('それ以上クリックはできません。');
+                    $this->helper->handleError('それ以上クリックはできません。');
                     return '';
                 }
                 $locationId = $location['location_id'];
@@ -106,17 +106,17 @@ class LocationsController extends Controller
                 }
                 $location['file_path'] = $this->s3->downloadFile($location['file_path']);
                 $data = ['success' => true, 'locations' => $location, 'registers' => $registers];
-                $this->Heleper->sendResponse($data);
+                $this->helper->sendResponse($data);
                 return '';
             } catch (Exception $e) {
-                $this->Heleper->handleError($e->getMessage());
+                $this->helper->handleError($e->getMessage());
                 return '';
             }
         } else {
             try {
                 $location = $locationModel->nextReturn($locationId, $userId);
                 if (empty($location)) {
-                    $this->Heleper->handleError('それ以上クリックはできません。');
+                    $this->helper->handleError('それ以上クリックはできません。');
                     return '';
                 }
                 $locationId = $location['location_id'];
@@ -132,10 +132,10 @@ class LocationsController extends Controller
                 }
                 $location['file_path'] = $this->s3->downloadFile($location['file_path']);
                 $data = ['success' => true, 'locations' => $location, 'registers' => $registers];
-                $this->Heleper->sendResponse($data);
+                $this->helper->sendResponse($data);
                 return '';
             } catch (Exception $e) {
-                $this->Heleper->handleError($e->getMessage());
+                $this->helper->handleError($e->getMessage());
                 return '';
             }
         }

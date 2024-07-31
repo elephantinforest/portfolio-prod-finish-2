@@ -25,11 +25,11 @@ class DeleteController extends Controller
             $resizeModel->delete($registerId);
             $data = ['success' => true, 'registerId' => $registerId];
             if (isset($_POST['test'])) {
-                $this->Heleper->isTestTrue();
+                $this->helper->isTestTrue();
             }
-            $this->Heleper->sendResponse($data);
+            $this->helper->sendResponse($data);
         } catch (Exception $e) {
-            $this->Heleper->handleError($e->getMessage());
+            $this->helper->handleError($e->getMessage());
         }
     }
 }

@@ -19,7 +19,7 @@ class RegisterController extends Controller
         $files = $_FILES['image'];
         $uploadeFile = $files['tmp_name'];
         $fileName = basename($files['name']);
-        $savePath = $this->Heleper->crateRegisterSaveFile($fileName);
+        $savePath = $this->helper->crateRegisterSaveFile($fileName);
         $files['savePath'] = $savePath;
         //APIに接続。名前などを取得
         try {
@@ -62,11 +62,11 @@ class RegisterController extends Controller
                 $createPath = $this->s3->downloadFile($savePath);
                 //ブラウザに返すJSON
                 $data = ['success' => true, 'imageUrl' => $createPath, 'registerId' => $registerId];
-                $this->Heleper->sendResponse($data);
+                $this->helper->sendResponse($data);
                 exit();
             }
         } catch (Exception $e) {
-            $this->Heleper->handleError($e->getMessage());
+            $this->helper->handleError($e->getMessage());
         }
     }
 
@@ -106,9 +106,9 @@ class RegisterController extends Controller
         $savePath = $this->s3->downloadFile($savePath);
         $data = ['success' => true, 'imageUrl' => $savePath, 'registerName' => $registerName, 'registerId' => $registerId, 'x' => $xPosition, 'y' => $yPosition];
         if (isset($_POST['test'])) {
-            $this->Heleper->isTestTrue();
+            $this->helper->isTestTrue();
         }
-        $this->Heleper->sendResponse($data);
+        $this->helper->sendResponse($data);
         return '';
     }
 
@@ -139,7 +139,7 @@ class RegisterController extends Controller
             }
         }
         $data = ['success' => true, 'registers' => $userRegisters];
-        $this->Heleper->sendResponse($data);
+        $this->helper->sendResponse($data);
         return '';
     }
 
@@ -183,7 +183,7 @@ class RegisterController extends Controller
                 exit();
             }
         } catch (Exception $e) {
-            $this->Heleper->handleError($e->getMessage());
+            $this->helper->handleError($e->getMessage());
         }
     }
 }

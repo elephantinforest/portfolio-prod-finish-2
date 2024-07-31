@@ -49,7 +49,7 @@ class PositionController extends Controller
                 exit();
             }
         } catch (Exception $e) {
-            $this->Heleper->handleError($e->getMessage());
+            $this->helper->handleError($e->getMessage());
         }
     }
 }

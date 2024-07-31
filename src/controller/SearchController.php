@@ -61,7 +61,7 @@ class SearchController extends Controller
             );
         } catch (Exception $e) {
             // エラー処理
-            $this->Heleper->handleError($e->getMessage());
+            $this->helper->handleError($e->getMessage());
             return '';
         }
     }

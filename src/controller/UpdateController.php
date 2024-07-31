@@ -33,7 +33,7 @@ class UpdateController extends Controller
                 'layout_less'
             );
         } catch (Exception $e) {
-            $this->Heleper->handleError($e->getMessage());
+            $this->helper->handleError($e->getMessage());
             return '';
         }
     }
@@ -65,7 +65,7 @@ class UpdateController extends Controller
         $register = $_POST;
         $files = $_FILES['image_file'];
         $fileName = basename($_FILES['image_file']['name']);
-        $savePath = $this->Heleper->crateRegisterSaveFile($fileName);
+        $savePath = $this->helper->crateRegisterSaveFile($fileName);
         $files['savePath'] = $savePath;
         //POSTされた値のバリデーション
         $registerErrors = $this->validation->validateRegister($register);
@@ -84,7 +84,7 @@ class UpdateController extends Controller
                     header($path);
                     exit();
                 } catch (Exception $e) {
-                    $this->Heleper->handleError($e->getMessage());
+                    $this->helper->handleError($e->getMessage());
                     return '';
                 }
             } else {
@@ -112,7 +112,7 @@ class UpdateController extends Controller
                     header($path);
                     exit;
                 } catch (Exception $e) {
-                    $this->Heleper->handleError($e->getMessage());
+                    $this->helper->handleError($e->getMessage());
                     return '';
                 }
             } //レジスターバリデーションが通過できなかった処理　アップデート画面に返す
@@ -173,7 +173,7 @@ class UpdateController extends Controller
                 'user'
             );
         } catch (Exception $e) {
-            $this->Heleper->handleError($e->getMessage());
+            $this->helper->handleError($e->getMessage());
             return '';
         }
     }

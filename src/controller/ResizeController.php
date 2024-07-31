@@ -25,7 +25,7 @@ class ResizeController extends Controller
         $registerId = $data['registerId'];
         $existID = $resizeModel->existId($registerId);
         if (isset($_POST['test'])) {
-            $this->Heleper->isTestTrue();
+            $this->helper->isTestTrue();
         }
         if ($existID) {
             try {
@@ -33,10 +33,10 @@ class ResizeController extends Controller
                 $data = [
                     'succes' => true
                 ];
-                $this->Heleper->sendResponse($data);
+                $this->helper->sendResponse($data);
                 return '';
             } catch (Exception $e) {
-                $this->Heleper->handleError($e->getMessage());
+                $this->helper->handleError($e->getMessage());
                 return '';
             }
         } else {
@@ -45,10 +45,10 @@ class ResizeController extends Controller
                 $data = [
                     'succes' => true
                 ];
-                $this->Heleper->sendResponse($data);
+                $this->helper->sendResponse($data);
                 return '';
             } catch (Exception $e) {
-                $this->Heleper->handleError($e->getMessage());
+                $this->helper->handleError($e->getMessage());
                 return '';
             }
         }

@@ -43,9 +43,9 @@ class PositionTest extends TestCase
   {
     $actual = $this->position->fetchPosition(1);
     $actual = [
-      'registerId' => $actual['register_id'],
-      'x' => $actual['left_position'],
-      'y' => $actual['top_position'],
+      'registerId' => $actual['registerId'],
+      'x' => $actual['x'],
+      'y' => $actual['y'],
     ];
 
     $expected =
@@ -68,9 +68,9 @@ class PositionTest extends TestCase
     $this->position->insertPosition($positions);
     $actual = $this->position->fetchPosition(3);
     $actual = [
-      'registerId' => $actual['register_id'],
-      'x' => $actual['left_position'],
-      'y' => $actual['top_position'],
+      'registerId' => $actual['registerId'],
+      'x' => $actual['x'],
+      'y' => $actual['y'],
     ];
 
     $expected =
@@ -104,9 +104,9 @@ class PositionTest extends TestCase
     $registerId = 1;
     $actual = $this->position->fetchPosition($registerId);
     $actual = [
-      'registerId' => $actual['register_id'],
-      'x' => $actual['left_position'],
-      'y' => $actual['top_position'],
+      'registerId' => $actual['registerId'],
+      'x' => $actual['x'],
+      'y' => $actual['y'],
     ];
     $expected =
       [

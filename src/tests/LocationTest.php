@@ -106,22 +106,23 @@ class LocationTest extends TestCase
 
   public function testExistLocation()
   {
-    $userId = 300;
+    $userId = 1;
     // 重複しない場合
     $result0 = $this->location->existLocation($userId, 'サンプルの部屋');
-    $this->assertEmpty($result0); // 配列が空でないことを検証
+    $this->assertNotEmpty($result0); // 配列が空でないことを検証
+    $userId = 300;
 
     // 重複する場合
     $result1 = $this->location->existLocation($userId, 'サンプル部屋');
-    $this->assertNotEmpty($result1); // 重複がある場合は true を返すことを期待
+    $this->assertEmpty($result1); // 重複がある場合は true を返すことを期待
 
     // 重複する場合
     $result2 = $this->location->existLocation($userId, 'サンプルじゃない部屋');
-    $this->assertNotEmpty($result2); // 重複がある場合は true を返すことを期待
+    $this->assertEmpty($result2); // 重複がある場合は true を返すことを期待
   }
 
   public function testPrevReturn()
-{
+  {
     $this->locations = [
       [
         'user_id' => 300,
@@ -153,8 +154,7 @@ class LocationTest extends TestCase
     $locationId = $result[4]['location_id'];
     // 重複しない場合
     $actual = $this->location->prevReturn($locationId, $userId);
-    $actual =$actual[0];
-    $actual =[
+    $actual = [
       'user_id' => $actual['user_id'],
       'location' => $actual['location'],
       'file_name' => $actual['file_name'],
@@ -166,7 +166,7 @@ class LocationTest extends TestCase
       'file_name' => 'tmp.jpg',
       'save_path' => 'sample.jpg',
     ];
-    $this->assertSame($actual,$expected);
+    $this->assertSame($actual, $expected);
   }
   public function testNextReturn()
   {
@@ -201,7 +201,6 @@ class LocationTest extends TestCase
     $locationId = $result[0]['location_id'];
     // 重複しない場合
     $actual = $this->location->nextReturn($locationId, $userId);
-    $actual = $actual[0];
     $actual = [
       'user_id' => $actual['user_id'],
       'location' => $actual['location'],
@@ -209,10 +208,10 @@ class LocationTest extends TestCase
       'save_path' => $actual['file_path'],
     ];
     $expected =  [
-        'user_id' => 300,
-        'location' => 'サンプルじゃない部屋',
-        'file_name' => 'tmptmp.jpg',
-        'save_path' => 'samplesample.jpg',
+      'user_id' => 300,
+      'location' => 'サンプルじゃない部屋',
+      'file_name' => 'tmptmp.jpg',
+      'save_path' => 'samplesample.jpg',
     ];
     $this->assertSame($actual, $expected);
   }

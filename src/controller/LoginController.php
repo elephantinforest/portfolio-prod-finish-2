@@ -29,7 +29,7 @@ class LoginController extends Controller
                 if (empty($location)) {
                     $location = [
                         'location' =>  "ロケーションは登録されていません。",
-                        'file_path' => $this->Heleper->createPath('/var/www/html/src/imgs/_a7bd503d-3993-46c1-a0a4-30657c277ff1.jpg'),
+                        'file_path' => $this->helper->createPath('/var/www/html/src/imgs/_a7bd503d-3993-46c1-a0a4-30657c277ff1.jpg'),
                         'location_id' =>  false,
                     ];
                     $registers = [];
@@ -57,7 +57,7 @@ class LoginController extends Controller
                 if (empty($registers)) {
                     $location = [
                         'location' =>  "ロケーションは登録されていません。",
-                        'file_path' => $this->Heleper->createPath('/var/www/html/src/imgs/_a7bd503d-3993-46c1-a0a4-30657c277ff1.jpg'),
+                        'file_path' => $this->helper->createPath('/var/www/html/src/imgs/_a7bd503d-3993-46c1-a0a4-30657c277ff1.jpg'),
                         'location_id' =>  false,
                     ];
                     $registers = [];
@@ -68,7 +68,7 @@ class LoginController extends Controller
                 //     'windowWidth' => $currentWidth,
                 //     'windowHeight' => $currentHeight,
                 // ];
-                // $registers =  $this->Heleper->changeSize($registers, $size);
+                // $registers =  $this->helper->changeSize($registers, $size);
                 // foreach ($registers as $num => $value) {
                 //     $data = [
                 //         'width' => $value['width'],
@@ -101,7 +101,7 @@ class LoginController extends Controller
                     'user'
                 );
             } catch (Exception $e) {
-                $this->Heleper->handleError($e->getMessage());
+                $this->helper->handleError($e->getMessage());
                 return '';
             }
         } else {
@@ -139,7 +139,7 @@ class LoginController extends Controller
                     $location = $locationModel->fetchLocation($userId);
                     // 配列が空ならerror回避のため初期化
                     if (empty($location)) {
-                        $initialPath = $this->Heleper->createPath('/var/www/html/src/imgs/_a7bd503d-3993-46c1-a0a4-30657c277ff1.jpg');
+                        $initialPath = $this->helper->createPath('/var/www/html/src/imgs/_a7bd503d-3993-46c1-a0a4-30657c277ff1.jpg');
                         $location = [];
                         $location = [
                             'location' =>  "ロケーションは登録されていません。",

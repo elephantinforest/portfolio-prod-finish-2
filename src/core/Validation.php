@@ -112,12 +112,11 @@ class Validation
     public function locationValidation(string $location, int $userId,  $locationModel): array
     {
         $errors = [];
-
         $existLocation = $locationModel->existLocation($userId, $location);
 
         if (empty($location)) {
             $errors['location'] = 'ロケーション名を入力してください';
-        } elseif (!empty($existLocation)) {
+        } elseif (!$existLocation) {
             $errors['location'] = 'ロケーション名が重複しています。';
         }
         return $errors;

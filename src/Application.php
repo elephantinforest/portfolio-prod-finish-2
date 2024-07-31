@@ -8,7 +8,7 @@ class Application
     protected Response $response;
     protected DatabaseManager $databaseManager;
     protected HttpNotFoundException $httpNotFoundException;
-    protected Heleper $Heleper;
+    protected Heleper $helper;
     protected Validation $validation;
     protected S3 $s3;
 
@@ -23,7 +23,7 @@ class Application
         $this->router = new Router();
         $this->response = new Response();
         $this->request = new Request();
-        $this->Heleper = new Heleper();
+        $this->helper = new Heleper();
         $this->s3 = new S3();
         $this->validation = new Validation();
         $this->databaseManager = new DatabaseManager();
@@ -70,7 +70,7 @@ class Application
     }
     public function getHeleper(): Heleper
     {
-        return $this->Heleper;
+        return $this->helper;
     }
     public function getvalidation(): Validation
     {

@@ -25,7 +25,7 @@ class Controller
      *
      * @var Heleper
      */
-    protected Heleper $Heleper;
+    protected Heleper $helper;
     /**
      * ヘルパークラスオブジェクト
      *
@@ -54,7 +54,7 @@ class Controller
     {
         $this->request = $application->getrequest();
         $this->databaseManager = $application->getDatabaseManager();
-        $this->Heleper = $application->getHeleper();
+        $this->helper = $application->getHeleper();
         $this->validation = $application->getvalidation();
         $this->s3 = $application->getS3();
     }
@@ -63,9 +63,9 @@ class Controller
      * 親クラスから呼び出されてコンテントをレスポンス
      *
      * @param string $action 親クラスで実行するメソッド名
-     * @return string PHPなどで作成したファイルの中身
+     * @return　string PHPなどで作成したファイルの中身 クライアントにJSONレスポンス
      */
-    public function run(string $action): string
+    public function run(string $action): ?string
     {
         $this->actionName = $action;
         if (!method_exists($this, $action)) {

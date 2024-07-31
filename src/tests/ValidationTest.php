@@ -12,10 +12,44 @@ require_once __DIR__ . '/../models/Location.php';
 class ValidationTest extends TestCase
 {
     protected $validation;
+    protected $mysqli;
+    protected $locations;
+    protected $location;
+
+
 
     protected function setUp(): void
     {
         $this->validation = new Validation();
+        $this->mysqli = new mysqli('test_db', 'deveroper', 'pass', 'test_db');
+        $this->mysqli->begin_transaction();
+        $this->location = new Location($this->mysqli);
+        $this->locations = [
+            [
+                'user_id' => 300,
+                'location' => 'Tokyo',
+                'file_name' => 'tmp.jpg',
+                'save_path' => 'sample.jpg',
+            ],
+            [
+                'user_id' => 300,
+                'location' => 'サンプルじゃない部屋',
+                'file_name' => 'tmptmp.jpg',
+                'save_path' => 'samplesample.jpg',
+            ],
+            [
+                'user_id' => 300,
+                'location' => 'サンプルじゃない方の部屋',
+                'file_name' => 'ore.jpg',
+                'save_path' => 'oreore.jpg',
+            ]
+        ];
+        $this->location->insert($this->locations[0]);
+        // sleep(1); // 5秒間プログラムを停止
+        $this->location->insert($this->locations[1]);
+        // sleep(1); // 5秒間プログラムを停止
+        $this->location->insert($this->locations[2]);
+        // sleep(1); // 5秒間プログラムを停止
     }
 
     public function testUserValidation()
@@ -73,7 +107,7 @@ class ValidationTest extends TestCase
             return $key != 'tmpfile' && $key != 'move'; // 'tmpfile' または 'move' でないキーを残す
         }, ARRAY_FILTER_USE_KEY);
 
-       $this->assertEmpty($errors);
+        $this->assertEmpty($errors);
     }
 
 
@@ -90,23 +124,13 @@ class ValidationTest extends TestCase
 
     public function testLocationValidation()
     {
-        // モックの作成
-        $locationModelMock = $this->getMockBuilder(Location::class)
-            ->disableOriginalConstructor()
-            ->getMock();
 
-        // existLocation メソッドが呼び出された際の戻り値を設定
-        $userId = 123; // ユーザーID
+        $locationModel = $this->location;
+        $userId = 300; // ユーザーID
         $location = 'Tokyo'; // ロケーション
-        $existLocationResult = false; // 存在するとする
-        $locationModelMock->expects($this->once()) // 1回だけメソッドが呼ばれることを期待
-            ->method('existLocation')
-            ->with($this->equalTo($userId), $this->equalTo($location))
-            ->willReturn($existLocationResult);
 
-
-        $errors = $this->validation->locationValidation($location, $userId, $locationModelMock);
-        $this->assertEmpty($errors);
+        $errors = $this->validation->locationValidation($location, $userId, $locationModel);
+        $this->assertNotEmpty($errors);
     }
 
     public function testValidateRegister()
@@ -125,5 +149,9 @@ class ValidationTest extends TestCase
     protected function tearDown(): void
     {
         $this->validation = null;
+        $this->mysqli->rollback();
+        $this->location = null;
+        $this->mysqli = null;
+        $this->locations = null;
     }
 }
