@@ -15,7 +15,9 @@ $resize = file_get_contents('/var/www/html/javascript/resize.js');
 $responce = file_get_contents('/var/www/html/javascript/responce.js');
 $touche = file_get_contents('/var/www/html/node_modules/jquery-ui-touch-punch/jquery.ui.touch-punch.min.js');
 $jqueryUi = file_get_contents('/var/www/html/node_modules/jquery-ui/dist/jquery-ui.min.js');
-
+$click = file_get_contents('/var/www/html/javascript/clickAction.js');
+$components = file_get_contents('/var/www/html/javascript/components.js');
+$responsive = file_get_contents('/var/www/html/javascript/responsive.js');
 ?>
 
 <script id=" script" type="module">
@@ -35,4 +37,7 @@ $jqueryUi = file_get_contents('/var/www/html/node_modules/jquery-ui/dist/jquery-
   <?= $responce ?>
   <?= $touche ?>
   <?= $jqueryUi ?>
+  <?= $click ?>
+  <?= $components?>
+  <?= $responsive?>
 </script>

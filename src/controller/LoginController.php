@@ -48,48 +48,17 @@ class LoginController extends Controller
                 $location['file_path'] = $s3->downloadFile($location['file_path']);
                 //ユーザーの保持しているレジスターを取得
                 $registers = $registerModel->fetchLocationRegister($userId, $location['location_id']);
-                foreach ($registers as $key => $value) {
-                    if (isset($value['file_path'])) {
-                        $registers[$key]['file_path'] = $s3->downloadFile($value['file_path']);
-                    }
-                }
-                // アカウント作成してリダイレクトしてきたユーザーの処理
-                if (empty($registers)) {
-                    $location = [
-                        'location' =>  "ロケーションは登録されていません。",
-                        'file_path' => $this->helper->createPath('/var/www/html/src/imgs/_a7bd503d-3993-46c1-a0a4-30657c277ff1.jpg'),
-                        'location_id' =>  false,
-                    ];
-                    $registers = [];
-                }
-                // $currentWidth = $_POST['windowWidth'];
-                // $currentHeight = $_POST['windowHeight'];
-                // $size  = [
-                //     'windowWidth' => $currentWidth,
-                //     'windowHeight' => $currentHeight,
-                // ];
-                // $registers =  $this->helper->changeSize($registers, $size);
-                // foreach ($registers as $num => $value) {
-                //     $data = [
-                //         'width' => $value['width'],
-                //         'height' => $value['height'],
-                //         'top_position' => $value['top_position'],
-                //     ];
-                //     $registerWidth = $value['window_width'];
-                //     $registerHeight = $value['window_height'];
-                //     $scaleX = $currentWidth / $registerWidth;
-                //     $scaleY = $currentHeight / $registerHeight;
-                //     foreach ($data as $key => $value) {
-                //         if($key === 'width') {
-                //             $registers[$num][$key] = $value * $scaleX;
-                //         } elseif ($key === 'height') {
-                //             $registers[$num][$key] = $value * $scaleY;
-                //         } elseif ($key === 'top_position') {
-                //             $registers[$num][$key] = $value * $scaleY;
-                //         }
-                //     }
-                // }
 
+                // ファイルパスが存在するレジスタに対してのみS3ダウンロードを実行
+                $registers = array_map(function ($register) use ($s3) {
+                    if (isset($register['file_path'])) {
+                        $register['file_path'] = $s3->downloadFile($register['file_path']);
+                    }
+                    return $register;
+                }, $registers);
+
+                $registers = $registers ?: [];
+              
                 return $this->render(
                     [
                         'title' => 'ユーザーのログイン',
