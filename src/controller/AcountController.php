@@ -73,4 +73,33 @@ class AcountController extends Controller
             'user' => $user,
         ], 'index', 'layout_less');
     }
+
+    public function guestLogin(): mixed
+    {
+        $name = "ゲストユーザー";
+        session_start();
+        $_SESSION['login_user'] =
+            [
+                'name' =>  $name,
+                'id' =>  rand(1000, 9999)
+            ];
+
+        $_SESSION['loggedin'] = true;
+        $location = [
+            'location' =>  "ロケーションは登録されていません。",
+            'file_path' => $this->helper->createPath('/var/www/html/src/imgs/_a7bd503d-3993-46c1-a0a4-30657c277ff1.jpg'),
+            'location_id' =>  false,
+        ];
+        $registers = [];
+        return $this->render(
+            [
+                'title' => 'ユーザーのログイン',
+                'user' => $_SESSION['login_user'],
+                'errors' => [],
+                'registers' => $registers,
+                'locations' => $location,
+            ],
+            'user'
+        );
+    }
 }

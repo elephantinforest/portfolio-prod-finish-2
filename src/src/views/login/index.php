@@ -35,6 +35,13 @@
       <input type="hidden" name="windowHeight" class="windowHeightInput">
     </form>
     <div class="text-center sm:text-start">
+      <a href="/acount/guest">
+        <button class="bg-black hover:bg-blue-700 text-white  mb-5  font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="button">
+          ゲストユーザーでログイン
+        </button>
+      </a>
+    </div>
+    <div class="text-center sm:text-start">
       <a href="/acount">
         <button class="bg-black hover:bg-blue-700 text-white  mb-5  font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="button">
           新しいアカウントを作る
@@ -43,6 +50,6 @@
     </div>
   </div>
   <div class="mt-8 sm:m-0 sm:w-5/6 sm:ml-4">
-    <img class="" src="<?php echo $this->createPath('/var/www/html/src/imgs/_70f80b3a-ebba-4301-b282-d658e291eaf2.jpg') ?>" alt="" />
+    <img class="" src="<?php echo $this->createPath('/var/www/html/src/imgs/_cbbfeef0-c541-4585-b349-b45cc951f44c.jpg') ?>" alt="" />
   </div>
 </main>
