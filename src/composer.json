@@ -4,7 +4,6 @@
         "phpmd/phpmd": "@stable",
         "phpstan/phpstan": "^1.10",
         "phpunit/phpunit": "^9.5",
-        "google-gemini-php/client": "^1.0",
         "friendsofphp/php-cs-fixer": "^3.0",
         "pdepend/pdepend": "^2.12",
         "symfony/config": "^5.0",
@@ -30,7 +29,6 @@
         "squizlabs/php_codesniffer": "*",
         "openai-php/client": "^0.10.1",
         "orhanerday/open-ai": "^5.2",
-        "gemini-api-php/client": "^1.4",
         "google/cloud-ai-platform": "^1.0",
         "symfony/deprecation-contracts": "^3.0",
         "monolog/monolog": "^2.0"
