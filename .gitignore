@@ -5,3 +5,4 @@ src/node_modules
 src/src/imgs/user
 src/src/imgs/location
 src/src/imgs/register
+!src/vendor/google-gemini-php
