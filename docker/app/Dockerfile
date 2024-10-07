@@ -58,7 +58,6 @@ WORKDIR /var/www/html
 RUN npm install
 RUN composer install
 # マイグレーションの実行（ファイルパスが正しいことを確認）
-# RUN php /var/www/html/src/migration/initialize_all_table.php
 
 # Apacheの設定ファイルをコピー
 # COPY ./apache2.conf /etc/apache2/apache2.conf
@@ -72,4 +71,5 @@ RUN composer install
 # RUN composer phpunit
 
 RUN chown -R www-data:www-data /var/www/html
+
 # ENTRYPOINT ["/bin/bash", "-c"]
