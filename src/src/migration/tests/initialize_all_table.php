@@ -92,7 +92,7 @@ EOL
   );
 }
 // データベースへの接続
-$mysqli = new mysqli('localhost', 'deveroper', 'pass', 'test_db');
+$mysqli = new mysqli('test_db', 'deveroper', 'pass', 'test_db');
 if ($mysqli->connect_error) {
   throw new RuntimeException('mysqli接続エラー: ' . $mysqli->connect_error);
 }
