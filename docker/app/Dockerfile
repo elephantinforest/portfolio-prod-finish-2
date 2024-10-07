@@ -82,4 +82,4 @@ RUN composer install
 RUN chown -R www-data:www-data /var/www/html
 
 # ENTRYPOINT ["/bin/bash", "-c"]
-CMD ["php", "/var/www/html/src/migration/initialize_all_table.php"]
+# CMD ["php", "/var/www/html/src/migration/initialize_all_table.php"]
