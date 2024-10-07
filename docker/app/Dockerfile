@@ -10,12 +10,20 @@ RUN apt-get update  --fix-missing\
     && docker-php-ext-enable xdebug
 
 # Node.jsとNPMのインストール
-RUN apt-get install -y \
+# 必要なパッケージをインストール
+RUN apt-get update && apt-get install -y \
     curl \
     gnupg
-RUN curl -sL https://deb.nodesource.com/setup_14.x | bash -
-RUN apt-get update && apt-get install -y nodejs npm
-RUN npm install npm@latest -g
+
+# Node.jsのセットアップ
+RUN curl -sL https://deb.nodesource.com/setup_18.x | bash -
+
+# Node.jsとnpmをインストール
+RUN apt-get install -y nodejs
+
+# npmを最新バージョンに更新
+RUN npm install -g npm@latest
+
 
 RUN apt-get update && apt-get install -y \
     libfreetype-dev \
