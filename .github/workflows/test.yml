@@ -52,8 +52,8 @@ jobs:
       - name: Set up Docker
         run: |
              docker-compose up -d
-             docker-compose exec -T db mysqladmin --silent --wait=30 -uroot -ppassword ping || exit 1
-             docker-compose exec -T test_db mysqladmin --silent --wait=30 -uroot -ppassword ping || exit 1
+             docker-compose exec -T db mysqladmin --silent --wait=40 -uroot -ppassword ping || exit 1
+             docker-compose exec -T test_db mysqladmin --silent --wait=40 -uroot -ppassword ping || exit 1
 
  # Docker コンテナに入るためのスクリプトを追加
       - name: Enter Docker Container
