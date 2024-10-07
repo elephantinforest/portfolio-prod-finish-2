@@ -38,10 +38,9 @@
 # 機能一覧
 | ログイン画面 | 
 |:----------:|
-| <img src="https://github.com/user-attachments/assets/7bb7281e-af5c-48d8-8d60-2f75474f1fe5" style="width:100%; "> | 
-| テストユーザーを作成しています下記メールアドレス、パスワードで気軽にアプリをご利用いただけます。ログイン成功したらトップページへリダイレクト。 |
-| テストユーザーメール elephant_in_forest_1173@outlook.jp |
-| テストユーザーパスワード testuser|
+| <img src="https://github.com/user-attachments/assets/046c3bc3-7ef3-4fee-8e0f-d6bbb4d99b0e" style="width:100%;"> |
+| テストユーザーを作成していますので、アカウントを作成せずにアプリをご利用できます。アカウント作成ボタンを押していただけばアカウント作成画面に移動 |
+
 
 | アカウント画面 | 
 |:----------:|
