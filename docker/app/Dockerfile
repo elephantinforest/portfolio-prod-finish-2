@@ -75,12 +75,6 @@ RUN composer install
 # RUN chmod -R 775 /var/www/html/src/imgs/location/
 # RUN chown -R www-data:www-data /var/www/html/src/imgs/location/
 # CMDで本番環境の場合のみコマンドを実行
-CMD if [ "$ENVIRONMENT" = "production" ]; then \
-        php /var/www/html/src/migration/initialize_all_table.php && \
-        php /var/www/html/src/migration/tests/initialize_all_table.php; \
-    else \
-        echo "This command can only be run in production environment."; \
-    fi
 # CMD php /var/www/html/src/migration/initialize_all_table.php && \
 #     php /var/www/html/src/migration/tests/initialize_all_table.php
 # RUN composer phpunit
@@ -88,3 +82,4 @@ CMD if [ "$ENVIRONMENT" = "production" ]; then \
 RUN chown -R www-data:www-data /var/www/html
 
 # ENTRYPOINT ["/bin/bash", "-c"]
+CMD ["php", "/var/www/html/src/migration/initialize_all_table.php"]
