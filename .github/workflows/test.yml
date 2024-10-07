@@ -56,7 +56,7 @@ jobs:
              docker-compose up -d
              docker-compose exec -T db mysqladmin --silent --wait=30 -u root -ppass ping || exit 1
              docker-compose exec -T test_db mysqladmin --silent --wait=30 -uroot -ppass ping || exit 1
-             
+             docker-compose exec -T app php /var/www/html/src/migration/tests/initialize_all_table.php
              docker-compose exec -T app composer install
              docker-compose exec -T app npm install
              docker-compose exec -T app composer phpunit
