@@ -49,14 +49,11 @@ jobs:
           php composer-setup.php --install-dir=/usr/local/bin --filename=composer
           php -r "unlink('composer-setup.php');"
 
-      - name: Set up Docker
-        run: |
-             docker-compose up -d
-
 
  # Docker コンテナに入るためのスクリプトを追加
       - name: Enter Docker Container
         run: |
+             docker-compose up -d
              docker-compose exec -T db mysqladmin --silent --wait=30 -u root -ppass ping || exit 1
              docker-compose exec -T test_db mysqladmin --silent --wait=30 -uroot -ppass ping || exit 1
              docker-compose exec -T app php /var/www/html/src/migration/initialize_all_table.php
