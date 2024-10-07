@@ -34,7 +34,7 @@ class S3
         $this->bucket = 'portfolio-mononoke-imgs';
 
         // 環境変数から環境を取得
-        $environment = 'aaa';
+        $environment = 'development';
 
         // 開発環境の場合
         if ($environment == 'development') {
