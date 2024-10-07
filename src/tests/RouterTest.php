@@ -47,7 +47,9 @@ class RouterTest extends TestCase
         $actual = $this->router->getRoutes();
         $expected =
         [
+            
             '/acount' => ['controller' => 'Acount', 'action' => 'index'],
+            '/acount/guest' => ['controller' => 'Acount', 'action' => 'guestLogin'],
             '/acount/create' => ['controller' => 'Acount', 'action' => 'create'],
             '/login' => ['controller' => 'Login', 'action' => 'index'],
             '/logout' => ['controller' => 'Logout', 'action' => 'index'],
