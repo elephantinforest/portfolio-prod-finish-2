@@ -12,14 +12,14 @@ class PagenationController extends Controller
 
         session_start();
 
-        if (!$_SESSION['loggedin']) {
-            return $this->render([
-            'title' => '所持品の登録',
-            'errors' => [
-            "ログインしないとはいれないで！しょうもないことすな"
-            ],
-            ], 'login');
-        }
+        // if (!$_SESSION['loggedin']) {
+        //     return $this->render([
+        //     'title' => '所持品の登録',
+        //     'errors' => [
+        //     "ログインしないとはいれないで！しょうもないことすな"
+        //     ],
+        //     ], 'login');
+        // }
 
         $userId = $_SESSION['login_user']['id'];
         $locationId = $_POST['location_id'];
