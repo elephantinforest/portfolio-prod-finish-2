@@ -44,13 +44,13 @@
 
 | アカウント画面 | 
 |:----------:|
-| <img src="https://github.com/user-attachments/assets/992303fe-f088-4f86-9c50-32acbcc5f27e" style="width:100%; "> | 
+| <img src="https://github.com/user-attachments/assets/1e1dba97-60d4-4723-96c6-478d7c040733" style="width:100%; "> | 
 | アカウント登録ボタンをクリックして 名前、email、パスワードを記入していただいたらアカウント登録完了。トップページへリダイレクト |
 
-| トップページ画面(サブスク未登録時) | 
+| トップページ画面 | 
 |:----------:|
-| <img src="https://github.com/user-attachments/assets/fc2b3b50-a17f-4917-b5f8-5c499520690a" style="width:100%; "> | 
-|　赤いclick hereボタンをクリックしてサブスクリプション登録画面に！　他にも登録したサブスクリプションの一覧がトップページで表示されます。 |
+| <img src="https://github.com/user-attachments/assets/02cf82de-b5b3-40c4-bf29-a9983678b696" style="width:100%; "> | 
+|　部屋を登録ボタンをクリックしアイテムの置いてある部屋の画像と場所名を登録 |
 
 | サブスクリプションの登録 | 
 |:----------:|
