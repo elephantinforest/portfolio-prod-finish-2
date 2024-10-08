@@ -23,12 +23,12 @@
             "php-http/discovery": true
         }
     },
-    "repositories": [
-        {
+    "repositories": {
+        "my/repo": {
             "type": "vcs",
-            "url": "https://github.com/your-username/custom-library"
+            "url": "https://github.com/elephantinforest/libra"
         }
-    ],
+    },
     "require": {
         "guzzlehttp/guzzle": "^7.8",
         "aws/aws-sdk-php": "^3.314",
@@ -37,11 +37,14 @@
         "orhanerday/open-ai": "^5.2",
         "google/cloud-ai-platform": "^1.0",
         "symfony/deprecation-contracts": "^3.0",
-        "monolog/monolog": "^2.0"
+        "monolog/monolog": "^2.0",
+        "elephantinforest/libra": "dev-main"
     },
     "autoload": {
         "psr-4": {
             "RectorRules\\": "RectorRules/"
         }
-    }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
 }
