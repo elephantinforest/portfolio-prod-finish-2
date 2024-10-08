@@ -6,6 +6,7 @@ on:
       - ".github/workflows/**"
       - "src/**"
       - "docker/**"
+      - "cicd_section/**"
 
 env:
   AWS_REGION: ap-northeast-1
