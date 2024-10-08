@@ -23,6 +23,12 @@
             "php-http/discovery": true
         }
     },
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "https://github.com/your-username/custom-library"
+        }
+    ],
     "require": {
         "guzzlehttp/guzzle": "^7.8",
         "aws/aws-sdk-php": "^3.314",
@@ -33,7 +39,7 @@
         "symfony/deprecation-contracts": "^3.0",
         "monolog/monolog": "^2.0"
     },
-     "autoload": {
+    "autoload": {
         "psr-4": {
             "RectorRules\\": "RectorRules/"
         }
