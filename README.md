@@ -65,8 +65,8 @@
 
 | アイテムのアニメーション | 
 |:----------:|
-| <img src="https://github.com/user-attachments/assets/eaa1d8a9-6116-4da7-875d-050d98a55996)" style="width:100%; "> | 
-|トップページの詳細ボタンをクリックしたら編集画面へ移動します。料金などの変更があれば訂正してeditボタンをクリックすれば編集は完了します。 |
+| <img src="https://github.com/user-attachments/assets/eaa1d8a9-6116-4da7-875d-050d98a55996" style="width:100%; "> | 
+|画像左側に出現するアイテムボタンをクリックすると対象のアイテムが動くので登録したアイテムの場所が視覚的に確認できる |
 
 
 | サブスクリプション登録解除| 
