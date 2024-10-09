@@ -94,6 +94,9 @@
 # インフラ図
  <img src="https://github.com/user-attachments/assets/82faf6ea-4493-4284-bd72-411f4642df5c" style="width:100%; ">
 
+ # ER図
+ <img src="https://github.com/user-attachments/assets/71fb07c1-0aff-4d02-8b9e-779b9318d24d" style="width:100%; ">
+
 # 今後の展望
 サブスクリプション契約時に、月額課金などの情報が自動的にアプリへ登録されるよう、自動化を実現したいと考えています。
 
