@@ -49,13 +49,13 @@
 
 | トップページ画面 | 
 |:----------:|
-| <img src="https://github.com/user-attachments/assets/02cf82de-b5b3-40c4-bf29-a9983678b696" style="width:100%; "> | 
+| <img src="https://github.com/user-attachments/assets/9874606b-82d1-45f6-bc72-c10be5d6b350" style="width:100%; "> | 
 |　部屋を登録ボタンをクリックしアイテムの置いてある部屋の画像と場所名を登録 |
 
-| サブスクリプションの登録 | 
+| 部屋の登録（複数） | 
 |:----------:|
-| <img src="https://github.com/user-attachments/assets/9b231801-925d-4b83-8ab8-1332a05beb07" style="width:100%; "> | 
-|サブスクリプション名、月額料金、課金日、サブスクリプションサービスの内容、URLを記入しsubmitボタンをクリックして登録完了。|
+| <img src="https://github.com/user-attachments/assets/72c294fd-8cac-448c-8345-be19128cfb02" style="width:100%; "> | 
+|　部屋を登録ボタンをクリックしアイテムの置いてある部屋の画像と場所名を登録。　画面上部右にある次ページをクリックする登録してある部屋を移動できる。|
 
 | トップページ(サブスク登録時) | 
 |:----------:|
