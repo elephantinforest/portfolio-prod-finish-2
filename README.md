@@ -57,15 +57,15 @@
 | <img src="https://github.com/user-attachments/assets/72c294fd-8cac-448c-8345-be19128cfb02" style="width:100%; "> | 
 |　部屋を登録ボタンをクリックしアイテムの置いてある部屋の画像と場所名を登録。　画面上部右にある次ページをクリックする登録してある部屋を移動できる。|
 
-| トップページ(サブスク登録時) | 
+| アイテム登録 | 
 |:----------:|
-| <img src="https://github.com/user-attachments/assets/cdcbf75a-2ca6-4234-9f16-bc68164c7e29" style="width:100%; "> | 
-|合計金額、サブスク登録者数など表示します。社名をクリックしたらサブスク登録時のURLにアクセスできる設計になっています。|
+| <img src="https://github.com/user-attachments/assets/4f1ec3a9-e4c9-4750-aab5-2f6a16f66a09" style="width:100%; "> | 
+|　アイテム登録ボタンをクリックしアイテムについてメモがあれば記入し画像を選択。アイテムの名前はgemni-flashAPIを使用して画像認識を利用して名前を取得している。変更は編集ページで可能。時間がたてばオブジェクトが出現してそれをマウスで登録したい場所へ移動させる。　|
 
 
-| サブスクリプションの編集 | 
+| アイテムのアニメーション | 
 |:----------:|
-| <img src="https://github.com/user-attachments/assets/680c411b-5cc7-4f6f-986b-f57672424ba8" style="width:100%; "> | 
+| <img src="https://github.com/user-attachments/assets/eaa1d8a9-6116-4da7-875d-050d98a55996)" style="width:100%; "> | 
 |トップページの詳細ボタンをクリックしたら編集画面へ移動します。料金などの変更があれば訂正してeditボタンをクリックすれば編集は完了します。 |
 
 
