@@ -1,7 +1,7 @@
 <img src="https://github.com/user-attachments/assets/56d7f82c-1afc-4058-b077-c1c14999bc72" width="500px" height="500px">
 
 
-# 祇園小箱
+# 所持品管理アプリ　祇園小箱
 # アプリURL
 https://star-on.net/login
 # 概要
