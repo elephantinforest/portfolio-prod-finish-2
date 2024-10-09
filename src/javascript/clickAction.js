@@ -5,7 +5,6 @@ $(document).ready(function () {
             return attr === 'true' ? 'false' : 'true'
         })
         var inputValue = $('.header_locationname').text()
-        console.log(inputValue)
         // oreの表示状態を切り替える
         $('.ore').removeClass('translate-x-full')
         $('#closeButtn').show()
@@ -18,7 +17,6 @@ $(document).ready(function () {
         $(this).attr('aria-expanded', function (index, attr) {
             return attr === 'true' ? 'false' : 'true'
         })
-        console.log('ositade')
         // oreの表示状態を切り替える
         $('.ore').addClass('translate-x-full')
         $('#closeButtn').hide()
@@ -66,7 +64,6 @@ $(document).ready(function () {
     $('.smallRegisterButtn').click(function () {
         let window123 = $(window).width()
         var isHidden = $('.smallLocationButtn').is(':hidden')
-        console.log(isHidden)
         if (isHidden) {
             $('.moveLocation').show()
             $('.smallLocationButtn').show()
@@ -86,7 +83,6 @@ $(document).ready(function () {
     })
     $('.registerButtn').click(function () {
         var isHidden = $('.locationButtn').is(':hidden')
-        console.log(isHidden)
         if (isHidden) {
             $('.pageButtn').show()
             $('.locationHide').show()
@@ -96,7 +92,6 @@ $(document).ready(function () {
                 $('.formRegister').slideUp()
             }
 
-            console.log(4545)
         } else if (!isHidden) {
             $('.pageButtn').hide()
             $('.locationHide').hide()
@@ -106,15 +101,12 @@ $(document).ready(function () {
             }
             $('.registerHide').removeClass('mr-10')
             $('.registerde').hide()
-            console.log(6969)
         }
     })
     $('.wideLocationButtn').click(function () {
         // const buttn = '.register'
         // buttnController(buttn)
-        console.log(66666)
         var isHidden = $('.registerButtn').is(':hidden')
-        console.log(isHidden)
 
         if (isHidden) {
             $('.registerHide').show()
@@ -126,7 +118,6 @@ $(document).ready(function () {
                 // 条件がtrueの場合の処理
                 $('.register').hide()
             }
-            console.log(66666)
         } else if (!isHidden) {
             $('.registerButtn').hide()
             $('.registerHide').hide()
@@ -136,11 +127,9 @@ $(document).ready(function () {
             var inputValue = $('.header_locationname').text()
             if (!inputValue.includes('ロケーションは登録されていません')) {
                 // 条件がtrueの場合の処理
-                console.log('反応したぜ')
                 $('.register').hide()
                 // $('.formLocation').hide()
             }
-            console.log(9009)
         }
     })
     function buttnController(buttn) {

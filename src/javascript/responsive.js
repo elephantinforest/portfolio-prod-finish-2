@@ -1,5 +1,4 @@
 function applyResizable(element) {
-    console.log('合')
     var currentWindowWidth = $(window).width()
     var currentWindowHeight = $('body').height()
     console.log(currentWindowHeight)
@@ -68,12 +67,10 @@ export function responsiveDesign() {
                 var scaleY = currentWindowHeight / initialWindowHeight
                 var newLeft = leftValue * scaleX + '%'
                 var newTop = initialTopPercentage * topScaleY + 'px'
-                console.log('くらった1')
                 console.log(currentWindowWidth)
 
                 if (currentWindowWidth > 390) {
                     currentLi.css('top', newTop) // topの値を変更
-                    console.log('くらった2')
                 } else {
                     newTop = initialTopPercentage - 33
                     currentLi.css('top', newTop + 'px') // topの値を変更

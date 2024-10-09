@@ -163,7 +163,6 @@ $(document).ready(function () {
                 )
                 if (!inputValue.includes('ロケーションは登録されていません')) {
                     // 条件がtrueの場合の処理
-                    console.log('反応したぜ')
                     // $('.register').show()
                     // $('.formLocation').hide()
                 }

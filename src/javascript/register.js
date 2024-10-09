@@ -152,15 +152,11 @@ $(document).ready(function () {
                 var y = ui.position.top
                 var windowWidth = $(window).width()
                 var windowHeight = $('body').height()
-                console.log(x, y)
                 var register_id = $(this).find('input').val()
                 var position = $(this).position()
                 var parentWidth = $(window).width()
-                console.log(position.top)
                 var leftPercentage = (position.left / parentWidth) * 100
                 var topPercentage = y
-                console.log('Left Position Percentage: ' + leftPercentage + '%')
-                console.log('Top Position Percentage: ' + topPercentage + '%')
                 // Ajaxリクエストを送信
                 $.ajax({
                     url: '/position',
@@ -174,17 +170,12 @@ $(document).ready(function () {
                     },
                     dataType: 'json',
                     beforeSend: function () {
-                        console.log(
-                            'Before send: Ajax request is about to be sent.',
-                        )
+
                     },
                     success: function (data) {
-                        console.log('Success: Ajax request succeeded.')
-                        console.log(data)
+
                         if (data.success === true) {
-                            console.log('座標の更新完了')
                             searchNumber(data.position)
-                            console.log(data.position)
                         } else {
                             sendAlert(data)
                         }
@@ -197,9 +188,6 @@ $(document).ready(function () {
                         )
                     },
                     complete: function () {
-                        console.log(
-                            'Complete: Ajax request completed (after success or error).',
-                        )
                         responsiveDesign()
                     },
                 })
@@ -232,7 +220,6 @@ $(document).ready(function () {
             contentType: false,
             processData: false,
             beforeSend: function () {
-                console.log('Before send: Ajax request is about to be sent.')
                 // $('#buttn').hide()
                 $('#fixedContainer').show()
                 $('.registerde').show()
@@ -242,7 +229,6 @@ $(document).ready(function () {
                 showLoadingAnimation()
             },
             success: function (data) {
-                console.log('Success: Ajax request succeeded.')
                 hideLoadingAnimation()
                 if (data.success) {
                     var imageUrl = data.imageUrl
@@ -293,12 +279,9 @@ $(document).ready(function () {
                             },
                             dataType: 'json',
                             beforeSend: function () {
-                                console.log(
-                                    'Before send: Ajax request is about to be sent.',
-                                )
+
                             },
                             success: function (data) {
-                                console.log('Success: Ajax request succeeded.')
                                 if (data.success) {
                                     var imageUrl = data.imageUrl
                                     var registerId = data.registerId

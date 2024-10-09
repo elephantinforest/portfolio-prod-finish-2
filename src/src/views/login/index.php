@@ -37,7 +37,7 @@
     <div class="text-center sm:text-start">
       <a href="/acount/guest">
         <button class="bg-black hover:bg-blue-700 text-white  mb-5  font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="button">
-          ゲストユーザーでログイン
+          ゲストでログイン
         </button>
       </a>
     </div>

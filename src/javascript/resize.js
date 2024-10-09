@@ -3,8 +3,6 @@ $(function () {
     function applyResizable(element) {
         const currentWindowWidth = $(window).width()
         const currentWindowHeight = $('body').height()
-        console.log(currentWindowHeight)
-        console.log(currentWindowWidth)
 
         // console.log(element)
         $(element).each(function() {

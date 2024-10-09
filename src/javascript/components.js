@@ -40,8 +40,6 @@ export function searchNumber(positions) {
     if (parentLi.length > 0) {
         parentLi.css('left', positions.x + '%')
     } else {
-        console.log(
-            '指定された register_id を持つ li タグが見つかりませんでした。',
-        )
+       
     }
 }

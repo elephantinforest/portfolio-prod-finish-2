@@ -7,11 +7,8 @@ export function fetchRegistersName()
         data: { location_id: locatioId },
         dataType: 'json',
         beforeSend: function () {
-            console.log('Before send: Ajax requeAst is about to be sent.')
-            console.log('実行')
         },
         success: function (data) {
-            console.log('Success: Ajax request succeeded.')
             if (data.success) {
                 var registers = JSON.parse(data.registersName)
                 pagenation(registers)
@@ -25,9 +22,7 @@ export function fetchRegistersName()
             )
         },
         complete: function () {
-            console.log(
-                'Complete: Ajax request completed (after success or error).',
-            )
+
         },
     })
     function pagenation(registersName)
@@ -40,13 +35,11 @@ export function fetchRegistersName()
             showNavigator: true,
             className: 'paginationjs-theme-yellow',
             callback: function (data, pagination) {
-                console.log(pagination)
                 // 新しいデータを追加する前に、コンテンツをクリアする
                 $('#registers-all-contents').empty()
 
                 // データをループしてHTMLに追加
                 $.each(data, function (index, element) {
-                    console.log(element)
                     $('#registers-all-contents').append(makeButtnList(element))
                 })
             },

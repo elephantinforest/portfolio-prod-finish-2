@@ -76,7 +76,7 @@ class AcountController extends Controller
 
     public function guestLogin(): mixed
     {
-        $name = "ゲストユーザー";
+        $name = "ゲスト";
         session_start();
         $_SESSION['login_user'] =
             [

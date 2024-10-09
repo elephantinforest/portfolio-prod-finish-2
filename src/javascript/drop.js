@@ -22,12 +22,9 @@ $(document).ready(function () {
                     },
                     dataType: 'json',
                     beforeSend: function () {
-                        console.log(
-                            'Before send: Ajax request is about to be sent.',
-                        );
+
                     },
                     success: function (data) {
-                        console.log('Success: Ajax request succeeded.');
                         if (data.success) {
                             ui.draggable.remove();
 
@@ -59,9 +56,6 @@ $(document).ready(function () {
                         );
                     },
                     complete: function () {
-                        console.log(
-                            'Complete: Ajax request completed (after success or error).',
-                        );
                         fetchRegistersName();
                     },
                 });
@@ -80,7 +74,6 @@ $(document).ready(function () {
             // responsiveDesign()
             if ($('.pageButtn').is(':hidden')) {
                 // 要素を表示
-                console.log('変更11111');
                 $('.locationButtn').show();
                 $('.smallRegisterButtn').show();
                 $('.smallLocationButtn').show();
@@ -103,7 +96,6 @@ $(document).ready(function () {
         // responsiveDesign()
         if ($('.pageButtn').is(':hidden')) {
             // 要素を表示
-            console.log('変更11111');
             $('.locationButtn').show();
             $('.smallRegisterButtn').show();
             $('.smallLocationButtn').show();

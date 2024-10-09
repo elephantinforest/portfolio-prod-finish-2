@@ -4,7 +4,6 @@ $(document).ready(function () {
         $('#buttn').on('click', 'li', function () {
             var hiddenValue = $(this).find("input[type='hidden']").val()
             // クリックされたリスト項目の親要素にクラスを追加
-            console.log(hiddenValue)
             $("input[name='register_id'][value='" + hiddenValue + "']")
                 .parent()
                 .addClass(
@@ -36,7 +35,6 @@ $(document).ready(function () {
                 $(mutation.addedNodes)
                     .filter('li')
                     .each(function () {
-                        console.log('ファイフラッシュ')
                         animateListItemOnClick(this)
                     })
             }
