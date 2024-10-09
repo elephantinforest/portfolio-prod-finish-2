@@ -92,7 +92,7 @@
 今回の経験を通して、開発環境と本番環境間の差異を意識して開発する事の重要性を改めて認識しました。
 
 # インフラ図
- <img src="https://github.com/user-attachments/assets/de3e4bb2-d440-4c88-b218-7124193d0e95" style="width:100%; ">
+ <img src="https://github.com/user-attachments/assets/82faf6ea-4493-4284-bd72-411f4642df5c" style="width:100%; ">
 
 # 今後の展望
 サブスクリプション契約時に、月額課金などの情報が自動的にアプリへ登録されるよう、自動化を実現したいと考えています。
