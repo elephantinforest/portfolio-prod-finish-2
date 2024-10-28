@@ -13,7 +13,7 @@
         <h1 class="text-xl font-semibold">アカウント登録</h1>
         <form class="mt-6" action="/acount" method="post" enctype="multipart/form-data">
             <label for="name" class="block mt-2 text-xs font-semibold text-gray-600 uppercase">名前</label>
-            <input id="name" type="text" name="name" placeholder="名無しの権兵衛" autocomplete="name" class="block w-full p-3 mt-2 text-gray-700 bg-gray-200 appearance-none focus:outline-none focus:bg-gray-300 focus:shadow-inner" value="<?php echo isset($user['name']) ? $user['name'] : '' ?>" required />
+            <input id="name" type="text" name="name" placeholder="山田 太郎" autocomplete="name" class="block w-full p-3 mt-2 text-gray-700 bg-gray-200 appearance-none focus:outline-none focus:bg-gray-300 focus:shadow-inner" value="<?php echo isset($user['name']) ? $user['name'] : '' ?>" required />
             <label for="email" class="block mt-2 text-xs font-semibold text-gray-600 uppercase">E-mail</label>
             <input id="email" type="email" name="email" placeholder="john.doe@company.com" autocomplete="email" class="block w-full p-3 mt-2 text-gray-700 bg-gray-200 appearance-none focus:outline-none focus:bg-gray-300 focus:shadow-inner" value="<?php echo isset($user['email']) ? $user['email'] : '' ?>" required />
             <label for="password" class="block mt-2 text-xs font-semibold text-gray-600 uppercase">Password</label>
