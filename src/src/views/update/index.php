@@ -2,29 +2,29 @@
   <form action="/update" method="POST" enctype="multipart/form-data" class="mt-32 max-w-screen-xl mx-auto">
     <div class="grid gap-6 mb-6 md:grid-cols-2">
       <div>
-        <label for="name" class="block mb-2 text-sm font-medium text-black dark:text-white">登録アイテム</label>
-        <input type="text" name="name" id="name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" value="<?php echo $register['name']; ?>" required />
+        <label for="name" class="block mb-2 text-sm font-medium text-cyan-500 dark:text-black">登録アイテム</label>
+        <input type="text" name="name" id="name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500" value="<?php echo $register['name']; ?>" required />
       </div>
 
       <div>
-        <label for="genre" class="block mb-2 text-sm font-medium text-cyan-500 dark:text-white">ジャンル</label>
-        <input type="text" name="genre" id="genre" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" value="<?php echo $register['genre']; ?>" required />
+        <label for="genre" class="block mb-2 text-sm font-medium text-cyan-500 dark:text-black">ジャンル</label>
+        <input type="text" name="genre" id="genre" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500" value="<?php echo $register['genre']; ?>" required />
       </div>
 
       <div>
-        <label for="price" class="block mb-2 text-sm font-medium text-cyan-500 dark:text-white">値段</label>
-        <input type="text" name="price" id="price" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" value="<?php echo $register['price']; ?>" required />
+        <label for="price" class="block mb-2 text-sm font-medium text-cyan-500 dark:text-black">値段</label>
+        <input type="text" name="price" id="price" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500" value="<?php echo $register['price']; ?>" required />
       </div>
 
       <div>
-        <label for="location" class="block mb-2 text-sm font-medium text-cyan-500 dark:text-white">居所</label>
-        <input type="text" name="location" id="location" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" value="<?php echo $register['location']; ?>" required />
+        <label for="location" class="block mb-2 text-sm font-medium text-cyan-500 dark:text-black">居所</label>
+        <input type="text" name="location" id="location" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500" value="<?php echo $register['location']; ?>" required />
       </div>
     </div>
 
     <div class="grid grid-flow-col sm:justify-stretch justify-between h-60">
       <div class="w-auto md:w-64  ">
-        <label for="dropzone-file" class="mb-2 text-sm font-medium text-cyan-500 dark:text-white">画像</label>
+        <label for="dropzone-file" class="mb-2 text-sm font-medium text-cyan-500 dark:text-black">画像</label>
         <div class="flex items-center justify-center w-full h-40">
           <label for="dropzone-file" class="flex flex-col items-center justify-center w-full h-40 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 dark:hover:bg-bray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600">
             <div class="flex flex-col items-center justify-center pt-5 pb-6">
@@ -39,8 +39,8 @@
       </div>
 
       <div class="w-full md:w-auto">
-        <label for="message" class="block mb-2 text-sm font-medium text-cyan-500 dark:text-white">その他</label>
-        <textarea id="message" name="other" rows="4" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 md:block"><?php echo $register['other']; ?></textarea>
+        <label for="message" class="block mb-2 text-sm font-medium text-cyan-500 dark:text-black">その他</label>
+        <textarea id="message" name="other" rows="4" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500 md:block"><?php echo $register['other']; ?></textarea>
       </div>
     </div>
 
