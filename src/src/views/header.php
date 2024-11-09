@@ -101,7 +101,7 @@
                              <!-- <button type="button" class="relative flex-shrink-0 rounded-full bg-gray-800 p-1 text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"> -->
                              <!-- <span class="absolute -inset-1.5">ログアウト</span> -->
                              <!-- <span class="sr-only">ログアウト</span> -->
-                             <img class="h-16  hover:backdrop-contrast-150" src="<?php echo $this->createPath('/var/www/html/src/imgs/_b4eb111d-3415-4e44-8ad7-8155acc5a0b8.jpg') ?>" alt="Your Company">
+                             <img class="h-16  hover:backdrop-contrast-150" src="<?php echo $this->createPath('/var/www/html/src/imgs/_b4eb111d-3415-4e44-8ad7-8155acc5a0b8.jpg') ?>" alt="Your Compay">
                          </a>
                              </button>
 
