@@ -2,7 +2,7 @@
   <form action="/update" method="POST" enctype="multipart/form-data" class="mt-32 max-w-screen-xl mx-auto">
     <div class="grid gap-6 mb-6 md:grid-cols-2">
       <div>
-        <label for="name" class="block mb-2 text-sm font-medium text-cyan-500 dark:text-white">登録アイテム</label>
+        <label for="name" class="block mb-2 text-sm font-medium text-black dark:text-white">登録アイテム</label>
         <input type="text" name="name" id="name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" value="<?php echo $register['name']; ?>" required />
       </div>
 
