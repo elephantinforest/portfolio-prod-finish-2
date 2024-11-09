@@ -235,7 +235,7 @@ $(document).ready(function () {
                     var registerId = data.registerId
                     // $('#imageContainer').show()
                     $('#imageContainer').html(
-                        '<div id="uploaded_image" class="fixed top-0 left-0 w-full z-50 object-cover ui-sortable-handle"><img class="rounded-lg grayscale hover:contrast-200 hover:grayscale-0" src="' +
+                        '<div id="uploaded_image" style="width: 90px; height: 100px class="fixed top-0 left-0 w-full z-50 object-cover ui-sortable-handle"><img class="rounded-lg grayscale hover:contrast-200 hover:grayscale-0" src="' +
                             imageUrl +
                             '" alt="Uploaded Image" style="width: 90px; height: 100px;">' +
                             '<input type="hidden" id="register_id" name="register_id" value="' +

@@ -35,9 +35,9 @@ $responsive = file_get_contents('/var/www/html/javascript/responsive.js');
   <?= $location ?>
   <?= $resize ?>
   <?= $responce ?>
-  <?= $touche ?>
   <?= $jqueryUi ?>
   <?= $click ?>
   <?= $components?>
   <?= $responsive?>
+  <?= $touche ?>
 </script>
