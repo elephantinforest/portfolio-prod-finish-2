@@ -28,7 +28,7 @@ class LoginController extends Controller
 
                 if (empty($location)) {
                     $location = [
-                        'location' =>  "ロケーションは登録されていません。",
+                        'location' =>  "ロケーション未登録",
                         'file_path' => $this->helper->createPath('/var/www/html/src/imgs/_a7bd503d-3993-46c1-a0a4-30657c277ff1.jpg'),
                         'location_id' =>  false,
                     ];
@@ -58,7 +58,7 @@ class LoginController extends Controller
                 }, $registers);
 
                 $registers = $registers ?: [];
-              
+
                 return $this->render(
                     [
                         'title' => 'ユーザーのログイン',
@@ -111,7 +111,7 @@ class LoginController extends Controller
                         $initialPath = $this->helper->createPath('/var/www/html/src/imgs/_a7bd503d-3993-46c1-a0a4-30657c277ff1.jpg');
                         $location = [];
                         $location = [
-                            'location' =>  "ロケーションは登録されていません。",
+                            'location' =>  "ロケーション未登録",
                             'file_path' => $initialPath,
                             'location_id' => false,
                         ];

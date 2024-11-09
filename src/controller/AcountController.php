@@ -46,7 +46,7 @@ class AcountController extends Controller
                 $_SESSION['login_user'] = $userModel->fetchUser($email);
                 $_SESSION['loggedin'] = true;
                 $location = [
-                    'location' =>  "ロケーションは登録されていません。",
+                    'location' =>  "ロケーション未登録",
                     'file_path' => $this->helper->createPath('/var/www/html/src/imgs/_a7bd503d-3993-46c1-a0a4-30657c277ff1.jpg'),
                     'location_id' =>  false,
                 ];
@@ -86,7 +86,7 @@ class AcountController extends Controller
 
         $_SESSION['loggedin'] = true;
         $location = [
-            'location' =>  "ロケーションは登録されていません。",
+            'location' =>  "ロケーション未登録",
             'file_path' => $this->helper->createPath('/var/www/html/src/imgs/_a7bd503d-3993-46c1-a0a4-30657c277ff1.jpg'),
             'location_id' =>  false,
         ];

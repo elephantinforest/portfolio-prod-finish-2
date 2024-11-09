@@ -3,8 +3,7 @@
 // import { makeButtnList } from "export.js"
 
 $(document).ready(function () {
-    function getLocationData(data)
-    {
+    function getLocationData(data) {
         return new Promise(function (resolve, reject) {
             const locationId = $('#locationSpot').val()
             console.log(11)
@@ -89,7 +88,6 @@ $(document).ready(function () {
     //     })
     // }
 
-
     $('.prevBtn').on('click', function () {
         getLocationData('prev')
             .then(function (data) {})
@@ -138,18 +136,19 @@ $(document).ready(function () {
             processData: false,
             success: function (data) {
                 if (data.success) {
-                    const inputValue = $('.header_locationname').text();
-                    const isLocationNotRegistered = inputValue.includes('ロケーションは登録されていません。');
+                    const inputValue = $('.header_locationname').text()
+                    const isLocationNotRegistered =
+                        inputValue.includes('ロケーション未登録')
 
                     if (isLocationNotRegistered) {
-                                  // 条件が真の場合の処理
-                                  $('.header_locationname').text(data.locationValue);
-                                  $('.slideImage').attr('src', data.imageUrl);
-                                  $('#locationSpot').val(data.locationId);
-                                  // $('.register').show();
+                        // 条件が真の場合の処理
+                        $('.header_locationname').text(data.locationValue)
+                        $('.slideImage').attr('src', data.imageUrl)
+                        $('#locationSpot').val(data.locationId)
+                        // $('.register').show();
                     }
 
-                    alert('ロケーションの追加が出来ました。');
+                    alert('ロケーションの追加が出来ました。')
                 } else {
                     // $('.register').show()
                     sendAlert(data.errors)

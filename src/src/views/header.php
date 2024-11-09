@@ -191,9 +191,9 @@
                  <p class="nextBtn text-black bg-yellow-400 hover:bg-cyan-500 hover:text-yellow-400 inline-flex items-center rounded-md py-1 px-2 text-xs font-medium opacity-75 cursor-pointer">
                     ⇨
                  </p>
-                 <!-- <p class="text-black bg-yellow-400  hover:bg-red-600 hover:text-sky-500 inline-flex items-center rounded-md py-1 px-2 text-xs font-medium opacity-75 cursor-pointer">
+                 <p class="text-black bg-yellow-400  hover:bg-red-600 hover:text-sky-500 inline-flex items-center rounded-md py-1 px-2 text-xs font-medium opacity-75 cursor-pointer">
                      <a href="/logout"> ログアウト </a>
-                 </p> -->
+                 </p>
              </div>
          </header>
 

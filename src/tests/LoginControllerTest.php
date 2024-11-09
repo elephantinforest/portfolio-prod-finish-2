@@ -75,7 +75,7 @@ class LoginControllerTest extends TestCase
         $_SESSION['login_user']['id'] = 1;
         $action = 'index';
         $actual = $this->loginController->run($action);
-        $expected = 'ロケーションは登録されていません。';
+        $expected = 'ロケーション未登録';
         $this->assertStringContainsString($expected, $actual);
         $this->user->delete('rikugann@gmail.com');
         session_destroy();
